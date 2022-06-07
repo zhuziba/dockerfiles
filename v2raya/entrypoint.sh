@@ -20,4 +20,6 @@ if [ ! -e '/usr/bin/v2raya' ]; then
     if [ $(arch) == armv7l ]; then     wget https://download.fastgit.org/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm_$VER;     chmod +x /v2raya_linux_arm_$VER;     mv /v2raya_linux_arm_$VER /usr/bin/v2raya; fi
     echo "下载v2rayA完成"
 fi
-v2raya --log-level error --log-file /var/log/v2raya.log
+echo "启动v2raya"
+v2raya 
+#v2raya --log-level error --log-file /var/log/v2raya.log
