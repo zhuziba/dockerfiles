@@ -3,7 +3,7 @@ ENV VER=1.5.7 \
     PATH=$PATH:/usr/share/v2ray
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip \
+        && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables v2ray bash unzip \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /etc/v2raya \
