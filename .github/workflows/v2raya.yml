@@ -23,3 +23,8 @@ jobs:
       run: |
         cd ./v2raya
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64,linux/arm/v7 . --push
+    - name: docker clash
+      run: |
+        cd ./clash
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/clash --platform linux/arm64,linux/amd64 . --push
+       
