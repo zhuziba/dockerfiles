@@ -1,8 +1,7 @@
 name: 构建v2raya镜像
 on:
-  push:
-    branches:
-      - main
+  watch:
+    types: started
 jobs:
   build:
     runs-on: ubuntu-20.04  
