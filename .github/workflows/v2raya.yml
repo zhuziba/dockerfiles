@@ -1,4 +1,4 @@
-name: 构建v2raya镜像
+name: 构建hubdocker镜像
 on:
   watch:
     types: started
