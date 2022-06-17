@@ -11,8 +11,9 @@ RUN set -ex \
         && tar -zxvf AdGuardHome.tar.gz \
         && rm -r AdGuardHome.tar.gz \
         && mv /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome \
-        && chmod +x /usr/bin/AdGuardHome \
-        && if [ -d /etc/services.d ]; then     rm -rf /etc/services.d;      ln -sf /s6-overlay/etc/services.d /etc/services.d; fi \
+        && chmod +x /usr/bin/AdGuardHome \    
+        && rm -rf /etc/services.d \       
+        && ln -sf /s6-overlay/etc/services.d /etc/services.d \ 
         && chmod +x /etc/services.d/crond/run \
         && rm -rf /var/cache/apk/* # buildkit
 VOLUME /AdGuardHome
