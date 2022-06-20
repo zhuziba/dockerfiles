@@ -24,7 +24,7 @@ fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
-    wget -P /root/.config/clash https://mirror.ghproxy.com/https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
+    wget -P /root/.config/clash https://mirror.ghproxy.com/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
 fi
 
 if [ ! -e '/root/.config/clash/iptables.sh' ]; then
