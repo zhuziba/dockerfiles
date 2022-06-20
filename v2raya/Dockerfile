@@ -10,10 +10,10 @@ RUN set -ex \
         && mkdir /etc/v2raya-web \
         && mkdir /tmp/v2ray \
         && mkdir /usr/share/v2ray \
-        && wget -P /etc/v2raya-web https://cdn.staticaly.com/gh/v2rayA/v2rayA/master/gui/public/favicon.ico \
-        && wget -P /etc/v2raya-web https://cdn.staticaly.com/gh/v2rayA/v2rayA/master/gui/public/index.html \
-        && wget -P /etc/v2raya-web https://cdn.staticaly.com/gh/v2rayA/v2rayA/master/gui/public/CNAME \
-        && wget -P /etc/v2raya-web https://cdn.staticaly.com/gh/v2rayA/v2rayA/master/gui/public/robots.txt \
+        && wget -P /etc/v2raya-web https://raw.fastgit.org/v2rayA/v2rayA/master/gui/public/favicon.ico \
+        && wget -P /etc/v2raya-web https://raw.fastgit.org/v2rayA/v2rayA/master/gui/public/index.html \
+        && wget -P /etc/v2raya-web https://raw.fastgit.org/v2rayA/v2rayA/master/gui/public/CNAME \
+        && wget -P /etc/v2raya-web https://raw.fastgit.org/v2rayA/v2rayA/master/gui/public/robots.txt \
         && mkdir -p /usr/local/share/v2ray && touch /usr/local/share/v2ray/.copykeep \
         && rm -rf /var/cache/apk/*
 VOLUME /etc/v2raya
