@@ -7,8 +7,8 @@ echo -e "======================== 0.1 判断是否安装clash文件 ============
 if [ ! -e '/usr/bin/clash' ]; then
     clash=$(curl -s https://api.github.com/repos/Dreamacro/clash/releases | jq -r .[]."name" | grep -m1 -E "Premium ([0-9]{1,2}\.?){3,4}$" | sed "s/Premium //")
     echo "当前获取clash版本为$clash"
-    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://mirror.ghproxy.com/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-armv8-$clash.gz;     gunzip /usr/bin/clash-linux-armv8-$clash.gz;     mv /usr/bin/clash-linux-armv8-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
-    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://mirror.ghproxy.com/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-armv8-$clash.gz;     gunzip /usr/bin/clash-linux-armv8-$clash.gz;     mv /usr/bin/clash-linux-armv8-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     
     echo "下载clash完成"
 fi
@@ -17,14 +17,14 @@ if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "开始移动面板文件到dashboard目录"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    wget https://mirror.ghproxy.com/https://github.com/haishanh/yacd/releases/download/v0.3.5/yacd.tar.xz
+    wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.5/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
 fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
-    wget -P /root/.config/clash https://mirror.ghproxy.com/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
 fi
 
 if [ ! -e '/root/.config/clash/iptables.sh' ]; then
