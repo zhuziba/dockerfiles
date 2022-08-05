@@ -1,5 +1,5 @@
 FROM alpine
-ENV VER=1.5.8.1 \
+ENV VER=1.5.9.1698.1 \
     PATH=$PATH:/usr/share/v2ray
 RUN set -ex \
         && apk update -f && apk upgrade \
