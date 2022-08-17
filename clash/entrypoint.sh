@@ -5,12 +5,14 @@ sysctl -p
 
 echo -e "======================== 0.1 判断是否安装clash文件 ========================\n"
 if [ ! -e '/usr/bin/clash' ]; then
-    clash=2022.07.07
+    #clash=2022.07.07
+    clash=v1.12.0
     #clash=$(curl -s https://api.github.com/repos/Dreamacro/clash/releases | jq -r .[]."name" | grep -m1 -E "Premium ([0-9]{1,2}\.?){3,4}$" | sed "s/Premium //")
     echo "当前获取clash版本为$clash"
-    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-armv8-$clash.gz;     gunzip /usr/bin/clash-linux-armv8-$clash.gz;     mv /usr/bin/clash-linux-armv8-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
-    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
-    
+    #if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-armv8-$clash.gz;     gunzip /usr/bin/clash-linux-armv8-$clash.gz;     mv /usr/bin/clash-linux-armv8-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    #if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://download.fastgit.org/MetaCubeX/Clash.Meta/releases/download/$clash/Clash.Meta-linux-arm64-$clash.gz;     gunzip /usr/bin/Clash.Meta-linux-arm64-$clash.gz;     mv /usr/bin/Clash.Meta-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/MetaCubeX/Clash.Meta/releases/download/v$clash/Clash.Meta-linux-amd64-$clash.gz;     gunzip /usr/bin/Clash.Meta-linux-amd64-$clash.gz;     mv /usr/bin/Clash.Meta-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     echo "下载clash完成"
 fi
 echo -e "======================== 0.2 判断目录是否存在文件 ========================\n"
