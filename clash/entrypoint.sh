@@ -17,15 +17,26 @@ if [ ! -e '/usr/bin/clash' ]; then
 fi
 echo -e "======================== 0.2 判断目录是否存在文件 ========================\n"
 if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
-    echo "开始移动面板文件到dashboard目录"
+    echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.5/yacd.tar.xz
+    wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
+    tar -xvf yacd.tar.xz
+    mv /public/* /root/.config/clash/dashboard
+    else
+    echo "下载dashboard文件"
+    mkdir -p /root/.config/clash/dashboard
+    wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
 fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
+    echo "Country.mmdb文件存在删除下载最新版本"
+    rm -rf /root/.config/clash/Country.mmdb
+    echo "下载Country.mmdb文件"
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    else
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
 fi
