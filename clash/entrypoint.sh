@@ -38,6 +38,7 @@ if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
+    rm -rf /root/.config/clash/geoip.dat
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/geoip.dat
