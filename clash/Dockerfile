@@ -4,9 +4,10 @@ ENV iptables=true \
 ADD /script/iptables.sh /tmp/iptables.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables jq \
+        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables jq nodejs npm \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
+        && npm install -g pm2 \
         && chmod +x /tmp/iptables.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /root/.config/clash
