@@ -66,5 +66,4 @@ elif [[ $tun == false ]]; then
     echo -e "你没有设置开启tun变量"
 fi
 echo -e "======================== 3. 启动clash程序 ========================\n"
-clash
-#pm2-docker start clash --name clash
+pm2-docker start clash --name clash
