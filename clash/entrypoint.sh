@@ -34,8 +34,8 @@ fi
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
-    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/geoip.dat
-    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/geosite.dat
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
@@ -43,8 +43,8 @@ if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     rm -rf /root/.config/clash/geosite.dat
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
-    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/geoip.dat
-    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/geosite.dat
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+    wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
 fi
 
 if [ ! -e '/root/.config/clash/iptables.sh' ]; then
