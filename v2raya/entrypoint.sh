@@ -8,8 +8,8 @@ if [ ! -e '/usr/share/v2ray/v2ray' ]; then
     mv /tmp/v2ray/v2ray /usr/share/v2ray/v2ray
     mv /tmp/v2ray/geoip.dat /usr/local/share/v2ray/geoip.dat
     mv /tmp/v2ray/geosite.dat /usr/local/share/v2ray/geosite.dat
-    wget -O /usr/local/share/v2ray/LoyalsoldierSite.dat https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
-    wget -O /usr/local/share/v2ray/Loyalsoldierip.dat https://download.fastgit.org/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+    wget -O /usr/local/share/v2ray/LoyalsoldierSite.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
+    wget -O /usr/local/share/v2ray/Loyalsoldierip.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
     rm -rf /tmp/v2ray
     echo "下载v2ray完成"
 fi
