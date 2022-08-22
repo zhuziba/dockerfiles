@@ -5,7 +5,7 @@ ADD /script/iptables.sh /tmp/iptables.sh
 ADD /script/tuniptables.sh /tmp/tuniptables.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables jq nodejs npm \
+        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables ipset jq nodejs npm \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && npm install -g pm2 \
