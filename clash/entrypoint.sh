@@ -24,6 +24,7 @@ if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     mv /public/* /root/.config/clash/dashboard
     else
     echo "dashboard文件存在删除下载最新版本"
+    rm -rf /yacd.tar.xz
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
     wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
