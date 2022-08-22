@@ -49,15 +49,15 @@ if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     wget -P /root/.config/clash https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
 fi
 
-if [ ! -e '/root/.config/clash/iptables.sh' ]; then
-    echo "移动iptables.sh文件"
-    cp /tmp/iptables.sh /root/.config/clash/iptables.sh
-fi
-
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
 if [[ $iptables == true ]]; then
+    echo "移动iptables.sh文件"
+    cp /tmp/iptables.sh /root/.config/clash/iptables.sh
     bash /root/.config/clash/iptables.sh
     echo -e "自定义iptables路由表成功..."
+elif [[ $iptables == false ]]; then
+    echo -e "你没有设置开启iptables变量"
+fi
 fi
 echo -e "======================== 2. 是否内核开启tun ========================\n"
 if [[ $tun == true ]]; then
