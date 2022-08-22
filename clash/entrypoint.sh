@@ -22,14 +22,15 @@ if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
+    rm -rf /yacd.tar.xz
     else
     echo "dashboard文件存在删除下载最新版本"
-    rm -rf /yacd.tar.xz
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
     wget https://download.fastgit.org/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
+    rm -rf /yacd.tar.xz
 fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
