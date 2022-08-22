@@ -58,7 +58,6 @@ if [[ $iptables == true ]]; then
 elif [[ $iptables == false ]]; then
     echo -e "你没有设置开启iptables变量"
 fi
-fi
 echo -e "======================== 2. 是否内核开启tun ========================\n"
 if [[ $tun == true ]]; then
     mkdir -p /lib/modules/$(uname -r)
