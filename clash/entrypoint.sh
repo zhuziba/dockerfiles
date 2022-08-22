@@ -64,6 +64,10 @@ if [[ $tun == true ]]; then
     mkdir -p /lib/modules/$(uname -r)
     modprobe tun
     echo -e "如果没有报错就成功开启tun"
+    echo "移动tuniptables.sh文件"
+    cp /tmp/tuniptables.sh /root/.config/clash/tuniptables.sh
+    bash /root/.config/clash/tuniptables.sh
+    echo -e "tuniptables路由表成功..."
 elif [[ $tun == false ]]; then
     echo -e "你没有设置开启tun变量"
 fi
