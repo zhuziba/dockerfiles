@@ -1,5 +1,6 @@
 FROM alpine
 ENV iptables=true \
+    neihe=premium \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
 RUN set -ex \
