@@ -1,15 +1,5 @@
 #!/bin/bash
 
-
-if [ ! -e '/usr/bin/smartdns' ]; then
-    if [ $(arch) == aarch64 ]; then      wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
-    if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
-    if [ $(arch) == armv7l ]; then     wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-arm; fi
-    chmod +x /tmp/smartdns
-    mv /tmp/smartdns /usr/bin/smartdns
-    echo "下载smartdns完成"
-fi
-
 if [ ! -e '/usr/share/v2ray/v2ray' ]; then
     if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip; fi
     if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip; fi
@@ -54,6 +44,12 @@ if [ ! -e '/etc/v2raya/smartdns.conf' ]; then
     echo "smartdns.conf文件不存在不启动smartdns"
     else
     echo "smartdns.conf文件存在启动smartdns"
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
+    if [ $(arch) == armv7l ]; then     wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-arm; fi
+    chmod +x /tmp/smartdns
+    mv /tmp/smartdns /usr/bin/smartdns
+    echo "下载smartdns完成"
     smartdns -c /etc/v2raya/smartdns.conf
 fi
 
