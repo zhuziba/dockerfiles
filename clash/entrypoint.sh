@@ -70,5 +70,17 @@ if [[ $tun == true ]]; then
 elif [[ $tun == false ]]; then
     echo -e "你没有设置开启tun变量"
 fi
-echo -e "======================== 3. 启动clash程序 ========================\n"
+echo -e "======================== 3. 是否开启smartdns========================\n"
+if [ ! -e '/root/.config/clash/smartdns.conf' ]; then
+    echo "smartdns.conf文件不存在不启动smartdns"
+    else
+    echo "smartdns.conf文件存在启动smartdns"
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://download.fastgit.org/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
+    chmod +x /tmp/smartdns
+    mv /tmp/smartdns /usr/bin/smartdns
+    echo "下载smartdns完成"
+    smartdns -c /root/.config/clash/smartdns.conf
+fi
+echo -e "======================== 4. 启动clash程序 ========================\n"
 pm2-docker start clash --name clash
