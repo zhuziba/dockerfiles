@@ -83,4 +83,5 @@ if [ ! -e '/root/.config/clash/smartdns.conf' ]; then
     smartdns -c /root/.config/clash/smartdns.conf
 fi
 echo -e "======================== 4. 启动clash程序 ========================\n"
-pm2-docker start clash --name clash
+pm2 start clash --name clash
+tail -f /dev/null
