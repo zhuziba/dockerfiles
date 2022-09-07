@@ -10,7 +10,7 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && npm install -g pm2 \
         && chmod +x /tmp/iptables.sh \
-        && mkdir /sys/fs/bpf/clash \
+        && mkdir -p /sys/fs/bpf/clash \
         && rm -rf /var/cache/apk/*
 VOLUME /root/.config/clash
 EXPOSE 53 7890 7891 7892 7893 9090
