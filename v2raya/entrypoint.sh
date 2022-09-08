@@ -1,9 +1,14 @@
 #!/bin/bash
 
 if [ ! -e '/usr/share/v2ray/v2ray' ]; then
-    if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip; fi
-    if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip; fi
-    if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm32-v7a.zip; fi
+    v2ray=v4.45.2
+    echo "当前获取v2ray版本为$v2ray"
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm64-v8a.zip; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip; fi
+    if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm32-v7a.zip; fi
+    #if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip; fi
+    #if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip; fi
+    #if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm32-v7a.zip; fi
     unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray
     chmod +x /tmp/v2ray/v2ray
     mv /tmp/v2ray/v2ray /usr/share/v2ray/v2ray
