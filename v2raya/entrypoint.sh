@@ -56,3 +56,4 @@ fi
 echo "启动v2raya"
 v2raya 
 #v2raya --log-level error --log-file /var/log/v2raya.log
+tail -f /dev/null
