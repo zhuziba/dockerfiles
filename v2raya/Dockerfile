@@ -3,9 +3,10 @@ ENV VER=1.5.9.1698.1 \
     PATH=$PATH:/usr/share/v2ray
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip \
+        && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip nodejs npm \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
+        && npm install -g pm2 \
         && mkdir /etc/v2raya \
         && mkdir /etc/v2raya-web \
         && mkdir /tmp/v2ray \
