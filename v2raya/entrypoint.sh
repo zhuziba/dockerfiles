@@ -59,6 +59,6 @@ if [ ! -e '/etc/v2raya/smartdns.conf' ]; then
 fi
 
 echo "启动v2raya"
-pm2 star v2raya --name v2raya
+pm2 start v2raya --name v2raya
 #v2raya --log-level error --log-file /var/log/v2raya.log
 tail -f /dev/null
