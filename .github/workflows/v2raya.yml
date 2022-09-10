@@ -31,6 +31,11 @@ jobs:
       run: |
         cd ./AdGuardHome
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/adguardhome --platform=linux/arm64,linux/amd64,linux/arm/v7 . --push
+    - name: docker v2tls
+      run: |
+        cd ./v2tls
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2tls-docker --platform=linux/amd64 . --push
+    
         
         
        
