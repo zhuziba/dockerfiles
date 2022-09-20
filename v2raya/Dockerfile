@@ -6,7 +6,6 @@ RUN set -ex \
         && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && npm install -g pm2 \
         && mkdir /etc/v2raya \
         && mkdir /etc/v2raya-web \
         && mkdir /tmp/v2ray \
