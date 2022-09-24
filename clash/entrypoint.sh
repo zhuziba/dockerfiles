@@ -40,17 +40,11 @@ fi
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
-    wget -P /root/.config/clash https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
-    wget -P /root/.config/clash https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
-    rm -rf /root/.config/clash/geoip.dat
-    rm -rf /root/.config/clash/geosite.dat
     echo "下载Country.mmdb文件"
     wget -P /root/.config/clash https://download.fastgit.org/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
-    wget -P /root/.config/clash https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
-    wget -P /root/.config/clash https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
 fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
