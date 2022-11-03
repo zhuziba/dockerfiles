@@ -12,7 +12,7 @@ if [[ $neihe == premium ]]; then
     if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     echo "下载premium clash完成"
 elif [[ $neihe == Meta ]]; then
-    clash=v1.13.1
+    clash=v1.13.2
     echo "当前获取clash版本为$clash"
     if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://download.fastgit.org/MetaCubeX/Clash.Meta/releases/download/$clash/Clash.Meta-linux-arm64-$clash.gz;     gunzip /usr/bin/Clash.Meta-linux-arm64-$clash.gz;     mv /usr/bin/Clash.Meta-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://download.fastgit.org/MetaCubeX/Clash.Meta/releases/download/v$clash/Clash.Meta-linux-amd64-$clash.gz;     gunzip /usr/bin/Clash.Meta-linux-amd64-$clash.gz;     mv /usr/bin/Clash.Meta-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
