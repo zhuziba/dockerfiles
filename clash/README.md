@@ -20,7 +20,7 @@ docker run --restart=always \
   -e iptables=true \
   -e tun=false \
   -e neihe=premium \
-  byxiaopeng/clash
+  byxiaopeng/clash:latest
 ```
 想要开启tun就把tun变量改成true
 
