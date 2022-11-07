@@ -38,7 +38,10 @@ jobs:
     - name: docker v2p
       run: |
         cd ./v2p
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/elecv2p:v2p --platform=linux/arm64,linux/amd64,linux/arm/v7 . --push    
-        
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/elecv2p:v2p --platform=linux/arm64,linux/amd64,linux/arm/v7 . --push  
+    - name: docker singbox
+      run: |
+        cd ./singbox
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/singbox --platform linux/arm64,linux/amd64 . --push
         
        
