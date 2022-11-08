@@ -20,7 +20,7 @@ docker run --restart=always \
   byxiaopeng/singbox:latest
 ```
 
-重启clash容器代码
+重启singbox容器代码
 ``` sh
 docker restart singbox
 ```
