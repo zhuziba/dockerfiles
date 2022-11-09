@@ -5,8 +5,7 @@ sysctl -p
 
 case $down_type in
 "git")
-   wget -P /singbox ${down_url}
-  break
+  wget -P /singbox ${down_url}
   ;;
 esac
 
