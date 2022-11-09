@@ -3,11 +3,19 @@
 sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g" /etc/sysctl.conf
 sysctl -p
 
-case $down_type in
-"git")
-  wget -P /singbox ${down_url}
-  ;;
-esac
+
+if [[ $down_type == git ]]; then
+    echo "变量配置了远程配置运远程配置"
+    wget -P /singbox ${down_url}
+    else
+    echo "变量未配置远程文件运行本地配置"
+fi
+    
+#case $down_type in
+#"git")
+#  wget -P /singbox ${down_url}
+#  ;;
+#esac
 
 sing-box run -c /singbox/config.json
 tail -f /dev/null
