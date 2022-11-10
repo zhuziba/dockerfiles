@@ -7,6 +7,7 @@ sysctl -p
 if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"
     wget ${down_url} -O /singbox/config.json
+    wget ${down_nginx} -O /etc/nginx/http.d/default.conf
     # start nginx
     nginx
     else
