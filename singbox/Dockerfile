@@ -10,7 +10,7 @@ RUN set -ex \
         && if [ $(arch) == aarch64 ]; then    wget -P /tmp  https://github.com/SagerNet/sing-box/releases/download/v$singbox/sing-box-$singbox-linux-arm64.tar.gz;     tar -xvf /tmp/sing-box-$singbox-linux-arm64.tar.gz;     mv /sing-box-$singbox-linux-arm64/sing-box /usr/bin/sing-box;     chmod +x /usr/bin/sing-box;     rm -rf /tmp/sing-box-$singbox-linux-arm64.tar.gz; fi \
         && rm -rf /var/cache/apk/* 
 VOLUME /singbox
-EXPOSE 53
+EXPOSE 80
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
