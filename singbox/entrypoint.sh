@@ -13,7 +13,7 @@ fi
     
 #case $down_type in
 #"git")
-#  wget -P /singbox ${down_url}
+#  wget ${down_url} -O /singbox/config.json
 #  ;;
 #esac
 
