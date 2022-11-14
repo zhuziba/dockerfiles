@@ -10,6 +10,6 @@ if [ ! -e '/usr/bin/mosdns' ]; then
     if [ $(arch) == aarch64 ]; then    wget -P /tmp  https://github.com/IrineSistiana/mosdns/releases/latest/download/mosdns-linux-arm64.zip;     unzip /tmp/mosdns-linux-arm64.zip -d /tmp;     rm -rf /tmp/mosdns-linux-arm64.zip;     mv /tmp/mosdns /usr/bin/mosdns;     chmod +x /usr/bin/mosdns; fi
     echo "下载mosdns完成"
 fi
-
+openrc boot
 mosdns start --dir /mosdns
 tail -f /dev/null
