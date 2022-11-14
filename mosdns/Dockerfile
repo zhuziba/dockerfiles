@@ -8,8 +8,10 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 EXPOSE 53
-ADD prometheus /etc/init.d/prometheus
+ADD /init/prometheus /etc/init.d/prometheus
+ADD /init/mosdns /etc/init.d/mosdns
 RUN chmod +x /etc/init.d/prometheus
+RUN chmod +x /etc/init.d/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
