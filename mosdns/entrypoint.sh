@@ -11,5 +11,6 @@ if [ ! -e '/usr/bin/mosdns' ]; then
     echo "下载mosdns完成"
 fi
 openrc boot
+/etc/init.d/prometheus start
 mosdns start --dir /mosdns
 tail -f /dev/null
