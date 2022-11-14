@@ -17,7 +17,6 @@ docker run --restart=always \
   --net macnet \
   --ip 192.168.50.5 \
   -v /docker/mosdns:/mosdns \
-  -v /docker/mosdns/prometheus.yml:/etc/prometheus/prometheus.yml \
   byxiaopeng/mosdns:latest
 ```
 
