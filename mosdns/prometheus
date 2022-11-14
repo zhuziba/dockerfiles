@@ -1,0 +1,6 @@
+#!/sbin/openrc-run
+
+command="/usr/bin/prometheus"
+command_args="--config.file=/etc/prometheus/prometheus.yml"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"
