@@ -12,5 +12,5 @@ if [ ! -e '/usr/bin/mosdns' ]; then
 fi
 openrc boot
 /etc/init.d/prometheus start
-mosdns start --dir /mosdns
+/etc/init.d/mosdns start
 tail -f /dev/null
