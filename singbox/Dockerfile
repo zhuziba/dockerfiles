@@ -1,5 +1,5 @@
 FROM alpine
-ENV singbox=1.1-beta14
+ENV singbox=1.1-beta15
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget curl git nginx bash iptables \
