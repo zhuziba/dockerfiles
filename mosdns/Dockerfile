@@ -1,6 +1,7 @@
 FROM alpine
 ADD /init/prometheus /etc/init.d/prometheus
 ADD /init/mosdns /etc/init.d/mosdns
+ADD /init/prometheus.yml /etc/prometheus/prometheus.yml
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
