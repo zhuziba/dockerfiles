@@ -25,7 +25,7 @@ echo -e "======================== 0.2 判断目录是否存在文件 ===========
 if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "下载dashboard文件"
     mkdir -p /root/.config/clash/dashboard
-    wget https://kgithub.com/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
+    wget https://kgithub.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
     rm -rf /yacd.tar.xz
@@ -33,7 +33,7 @@ if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    wget https://kgithub.com/haishanh/yacd/releases/download/v0.3.6/yacd.tar.xz
+    wget https://kgithub.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
     rm -rf /yacd.tar.xz
