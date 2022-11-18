@@ -45,7 +45,7 @@ jobs:
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
     - name: docker sillygirl
       run: |
-        cd ./mosdns
+        cd ./sillygirl
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/sillygirl --platform linux/arm64,linux/amd64 . --push
     - name: docker v2p
       run: |
