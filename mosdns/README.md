@@ -17,10 +17,11 @@ docker run --restart=always \
   --net macnet \
   --ip 192.168.50.5 \
   -v /docker/mosdns:/mosdns \
+  -v /docker/mosdns/grafana:/usr/share/grafana/data \
   byxiaopeng/mosdns:latest
 ```
 
-重启clash容器代码
+重启mosdns容器代码
 ``` sh
 docker restart mosdns
 ```
