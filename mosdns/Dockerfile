@@ -5,7 +5,7 @@ ADD /init/prometheus.yml /etc/prometheus/prometheus.yml
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables openrc prometheus \
+        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables openrc prometheus grafana \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /mosdns \
@@ -14,5 +14,6 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
-EXPOSE 53
+VOLUME /usr/share/grafana/data
+EXPOSE 53 3000 9090
 ENTRYPOINT /entrypoint.sh
