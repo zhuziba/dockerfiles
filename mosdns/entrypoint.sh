@@ -19,4 +19,5 @@ echo "启动openrc后台启动"
 openrc boot
 /etc/init.d/prometheus start
 /etc/init.d/mosdns start
+grafana-server --config /etc/grafana.ini --homepath=/usr/share/grafana
 tail -f /dev/null
