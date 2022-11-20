@@ -1,5 +1,4 @@
 FROM alpine:edge
-ADD /init/prometheus /etc/init.d/prometheus
 ADD /init/mosdns /etc/init.d/mosdns
 ADD /init/prometheus.yml /etc/prometheus/prometheus.yml
 ADD entrypoint.sh /entrypoint.sh
@@ -9,7 +8,6 @@ RUN set -ex \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /mosdns \
-        && chmod +x /etc/init.d/prometheus \
         && chmod +x /etc/init.d/mosdns \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
