@@ -12,7 +12,7 @@ fi
 cat << EOF > /root/config.json
 {
   "log": {
-    "loglevel": "warning", // 日志级别
+    "loglevel": "info"
   },
   "inbounds": [
   {
