@@ -39,13 +39,12 @@ cat << EOF > /root/config.json
       "port": 8081,
       "protocol": "shadowsocks",
       "settings": {
-            "method": "chacha20-ietf-poly1305",
-            "password": "peng",
+            "method": "none",
+            "password": "10086",
             "email": "10086@gmail.com"
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
         "wsSettings": {
           "path": "/peng"
         }
