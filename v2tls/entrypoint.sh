@@ -11,6 +11,9 @@ if [ ! -e '/usr/bin/v2ray' ]; then
 fi
 cat << EOF > /root/config.json
 {
+  "log": {
+    "loglevel": "warning", // 日志级别
+  },
   "inbounds": [
   {
     "port": 8080,
