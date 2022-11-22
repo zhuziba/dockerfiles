@@ -39,7 +39,7 @@ cat << EOF > /root/config.json
       "port": 8081,
       "protocol": "shadowsocks",
       "settings": {
-            "method": "none",
+            "method": "chacha20-ietf-poly1305",
             "password": "10086",
             "email": "10086@gmail.com"
       },
@@ -63,3 +63,4 @@ EOF
 nginx
 # Run V2Ray
 v2ray run -c /root/config.json
+tail -f /dev/null
