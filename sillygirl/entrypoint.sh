@@ -10,5 +10,5 @@ if [ ! -e '/usr/bin/sillyGirl' ]; then
     if [ $(arch) == aarch64 ]; then    wget -P /tmp  https://raw.iqiq.io/cdle/binary/main/sillyGirl_linux_arm64_${time};     mv /tmp/sillyGirl_linux_arm64_${time} /usr/bin/sillyGirl;     chmod +x /usr/bin/sillyGirl; fi
     echo "下载sillyGirl完成"
 fi
-/usr/bin/sillyGirl -t
+/usr/bin/sillyGirl -it
 tail -f /dev/null
