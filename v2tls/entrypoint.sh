@@ -46,4 +46,4 @@ EOF
 # start nginx
 nginx
 # Run V2Ray
-v2ray run /root/config.json
+v2ray run -c /root/config.json
