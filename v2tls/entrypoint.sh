@@ -39,7 +39,7 @@ cat << EOF > /root/config.json
       "port": 8081,
       "protocol": "shadowsocks",
       "settings": {
-            "method": "aes-128-gcm",
+            "method": "chacha20-ietf-poly1305",
             "password": "peng",
             "email": "10086@gmail.com"
       },
