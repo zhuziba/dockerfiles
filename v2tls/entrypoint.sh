@@ -15,50 +15,46 @@ cat << EOF > /root/config.json
     "loglevel": "info"
   },
   "inbounds": [
-  {
-    "port": 8080,
-    "listen":"127.0.0.1",
-    "protocol": "vmess",
-    "settings": {
-      "clients": [
-        {
-          "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
-          "alterId": 0       
+    {
+      "listen": "127.0.0.1",
+      "port": 8080,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/ws"
         }
-      ]
-    },
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-      "path": "/ws"
-      }     
-    }
-  },
-  {
-    "listen":"127.0.0.1",
-    "port": 8081,
-    "protocol": "shadowsocks",
-    "settings": {
-      "clients": [
-        {
-          "method": "chacha20-ietf-poly1305",
-          "password": "peng",
-          "email": "10086@gmail.com"   
-        }
-      ]
-    },
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-        "path": "/peng"
       }
-  }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 8081,
+      "protocol": "shadowsocks",
+      "settings": {
+            "method": "chacha20-ietf-poly1305",
+            "password": "peng"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/peng"
+        }
+      }
+    }
   ],
   "outbounds": [
-  {
-    "protocol": "freedom",
-    "settings": {}
-  }
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
   ]
 }
 EOF
