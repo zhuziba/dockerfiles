@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -e '/usr/bin/v2ray' ]; then
-    v2ray=v4.45.2
+    v2ray=v5.1.0
     echo "当前获取v2ray版本为$v2ray"
     curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip
     unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray
