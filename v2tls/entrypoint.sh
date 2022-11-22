@@ -55,7 +55,7 @@ cat << EOF > /root/config.json
   "outbounds": [
     {
       "protocol": "freedom",
-      "settings": {}
+      "tag": "direct"
     }
   ]
 }
