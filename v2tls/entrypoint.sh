@@ -33,6 +33,25 @@ cat << EOF > /root/config.json
       "path": "/ws"
       }     
     }
+  },
+  {
+    "listen":"127.0.0.1",
+    "port": 8081,
+    "protocol": "shadowsocks",
+    "settings": {
+      "clients": [
+        {
+          "method": "chacha20-ietf-poly1305",
+          "password": "peng",
+          "email": "10086@gmail.com"   
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "path": "/peng"
+      }
   }
   ],
   "outbounds": [
