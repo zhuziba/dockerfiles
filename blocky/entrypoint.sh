@@ -1,3 +1,3 @@
 #!/bin/bash
-blocky --config /blocky/config.yaml
+blocky --config /blocky/config.yml
 tail -f /dev/null
