@@ -7,7 +7,7 @@ RUN set -ex \
         && apk add tzdata \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && mkdir /tmp/v2ray \
+        && mkdir /tmp/xray \
         && git clone https://github.com/xiongbao/we.dog \
         && mv we.dog/* /var/lib/nginx/html/ \
         && rm -rf /we.dog
