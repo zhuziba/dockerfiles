@@ -3,7 +3,7 @@ ADD default.conf /etc/nginx/http.d/default.conf
 RUN set -ex \
         && apk update \
         && apk upgrade \
-        && apk add --no-cache --virtual .build-deps ca-certificates git nginx curl wget unzip \
+        && apk add --no-cache --virtual .build-deps ca-certificates git nginx curl wget bash unzip \
         && apk add tzdata \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
