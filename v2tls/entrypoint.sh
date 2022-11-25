@@ -1,13 +1,11 @@
 #!/bin/sh
-if [ ! -e '/usr/bin/v2ray' ]; then
-    v2ray=v5.1.0
-    echo "当前获取v2ray版本为$v2ray"
-    curl -L -H "Cache-Control: no-cache" -o /tmp/v2ray/v2ray.zip https://github.com/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip
-    unzip /tmp/v2ray/v2ray.zip -d /tmp/v2ray
-    chmod +x /tmp/v2ray/v2ray
-    mv /tmp/v2ray/v2ray /usr/bin/v2ray
-    rm -rf /tmp/v2ray
-    echo "下载v2ray完成"
+if [ ! -e '/usr/bin/xray' ]; then
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.4/Xray-linux-64.zip
+    unzip /tmp/xray/Xray.zip -d /tmp/xray
+    chmod +x /tmp/xray/xray
+    mv /tmp/xray/xray /usr/bin/xray
+    rm -rf /tmp/xray
+    echo "下载xray完成"
 fi
 cat << EOF > /root/config.json
 {
@@ -45,6 +43,6 @@ cat << EOF > /root/config.json
 EOF
 # start nginx
 nginx
-# Run V2Ray
-v2ray run -c /root/config.json
+# Run xray
+xray -c /root/config.json
 tail -f /dev/null
