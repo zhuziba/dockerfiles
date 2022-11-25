@@ -8,7 +8,7 @@ echo -e "======================== 0.1 判断是否安装clash文件 ============
 if [[ $neihe == premium ]]; then
     clash=2022.11.25
     echo "当前获取clash版本为$clash"
-    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://kgithub.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-armv8-$clash.gz;     mv /usr/bin/clash-linux-armv8-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://kgithub.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://kgithub.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     echo "下载premium clash完成"
     
