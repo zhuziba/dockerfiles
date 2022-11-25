@@ -33,7 +33,7 @@ jobs:
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/adguardhome --platform=linux/arm64,linux/amd64,linux/arm/v7 . --push
     - name: docker xray
       run: |
-        cd ./xray
+        cd ./v2tls
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/xray --platform=linux/amd64 . --push
     - name: docker singbox
       run: |
