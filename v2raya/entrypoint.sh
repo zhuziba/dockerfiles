@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ ! -e '/usr/share/xray/xray' ]; then
-    if [ $(arch) == aarch64 ]; then      wget -O /tmp/xray/Xray.zip download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-arm64-v8a.zip; fi
-    if [ $(arch) == x86_64 ]; then     wget -O /tmp/xray/Xray.zip download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; fi
-    if [ $(arch) == armv7l ]; then     wget -O /tmp/xray/Xray.zip download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-arm32-v7a.zip; fi
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/xray/Xray.zip https://download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-arm64-v8a.zip; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/xray/Xray.zip https://download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip; fi
+    if [ $(arch) == armv7l ]; then     wget -O /tmp/xray/Xray.zip https://download.fastgit.org/XTLS/Xray-core/releases/latest/download/Xray-linux-arm32-v7a.zip; fi
     unzip /tmp/xray/Xray.zip -d /tmp/xray
     chmod +x /tmp/xray/xray
     mv /tmp/xray/xray /usr/share/xray/xray
