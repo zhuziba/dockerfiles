@@ -13,24 +13,24 @@ if [ ! -e '/usr/share/xray/xray' ]; then
     echo "下载xray完成"
 fi
 
-if [ ! -e '/usr/local/share/v2ray/LoyalsoldierSite.dat' ]; then
+if [ ! -e '/usr/local/share/xray/LoyalsoldierSite.dat' ]; then
     echo "下载LoyalsoldierSite.dat文件"
-    wget -O /usr/local/share/v2ray/LoyalsoldierSite.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
+    wget -O /usr/local/share/xray/LoyalsoldierSite.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
     else
     echo "LoyalsoldierSite.dat文件存在删除下载最新版本"
-    rm -rf /usr/local/share/v2ray/LoyalsoldierSite.dat
+    rm -rf /usr/local/share/xray/LoyalsoldierSite.dat
     echo "下载LoyalsoldierSite.dat文件"
-    wget -O /usr/local/share/v2ray/LoyalsoldierSite.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
+    wget -O /usr/local/share/xray/LoyalsoldierSite.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geosite.dat
 fi
 
-if [ ! -e '/usr/local/share/v2ray/Loyalsoldierip.dat' ]; then
+if [ ! -e '/usr/local/share/xray/Loyalsoldierip.dat' ]; then
     echo "下载Loyalsoldierip.dat文件"
-    wget -O /usr/local/share/v2ray/Loyalsoldierip.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
+    wget -O /usr/local/share/xray/Loyalsoldierip.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
     else
     echo "Loyalsoldierip.dat文件存在删除下载最新版本"
-    rm -rf /usr/local/share/v2ray/Loyalsoldierip.dat
+    rm -rf /usr/local/share/xray/Loyalsoldierip.dat
     echo "下载Loyalsoldierip.dat文件"
-    wget -O /usr/local/share/v2ray/Loyalsoldierip.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
+    wget -O /usr/local/share/xray/Loyalsoldierip.dat https://raw.iqiq.io/Loyalsoldier/v2ray-rules-dat/release/geoip.dat
 fi
 
 if [ ! -e '/usr/bin/v2raya' ]; then
