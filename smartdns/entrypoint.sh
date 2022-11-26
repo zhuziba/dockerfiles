@@ -9,5 +9,5 @@ if [ ! -e '/usr/bin/smartdns' ]; then
     mv /tmp/smartdns /usr/bin/smartdns
     echo "下载smartdns完成"
 fi
-smartdns -c /etc/smartdns/smartdns.conf
+smartdns -c /smartdns/smartdns.conf
 tail -f /dev/null
