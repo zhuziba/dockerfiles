@@ -9,5 +9,10 @@ if [ ! -e '/usr/bin/smartdns' ]; then
     mv /tmp/smartdns /usr/bin/smartdns
     echo "下载smartdns完成"
 fi
+echo -e "======================== 0.2 判断配置文件是否存在文件 ========================\n"
+if [ ! -e '/smartdns/smartdns.conf' ]; then
+    mv /tmp/smartdns.conf /smartdns/smartdns.conf
+    echo "移动smartdns配置文件成功"
+fi
 smartdns -c /smartdns/smartdns.conf
 tail -f /dev/null
