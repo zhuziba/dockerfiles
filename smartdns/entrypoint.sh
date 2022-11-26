@@ -11,6 +11,7 @@ if [ ! -e '/usr/bin/smartdns' ]; then
 fi
 echo -e "======================== 0.2 判断配置文件是否存在文件 ========================\n"
 if [ ! -e '/smartdns/smartdns.conf' ]; then
+    wget -O /smartdns/anti-ad-smartdns.conf https://raw.kgithub.com/privacy-protection-tools/anti-AD/master/anti-ad-smartdns.conf
     mv /tmp/smartdns.conf /smartdns/smartdns.conf
     echo "移动smartdns配置文件成功"
 fi
