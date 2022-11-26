@@ -1,6 +1,6 @@
 FROM alpine
 ENV VER=1.5.9.1698.1 \
-    PATH=$PATH:/usr/share/v2ray
+    PATH=$PATH:/usr/share/xray
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip \
@@ -8,13 +8,13 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /etc/v2raya \
         && mkdir /etc/v2raya-web \
-        && mkdir /tmp/v2ray \
-        && mkdir /usr/share/v2ray \
+        && mkdir /tmp/xray \
+        && mkdir /usr/share/xray \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/favicon.ico \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/index.html \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/CNAME \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/robots.txt \
-        && mkdir -p /usr/local/share/v2ray && touch /usr/local/share/v2ray/.copykeep \
+        && mkdir -p /usr/local/share/xray && touch /usr/local/share/xray/.copykeep \
         && rm -rf /var/cache/apk/*
 VOLUME /etc/v2raya
 ADD entrypoint.sh /entrypoint.sh
