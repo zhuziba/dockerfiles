@@ -16,4 +16,5 @@ if [ ! -e '/smartdns/smartdns.conf' ]; then
     echo "移动smartdns配置文件成功"
 fi
 smartdns -c /smartdns/smartdns.conf
+echo "smartdns启动成功"
 tail -f /dev/null
