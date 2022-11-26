@@ -1,6 +1,6 @@
 FROM alpine
 ADD entrypoint.sh /entrypoint.sh
-ADD smartdns.conf /smartdns/smartdns.conf
+ADD smartdns.conf /tmp/smartdns.conf
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget bash \
