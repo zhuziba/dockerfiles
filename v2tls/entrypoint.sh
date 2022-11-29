@@ -41,6 +41,16 @@ cat << EOF > /root/config.json
   ]
 }
 EOF
+if [ ! -e '/var/lib/nginx/html/index.html' ]; then
+    git clone https://github.com/xiongbao/we.dog
+    mv we.dog/* /var/lib/nginx/html/
+    rm -rf /we.dog
+    else
+    git clone https://github.com/xiongbao/we.dog
+    mv we.dog/* /var/lib/nginx/html/
+    rm -rf /we.dog
+fi
+
 # start nginx
 nginx
 # Run xray
