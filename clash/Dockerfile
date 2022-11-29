@@ -5,7 +5,7 @@ ENV iptables=true \
 ADD /script/iptables.sh /tmp/iptables.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables \
+        && apk --no-cache add -f ca-certificates tzdata wget curl bash jq iptables \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /tmp/iptables.sh \
