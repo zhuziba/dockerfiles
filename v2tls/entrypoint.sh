@@ -1,6 +1,14 @@
 #!/bin/sh
 if [ ! -e '/usr/bin/xray' ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.4/Xray-linux-64.zip
+    if [ $(arch) == x86_64 ]; then
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-64.zip
+    fi
+    if [ $(arch) == s390x ]; then
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-s390x.zip
+    fi
+    if [ $(arch) == aarch64 ]; then
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-arm64-v8a.zip
+    fi
     unzip /tmp/xray/Xray.zip -d /tmp/xray
     chmod +x /tmp/xray/xray
     mv /tmp/xray/xray /usr/bin/xray
