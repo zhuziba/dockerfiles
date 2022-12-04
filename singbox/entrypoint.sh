@@ -13,11 +13,17 @@ if [[ $down_type == git ]]; then
     else
     echo "变量未配置远程文件运行本地配置"
 fi
-    
-#case $down_type in
-#"git")
-#  wget ${down_url} -O /singbox/config.json
-#  ;;
-#esac
-
-sing-box run -c /singbox/config.json
+cat <<EOF> /etc/init.d/sing-box
+#!/sbin/openrc-run
+command="/usr/bin/sing-box"
+command_args="run -c /singbox/config.json"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"
+EOF
+echo "启动定时任务"
+crond -b -l 8
+echo "启动openrc"
+openrc boot
+/etc/init.d/sing-box start
+#sing-box run -c /singbox/config.json
+tail -f /dev/null
