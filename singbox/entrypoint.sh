@@ -20,10 +20,14 @@ command_args="run -c /singbox/config.json"
 command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
 EOF
-echo "启动定时任务"
-crond -b -l 8
 echo "启动openrc"
 openrc boot
 /etc/init.d/sing-box start
+if [ ! -e '/singbox/diy.sh' ]; then
+    echo "目录不存在diy.sh文件不执行diy脚本"
+    else
+    echo "目录存在diy.sh文件执行diy脚本"
+    bash /singbox/diy.sh
+fi
 #sing-box run -c /singbox/config.json
 tail -f /dev/null
