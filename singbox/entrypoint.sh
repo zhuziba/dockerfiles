@@ -13,6 +13,8 @@ if [[ $down_type == git ]]; then
     else
     echo "变量未配置远程文件运行本地配置"
 fi
+echo "启动openrc"
+openrc boot
 cat <<EOF> /etc/init.d/sing-box
 #!/sbin/openrc-run
 command="/usr/bin/sing-box"
@@ -20,8 +22,6 @@ command_args="run -c /singbox/config.json"
 command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
 EOF
-echo "启动openrc"
-openrc boot
 chmod +x /etc/init.d/sing-box
 /etc/init.d/sing-box start
 if [ ! -e '/singbox/diy.sh' ]; then
