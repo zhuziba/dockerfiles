@@ -22,6 +22,7 @@ pidfile="/run/${RC_SVCNAME}.pid"
 EOF
 echo "启动openrc"
 openrc boot
+chmod +x /etc/init.d/sing-box
 /etc/init.d/sing-box start
 if [ ! -e '/singbox/diy.sh' ]; then
     echo "目录不存在diy.sh文件不执行diy脚本"
