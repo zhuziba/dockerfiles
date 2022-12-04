@@ -2,7 +2,7 @@ FROM alpine
 ENV singbox=1.1
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl git nginx bash iptables \
+        && apk --no-cache add -f ca-certificates tzdata wget curl git nginx openrc bash iptables \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /singbox \
