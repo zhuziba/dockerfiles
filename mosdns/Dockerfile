@@ -13,5 +13,5 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 VOLUME /usr/share/grafana/data
-EXPOSE 53 3000 9090
+EXPOSE 53
 ENTRYPOINT /entrypoint.sh
