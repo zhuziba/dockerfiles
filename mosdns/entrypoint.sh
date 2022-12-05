@@ -12,8 +12,5 @@ echo "启动定时任务"
 crond -b -l 8
 echo "启动openrc后台启动"
 openrc boot
-/etc/init.d/prometheus start
 /etc/init.d/mosdns start
-#/etc/init.d/grafana start
-grafana-server --config /etc/grafana.ini --homepath=/usr/share/grafana
 tail -f /dev/null
