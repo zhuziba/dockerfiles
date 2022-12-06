@@ -41,8 +41,9 @@ cat <<EOF> /etc/caddy/Caddyfile
 	}
 }
 EOF
-openrc boot
-/etc/init.d/caddy start
+#openrc boot
+#/etc/init.d/caddy start
+caddy run --config /etc/caddy/Caddyfile
 echo "当前设置的trojan密码为$password"
 echo "当前设置的trojan域名为$yuming"
 echo "当前设置申请ssl邮箱为$email"
