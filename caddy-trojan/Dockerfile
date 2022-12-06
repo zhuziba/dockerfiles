@@ -11,8 +11,9 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && if [ $(arch) == x86_64 ]; then    curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com/imgk/caddy-trojan"; fi\
         && if [ $(arch) == aarch64 ]; then    curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=arm64&p=github.com/imgk/caddy-trojan"; fi\
-	   && if [ $(arch) == s390x ]; then    curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=s390x&p=github.com/imgk/caddy-trojan"; fi\
-	   && chmod +x /usr/bin/caddy \
+	&& if [ $(arch) == s390x ]; then    curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=s390x&p=github.com/imgk/caddy-trojan"; fi\
+	&& chmod +x /usr/bin/caddy \
+	&& chmod +x /entrypoint.sh \
         && git clone https://github.com/xiongbao/we.dog \
         && rm -rf /var/cache/apk/*
 EXPOSE 80 443
