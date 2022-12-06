@@ -6,7 +6,7 @@ ENV password=123456 \
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl git bash openrc caddy-openrc \
+        && apk --no-cache add -f ca-certificates tzdata wget curl git bash openrc \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && if [ $(arch) == x86_64 ]; then    curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com/imgk/caddy-trojan"; fi\
