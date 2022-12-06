@@ -36,9 +36,11 @@ cat <<EOF> /etc/caddy/Caddyfile
          connect_method
 	    websocket
      }
-	file_server {
-		root /we.dog
-	}
+    @host host $yuming
+    route @host {
+        file_server {
+            root /we.dog
+        }
 }
 EOF
 #openrc boot
