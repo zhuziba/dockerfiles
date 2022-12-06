@@ -7,7 +7,6 @@ docker run --restart=always \
   --privileged=true \
   -p 443:443/udp \
   -p 443:443/tcp \
-  -p 80:80 \
   -e password=123456 \
   -e email=10086@baidu.com \
   -e wz=false \
