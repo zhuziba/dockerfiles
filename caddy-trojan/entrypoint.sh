@@ -11,12 +11,12 @@ fi
 echo "开始生成Caddyfile配置文件"
 cat <<EOF> /etc/caddy/Caddyfile
 {
-    order trojan before file_server
+    order trojan before route
+    admin off
     servers :443 {
         listener_wrappers {
             trojan
         }
-        protocols h2 h1
     }
     trojan {
         caddy
@@ -28,9 +28,6 @@ cat <<EOF> /etc/caddy/Caddyfile
     tls $email {
         protocols tls1.2 tls1.2
         ciphers TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
-    }
-    log {
-        level ERROR
     }
     trojan {
          connect_method
