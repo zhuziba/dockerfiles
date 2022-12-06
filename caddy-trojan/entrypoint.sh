@@ -41,6 +41,7 @@ cat <<EOF> /etc/caddy/Caddyfile
         file_server {
             root /we.dog
         }
+    }
 }
 EOF
 #openrc boot
