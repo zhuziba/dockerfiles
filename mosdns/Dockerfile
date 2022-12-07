@@ -11,6 +11,5 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
-VOLUME /usr/share/grafana/data
 EXPOSE 53
 ENTRYPOINT /entrypoint.sh
