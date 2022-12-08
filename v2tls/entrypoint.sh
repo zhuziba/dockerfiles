@@ -39,7 +39,30 @@ cat << EOF > /root/config.json
           "path": "/ws"
         }
       }
-    }
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 2022,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "kcp",
+        "security": "none",
+        "kcpSettings": {
+          "uplinkCapacity": 100,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "seed": "peng"
+        }
+	}
+	}
   ],
   "outbounds": [
     {
