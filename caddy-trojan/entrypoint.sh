@@ -11,7 +11,7 @@ fi
 echo "开始生成Caddyfile配置文件"
 cat <<EOF> /etc/caddy/Caddyfile
 {
-    order trojan before route
+    order trojan before file_server
     admin off
     servers :443 {
         listener_wrappers {
@@ -33,12 +33,9 @@ cat <<EOF> /etc/caddy/Caddyfile
          connect_method
 	    websocket
      }
-    @host host $yuming
-    route @host {
-        file_server {
+    file_server {
             root /we.dog
-        }
-    }
+     }
 }
 EOF
 #openrc boot
