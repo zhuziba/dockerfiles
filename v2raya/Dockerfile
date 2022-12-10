@@ -14,7 +14,7 @@ RUN set -ex \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/index.html \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/CNAME \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/robots.txt \
-        && mkdir -p /usr/local/share/xray && touch /usr/local/share/xray/.copykeep \
+        && mkdir -p /usr/local/share/v2ray && touch /usr/local/share/v2ray/.copykeep \
         && rm -rf /var/cache/apk/*
 VOLUME /etc/v2raya
 ADD entrypoint.sh /entrypoint.sh
