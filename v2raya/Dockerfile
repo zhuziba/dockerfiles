@@ -8,7 +8,7 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir /etc/v2raya \
         && mkdir /etc/v2raya-web \
-        && mkdir /tmp/xray \
+        && mkdir /tmp/v2ray \
         && mkdir /usr/share/v2ray \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/favicon.ico \
         && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/master/gui/public/index.html \
