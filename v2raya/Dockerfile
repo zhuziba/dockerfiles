@@ -1,5 +1,5 @@
 FROM alpine
-ENV VER=1.5.9.1698.1 \
+ENV VER=2.0.0 \
     PATH=$PATH:/usr/share/xray
 RUN set -ex \
         && apk update -f && apk upgrade \
