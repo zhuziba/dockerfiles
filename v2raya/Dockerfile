@@ -1,6 +1,6 @@
 FROM alpine
 ENV VER=2.0.0 \
-    PATH=$PATH:/usr/share/xray
+    PATH=$PATH:/usr/share/v2ray
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget iptables ip6tables bash unzip \
