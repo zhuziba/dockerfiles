@@ -76,7 +76,16 @@ if [ ! -e '/root/.config/clash/smartdns.conf' ]; then
     echo "下载smartdns完成"
     smartdns -c /root/.config/clash/smartdns.conf
 fi
-echo -e "======================== 4. 启动clash程序 ========================\n"
+
+echo -e "======================== 4. 是否开启diy脚本========================\n"
+if [ ! -e '/root/.config/clash/diy.sh' ]; then
+    echo "目录不存在diy.sh文件不执行diy脚本"
+    else
+    echo "目录存在diy.sh文件执行diy脚本"
+    bash /root/.config/clash/diy.sh
+fi
+
+echo -e "======================== 5. 启动clash程序 ========================\n"
 
 if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"
