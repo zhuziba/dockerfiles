@@ -12,7 +12,6 @@ echo "开始生成Caddyfile配置文件"
 cat <<EOF> /etc/caddy/Caddyfile
 {
     order trojan before route
-    admin off
     servers :443 {
         listener_wrappers {
             trojan
