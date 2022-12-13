@@ -8,7 +8,6 @@ if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"
     wget ${down_url} -O /singbox/config.json
     wget ${down_nginx} -O /etc/nginx/http.d/default.conf
-    # start nginx
     nginx
     else
     echo "变量未配置远程文件运行本地配置"
