@@ -3,7 +3,6 @@
 sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g" /etc/sysctl.conf
 sysctl -p
 
-
 if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"
     wget ${down_url} -O /singbox/config.json
