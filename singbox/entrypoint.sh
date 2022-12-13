@@ -13,6 +13,15 @@ if [[ $down_type == git ]]; then
     else
     echo "变量未配置远程文件运行本地配置"
 fi
+
+if [[ $hy == 1 ]]; then
+    echo "变量开启了hy协议 执行hy配置"
+    wget ${down_url} -O /singbox/config.json
+    wget ${full_chain} -O /singbox/full_chain.pem
+    wget ${private} -O /singbox/private.key
+    chmod +x /singbox/full_chain.pem
+    chmod +x /singbox/private.key
+fi
 echo "启动openrc"
 openrc boot
 cat <<EOF> /etc/init.d/sing-box
