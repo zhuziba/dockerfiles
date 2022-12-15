@@ -14,8 +14,8 @@ if [[ $neihe == premium ]]; then
     
     
 elif [[ $neihe == Meta ]]; then
-    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin http://g.armn1.ml/Clash.Meta-linux-arm64;     mv /usr/bin/Clash.Meta-linux-arm64 /usr/bin/clash;     chmod +x /usr/bin/clash; fi
-    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin http://g.armn1.ml/Clash.Meta-linux-amd64;     mv /usr/bin/Clash.Meta-linux-amd64 /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://raw.iqiq.io/zhuziba/myyaml/main/clash/Clash.Meta-linux-arm64;     mv /usr/bin/Clash.Meta-linux-arm64 /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://raw.iqiq.io/zhuziba/myyaml/main/clash/Clash.Meta-linux-amd64;     mv /usr/bin/Clash.Meta-linux-amd64 /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     echo "下载Meta clash完成"
 fi
 
