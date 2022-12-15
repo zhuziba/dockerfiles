@@ -1,13 +1,13 @@
 #!/bin/sh
 if [ ! -e '/usr/bin/xray' ]; then
     if [ $(arch) == x86_64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-64.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.6-2/Xray-linux-64.zip
     fi
     if [ $(arch) == s390x ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-s390x.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.6-2/Xray-linux-s390x.zip
     fi
     if [ $(arch) == aarch64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.5/Xray-linux-arm64-v8a.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.6-2/Xray-linux-arm64-v8a.zip
     fi
     unzip /tmp/xray/Xray.zip -d /tmp/xray
     chmod +x /tmp/xray/xray
@@ -18,7 +18,7 @@ fi
 cat << EOF > /root/config.json
 {
   "log": {
-    "loglevel": "info"
+    "loglevel": "none"
   },
   "inbounds": [
     {
@@ -39,30 +39,7 @@ cat << EOF > /root/config.json
           "path": "/ws"
         }
       }
-    },
-    {
-      "listen": "0.0.0.0",
-      "port": 2022,
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
-            "alterId": 0
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "kcp",
-        "security": "none",
-        "kcpSettings": {
-          "uplinkCapacity": 100,
-          "downlinkCapacity": 100,
-          "congestion": true,
-          "seed": "peng"
-        }
-	}
-	}
+    }
   ],
   "outbounds": [
     {
@@ -78,13 +55,12 @@ if [ ! -e '/var/lib/nginx/html/index.html' ]; then
     rm -rf /we.dog
     else
     rm -rf /var/lib/nginx/html/
-    git clone https://github.com/xiongbao/we.dog
+    git clone https://github.com/xiongbao/we.dog 
     mv we.dog/* /var/lib/nginx/html/
     rm -rf /we.dog
 fi
-
 # start nginx
 nginx
 # Run xray
-xray -c /root/config.json
+xray run -c /root/config.json
 tail -f /dev/null
