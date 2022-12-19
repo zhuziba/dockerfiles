@@ -17,5 +17,5 @@ RUN set -ex \
 	&& mkdir -p /etc/caddy \
         && git clone https://github.com/xiongbao/we.dog \
         && rm -rf /var/cache/apk/*
-EXPOSE 80 443
+EXPOSE 443
 ENTRYPOINT /entrypoint.sh
