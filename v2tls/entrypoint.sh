@@ -23,57 +23,95 @@ if [ ! -e '/usr/bin/xray' ]; then
 fi
 cat << EOF > /root/config.json
 {
-  "log": {
-    "loglevel": "none"
-  },
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "port": 1111,
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
-            "alterId": 0
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/ws"
-        }
-      }
+	"log": {
+	  "loglevel": "none"
+	},
+	"inbounds": [
+	  {
+		"listen": "127.0.0.1",
+		"port": 1111,
+		"protocol": "vmess",
+		"settings": {
+		  "clients": [
+			{
+			  "id": "ad806487-2d26-4636-98b6-ab85cc8521f7",
+			  "alterId": 0
+			}
+		  ]
+		},
+		"streamSettings": {
+		  "network": "ws",
+		  "wsSettings": {
+			"path": "/ws"
+		  }
+		}
+	  },
+	  {
+		"listen": "127.0.0.1",
+		"port": 1112,
+		"protocol": "shadowsocks",
+		"settings": {
+		  "clients": [
+			{
+			  "method": "chacha20-ietf-poly1305",
+			  "password": "ad806487-2d26-4636-98b6-ab85cc8521f7"
+			}
+		  ],
+		  "decryption": "none"
+		},
+		"streamSettings": {
+		  "network": "ws",
+		  "wsSettings": {
+			"path": "/ss"
+		  }
+		}
+	  },
+	{
+		"listen": "127.0.0.1",
+		"port": 1113,
+		"protocol": "vless",
+		"settings": {
+			"clients": [
+				{
+					"id": "ad806487-2d26-4636-98b6-ab85cc8521f7"
+				}
+			],
+			"decryption": "none"
+		},
+		"streamSettings": {
+			"network": "ws",
+			"wsSettings": {
+				"path": "/vless"
+			}
+		}
     },
     {
-      "listen": "127.0.0.1",
-      "port": 1112,
-      "protocol": "shadowsocks",
-      "settings": {
-        "clients": [
-          {
-            "method": "chacha20-ietf-poly1305",
-            "password": "ad806487-2d26-4636-98b6-ab85cc8521f7"
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/ss"
+        "listen": "127.0.0.1",
+        "port": 1114,
+        "protocol": "trojan",
+        "settings": {
+            "clients": [
+                {
+                    "password": "ad806487-2d26-4636-98b6-ab85cc8521f7"
+                }
+            ],
+            "decryption": "none"
+        },
+        "streamSettings": {
+            "network": "ws",
+            "wsSettings": {
+                "path": "/trojan"
+            }
         }
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "tag": "direct"
-    }
-  ]
-}
+    },
+	],
+	"outbounds": [
+	  {
+		"protocol": "freedom",
+		"tag": "direct"
+	  }
+	]
+  }
 EOF
 
 echo "开始生成Caddyfile配置文件"
@@ -92,6 +130,18 @@ cat <<EOF> /etc/caddy/Caddyfile
 		header Upgrade websocket
 	}
        reverse_proxy @ss 127.0.0.1:1112
+	@vless {
+		path /vless
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+       reverse_proxy @vless 127.0.0.1:1113
+	@trojan {
+		path /trojan
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+       reverse_proxy @trojan 127.0.0.1:1114
        file_server {
        root /we.dog
       }
