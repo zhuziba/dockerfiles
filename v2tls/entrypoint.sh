@@ -97,11 +97,9 @@ cat <<EOF> /etc/caddy/Caddyfile
       }
 }
 EOF
-
+git clone https://github.com/xiongbao/we.dog
+caddy fmt --overwrite /etc/caddy/Caddyfile
 caddy start --config /etc/caddy/Caddyfile --adapter caddyfile
-git clone https://github.com/xiongbao/we.dog 
-# start nginx
-# nginx
 # Run xray
 xray run -c /root/config.json
 tail -f /dev/null
