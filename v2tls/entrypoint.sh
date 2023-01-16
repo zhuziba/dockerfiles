@@ -103,7 +103,7 @@ cat << EOF > /root/config.json
                 "path": "/trojan"
             }
         }
-    },
+    }
 	],
 	"outbounds": [
 	  {
