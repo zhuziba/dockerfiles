@@ -39,6 +39,26 @@ cat << EOF > /root/config.json
           "path": "/ws"
         }
       }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 8081,
+      "protocol": "shadowsocks",
+      "settings": {
+        "clients": [
+          {
+            "method": "chacha20-ietf-poly1305",
+            "password": "ad806487-2d26-4636-98b6-ab85cc8521f7"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/ss"
+        }
+      }
     }
   ],
   "outbounds": [
