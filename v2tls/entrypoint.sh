@@ -28,7 +28,8 @@ cat << EOF > /root/config.json
   },
   "inbounds": [
     {
-      "listen": "/dev/shm/vws.sock",
+      "listen": "127.0.0.1",
+      "port": 1111,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -46,7 +47,8 @@ cat << EOF > /root/config.json
       }
     },
     {
-      "listen": "/dev/shm/ss.sock",
+      "listen": "127.0.0.1",
+      "port": 1112,
       "protocol": "shadowsocks",
       "settings": {
         "clients": [
@@ -83,16 +85,16 @@ cat <<EOF> /etc/caddy/Caddyfile
 		header Connection *Upgrade*
 		header Upgrade websocket
 	}
-	reverse_proxy @vws unix//dev/shm/ws.sock
+	reverse_proxy @vws 127.0.0.1:1111
 	@ss {
 		path /ss
 		header Connection *Upgrade*
 		header Upgrade websocket
 	}
-    reverse_proxy @ss unix//dev/shm/ss.sock
-    file_server {
-    root /we.dog
-    }
+       reverse_proxy @ss 127.0.0.1:1112
+       file_server {
+       root /we.dog
+      }
 }
 EOF
 
