@@ -15,9 +15,4 @@ iptables -t mangle -A clash -p tcp -j TPROXY --on-port 7893 --tproxy-mark 1
 iptables -t mangle -A clash -p udp -j TPROXY --on-port 7893 --tproxy-mark 1
 # REDIRECT
 iptables -t mangle -A PREROUTING -j clash
-# hijack DNS to Clash
-iptables -t nat -N CLASH_DNS
-iptables -t nat -F CLASH_DNS 
-iptables -t nat -A CLASH_DNS -p udp -j REDIRECT --to-port 1053
-iptables -t nat -I PREROUTING -p udp --dport 53 -j CLASH_DNS
 echo "执行路由表完毕"
