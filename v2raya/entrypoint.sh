@@ -3,9 +3,9 @@
 if [ ! -e '/usr/share/v2ray/v2ray' ]; then
     v2ray=v5.2.0
     echo "当前获取v2ray版本为$v2ray"
-    if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://kgithub.com/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm64-v8a.zip; fi
-    if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://kgithub.com/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip; fi
-    if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://kgithub.com/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm32-v7a.zip; fi
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://hub.nuaa.cf/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm64-v8a.zip; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://hub.nuaa.cf/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip; fi
+    if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://hub.nuaa.cf/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm32-v7a.zip; fi
     #if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip; fi
     #if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip; fi
     #if [ $(arch) == armv7l ]; then     wget -O /tmp/v2ray/v2ray.zip https://download.fastgit.org/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm32-v7a.zip; fi
@@ -39,9 +39,9 @@ if [ ! -e '/usr/local/share/v2ray/Loyalsoldierip.dat' ]; then
 fi
 
 if [ ! -e '/usr/bin/v2raya' ]; then
-    if [ $(arch) == aarch64 ]; then      wget https://kgithub.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm64_$VER;     chmod +x /v2raya_linux_arm64_$VER;     mv /v2raya_linux_arm64_$VER /usr/bin/v2raya; fi
-    if [ $(arch) == x86_64 ]; then     wget https://kgithub.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_x64_$VER;     chmod +x /v2raya_linux_x64_$VER;     mv /v2raya_linux_x64_$VER /usr/bin/v2raya; fi
-    if [ $(arch) == armv7l ]; then     wget https://kgithub.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm_$VER;     chmod +x /v2raya_linux_arm_$VER;     mv /v2raya_linux_arm_$VER /usr/bin/v2raya; fi
+    if [ $(arch) == aarch64 ]; then      wget https://hub.nuaa.cf/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm64_$VER;     chmod +x /v2raya_linux_arm64_$VER;     mv /v2raya_linux_arm64_$VER /usr/bin/v2raya; fi
+    if [ $(arch) == x86_64 ]; then     wget hhttps://hub.nuaa.cf/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_x64_$VER;     chmod +x /v2raya_linux_x64_$VER;     mv /v2raya_linux_x64_$VER /usr/bin/v2raya; fi
+    if [ $(arch) == armv7l ]; then     wget hhttps://hub.nuaa.cf/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm_$VER;     chmod +x /v2raya_linux_arm_$VER;     mv /v2raya_linux_arm_$VER /usr/bin/v2raya; fi
     echo "下载v2rayA完成"
 fi
 
@@ -49,9 +49,9 @@ if [ ! -e '/etc/v2raya/smartdns.conf' ]; then
     echo "smartdns.conf文件不存在不启动smartdns"
     else
     echo "smartdns.conf文件存在启动smartdns"
-    if [ $(arch) == aarch64 ]; then      wget -O /tmp/smartdns https://kgithub.com/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
-    if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://kgithub.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
-    if [ $(arch) == armv7l ]; then     wget -O /tmp/smartdns https://kgithub.com/pymumu/smartdns/releases/latest/download/smartdns-arm; fi
+    if [ $(arch) == aarch64 ]; then      wget -O /tmp/smartdns https://hub.nuaa.cf/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
+    if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://hub.nuaa.cf/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
+    if [ $(arch) == armv7l ]; then     wget -O /tmp/smartdns https://hub.nuaa.cf/pymumu/smartdns/releases/latest/download/smartdns-arm; fi
     chmod +x /tmp/smartdns
     mv /tmp/smartdns /usr/bin/smartdns
     echo "下载smartdns完成"
