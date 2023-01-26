@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -e '/usr/share/v2ray/v2ray' ]; then
-    v2ray=v5.2.0
+    v2ray=v5.2.1
     echo "当前获取v2ray版本为$v2ray"
     if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2ray/v2ray.zip https://hub.nuaa.cf/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-arm64-v8a.zip; fi
     if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2ray/v2ray.zip https://hub.nuaa.cf/v2fly/v2ray-core/releases/download/$v2ray/v2ray-linux-64.zip; fi
