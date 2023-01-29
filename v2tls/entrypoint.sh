@@ -152,4 +152,3 @@ caddy fmt --overwrite /etc/caddy/Caddyfile
 caddy start --config /etc/caddy/Caddyfile --adapter caddyfile
 # Run xray
 xray run -c /root/config.json
-tail -f /dev/null
