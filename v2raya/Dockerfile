@@ -20,4 +20,4 @@ VOLUME /etc/v2raya
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
-EXPOSE 53 2017 8080 20170 20171 20172
+EXPOSE 53 2017 20170 20171 20172
