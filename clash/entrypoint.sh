@@ -8,8 +8,8 @@ echo -e "======================== 0.1 判断是否安装clash文件 ============
 if [[ $neihe == premium ]]; then
     clash=2023.01.29
     echo "当前获取clash版本为$clash"
-    if [ $(arch) == aarch64 ]; then     wget -t 0 -c -P /usr/bin https://hub.nuaa.cf/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
-    if [ $(arch) == x86_64 ]; then     wget -t 0 -c -P /usr/bin https://hub.nuaa.cf/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == aarch64 ]; then     wget -t 0 -c -P /usr/bin https://gh.con.sh/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
+    if [ $(arch) == x86_64 ]; then     wget -t 0 -c -P /usr/bin https://gh.con.sh/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     echo "下载premium clash完成"
     
     
@@ -23,7 +23,7 @@ echo -e "======================== 0.2 判断目录是否存在文件 ===========
 if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "下载dashboard文件"
     mkdir -p /root/.config/clash/dashboard
-    wget -t 0 -c https://hub.nuaa.cf/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
+    wget -t 0 -c https://gh.con.sh/https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
     rm -rf /yacd.tar.xz
@@ -31,7 +31,7 @@ if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    wget -t 0 -c https://hub.nuaa.cf/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
+    wget -t 0 -c https://gh.con.sh/https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
     tar -xvf yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
     rm -rf /yacd.tar.xz
@@ -39,12 +39,12 @@ fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
-    wget -t 0 -c -P /root/.config/clash https://hub.nuaa.cf/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    wget -t 0 -c -P /root/.config/clash https://gh.con.sh/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
     echo "下载Country.mmdb文件"
-    wget -t 0 -c -P /root/.config/clash https://hub.nuaa.cf/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    wget -t 0 -c -P /root/.config/clash https://gh.con.sh/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
 fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
@@ -69,8 +69,8 @@ if [ ! -e '/root/.config/clash/smartdns.conf' ]; then
     echo "smartdns.conf文件不存在不启动smartdns"
     else
     echo "smartdns.conf文件存在启动smartdns"
-    if [ $(arch) == aarch64 ]; then      wget -t 0 -c -O /tmp/smartdns https://hub.nuaa.cf/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
-    if [ $(arch) == x86_64 ]; then     wget -t 0 -c -O /tmp/smartdns https://hub.nuaa.cf/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
+    if [ $(arch) == aarch64 ]; then      wget -t 0 -c -O /tmp/smartdns https://gh.con.sh/https://github.com/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi
+    if [ $(arch) == x86_64 ]; then     wget -t 0 -c -O /tmp/smartdns https://gh.con.sh/https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi
     chmod +x /tmp/smartdns
     mv /tmp/smartdns /usr/bin/smartdns
     echo "下载smartdns完成"
