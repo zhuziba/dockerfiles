@@ -1,17 +1,17 @@
 #!/bin/sh
 if [ ! -e '/usr/bin/xray' ]; then
     if [ $(arch) == x86_64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.2/Xray-linux-64.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.3/Xray-linux-64.zip
     curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com/caddy-dns/cloudflare"
     chmod +x /usr/bin/caddy
     fi
     if [ $(arch) == s390x ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.2/Xray-linux-s390x.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.3/Xray-linux-s390x.zip
     curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=s390x&p=github.com/caddy-dns/cloudflare"
     chmod +x /usr/bin/caddy
     fi
     if [ $(arch) == aarch64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.2/Xray-linux-arm64-v8a.zip
+    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/download/v1.7.3/Xray-linux-arm64-v8a.zip
     curl -L -H "Cache-Control: no-cache" -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=arm64&p=github.com/caddy-dns/cloudflare"
     chmod +x /usr/bin/caddy
     fi
