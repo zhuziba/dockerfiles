@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv bash
-
+echo -e "========================1 启动安装AdGuardHome========================\n
 exec s6-setuidgid root AdGuardHome -c /AdGuardHome/AdGuardHome.yaml &>/dev/null
