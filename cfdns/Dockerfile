@@ -2,7 +2,7 @@ FROM alpine as builder
 
 WORKDIR /usr/src
 
-RUN apk add cargo git go
+RUN apk add cargo git musl-dev
 
 RUN git clone https://github.com/ClassmateLin/cfdns.git /usr/src/cfdns && cd /usr/src/cfdns && cargo build --release
 
