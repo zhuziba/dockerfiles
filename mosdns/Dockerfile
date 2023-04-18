@@ -5,12 +5,15 @@ WORKDIR /usr/src
 RUN apk add git go
 
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
+RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
 
 # Set the working directory
 WORKDIR /usr/src/mosdns
+WORKDIR /usr/src/dnsproxy
 
-FROM alpine:edge
+FROM alpine
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
+COPY --from=builder /usr/src/dnsproxy/dnsproxy /usr/bin/dnsproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
@@ -18,8 +21,6 @@ RUN set -ex \
         && pip3 install supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && if [ $(arch) == x86_64 ]; then    wget -P /tmp  https://github.com/AdguardTeam/dnsproxy/releases/download/v0.49.0/dnsproxy-linux-amd64-v0.49.0.tar.gz;     tar -xvf /tmp/dnsproxy-linux-amd64-v0.49.0.tar.gz;     rm -rf /tmp/dnsproxy-linux-amd64-v0.49.0.tar.gz;     mv /linux-amd64/dnsproxy /usr/bin/dnsproxy;     chmod +x /usr/bin/dnsproxy; fi \
-        && if [ $(arch) == aarch64 ]; then    wget -P /tmp  https://github.com/AdguardTeam/dnsproxy/releases/download/v0.49.0/dnsproxy-linux-arm64-v0.49.0.tar.gz;     tar -xvf /tmp/dnsproxy-linux-arm64-v0.49.0.tar.gz;     rm -rf /tmp/dnsproxy-linux-arm64-v0.49.0.tar.gz;    mv /linux-arm64/dnsproxy /usr/bin/dnsproxy;     chmod +x /usr/bin/dnsproxy; fi \
         && mkdir -p /rules \ 
         && wget -O /rules/gfw.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/gfw.txt \
         && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/accelerated-domains.china.conf \
