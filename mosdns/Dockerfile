@@ -20,7 +20,7 @@ WORKDIR /usr/src/dnsproxy
 FROM alpine
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /usr/src/dnsproxy/dnsproxy /usr/bin/dnsproxy
-COPY --from=builder /usr/src/unbound/unbound /usr/bin/unbound
+COPY --from=builder /usr/local/sbin/unbound /usr/bin/unbound
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
