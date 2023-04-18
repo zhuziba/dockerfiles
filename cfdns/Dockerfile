@@ -15,7 +15,8 @@ WORKDIR /usr/src/cfdns
 FROM alpine AS runtime
 
 WORKDIR /usr/local/cfdns/
-
+RUN apk update -f && apk upgrade
+RUN apk add --no-cache libgcc
 # Copy application binary from builder image
 COPY --from=builder /usr/src/cfdns/target/release/cfdns /usr/local/cfdns/
 
