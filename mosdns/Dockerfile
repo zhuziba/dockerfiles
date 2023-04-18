@@ -4,13 +4,13 @@ WORKDIR /usr/src
 
 RUN apk add git go
 
-RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -ldflags "-s -w" -trimpath -o /src/mosdns
+RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 
 # Set the working directory
-WORKDIR /src/mosdns
+WORKDIR /usr/src/mosdns
 
 FROM alpine:edge
-COPY --from=builder /src/mosdns /usr/bin/mosdns
+COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
