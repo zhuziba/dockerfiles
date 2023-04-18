@@ -24,9 +24,9 @@ RUN set -ex \
         && wget -O /rules/gfw.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/gfw.txt \
         && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/accelerated-domains.china.conf \
         && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
-        &&  echo '0 2 * * *  wget -O /rules/gfw.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/gfw.txt'>>/var/spool/cron/crontabs/root  \
-        &&  echo '5 2 * * *  wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/accelerated-domains.china.conf'>>/var/spool/cron/crontabs/root  \
-        &&  echo '10 2 * * *  wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt'>>/var/spool/cron/crontabs/root  \
+        && echo '0 2 * * *  wget -O /rules/gfw.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/gfw.txt'>>/var/spool/cron/crontabs/root  \
+        && echo '5 2 * * *  wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/accelerated-domains.china.conf'>>/var/spool/cron/crontabs/root  \
+        && echo '10 2 * * *  wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt'>>/var/spool/cron/crontabs/root  \
         && mkdir /mosdns \
         && chmod +x /entrypoint.sh \
         && rm -rf /usr/bin/frps \
