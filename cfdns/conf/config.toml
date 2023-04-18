@@ -20,8 +20,8 @@ cycle_interval = 7200
 
 # 上游DNS服务配置, 仅支持UDP协议。
 [upstream]
-host = "223.5.5.5"
-port = 53
+host = "49.7.112.41"
+port = 5353
 
 
 [resource]
