@@ -19,8 +19,6 @@ if [ ! -e '/mosdns/diy.sh' ]; then
     echo "目录存在diy.sh文件执行diy脚本"
     bash /mosdns/diy.sh
 fi
-echo "启动定时任务"
-crond -b -l 8
 cat <<EOF> /etc/supervisord.conf
 [unix_http_server]
 file=/tmp/supervisor.sock
