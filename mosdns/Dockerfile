@@ -6,7 +6,9 @@ RUN apk add libc-dev git go upx make byacc musl-dev gcc libevent-dev openssl-dev
 
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
-RUN git clone https://github.com/NLnetLabs/unbound.git /usr/src/unbound && cd /usr/src/unbound && ./configure && make && make install
+RUN git clone https://github.com/NLnetLabs/unbound.git /usr/src/unbound
+RUN cd /usr/src/unbound && ./configure --with-libevent --with-pthreads --with-ssl --with-libhiredis --enable-cachedb --enable-subnet && make -j8 && make install
+
 
 #压缩文件
 RUN upx /usr/src/dnsproxy/dnsproxy
@@ -34,5 +36,5 @@ RUN set -ex \
         && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
-EXPOSE 53
+EXPOSE 8080
 ENTRYPOINT /entrypoint.sh
