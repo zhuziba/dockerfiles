@@ -1,6 +1,0 @@
-#!/sbin/openrc-run
-
-command="/usr/bin/mosdns"
-command_args="start --dir /mosdns"
-command_background=true
-pidfile="/run/${RC_SVCNAME}.pid"
