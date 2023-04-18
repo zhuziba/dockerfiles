@@ -22,4 +22,4 @@ jobs:
     - name: docker cfdns
       run: |
         cd ./cfdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64. --push
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
