@@ -1,8 +1,9 @@
 FROM alpine as builder
 
-WORKDIR /usr/src
+RUN apk update -f && apk upgrade
+RUN apk add cargo git musl-dev gcc
 
-RUN apk add cargo git musl-dev
+WORKDIR /usr/src
 
 RUN git clone https://github.com/ClassmateLin/cfdns.git /usr/src/cfdns && cd /usr/src/cfdns && cargo build --release
 
@@ -11,7 +12,7 @@ WORKDIR /usr/src/cfdns
 
 
 ##### Runtime
-FROM alpine
+FROM alpine AS runtime
 
 WORKDIR /usr/local/cfdns/
 

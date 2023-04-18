@@ -1,7 +1,7 @@
 FROM alpine as builder
 
 WORKDIR /usr/src
-
+RUN apk update -f && apk upgrade
 RUN apk add git go
 
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
