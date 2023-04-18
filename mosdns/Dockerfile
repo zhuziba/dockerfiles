@@ -2,7 +2,7 @@ FROM alpine as builder
 
 WORKDIR /usr/src
 RUN apk update -f && apk upgrade
-RUN apk add git go upx make gcc libevent-dev openssl-dev expat-dev hiredis-dev
+RUN apk add git go upx make byacc gcc libevent-dev openssl-dev expat-dev hiredis-dev
 
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
