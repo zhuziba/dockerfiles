@@ -2,12 +2,12 @@ FROM alpine as builder
 
 WORKDIR /usr/src
 RUN apk update -f && apk upgrade
-RUN apk add libc-dev git go upx make byacc musl gcc libevent openssl-dev expat hiredis
+RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev
 
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
 RUN git clone https://github.com/NLnetLabs/unbound.git /usr/src/unbound
-RUN cd /usr/src/unbound && ./configure --with-pthreads --with-ssl --with-libevent=/usr --with-libhiredis=/usr --enable-cachedb --enable-subnet --with-username=unbound && make -j8 && make install
+RUN cd /usr/src/unbound && ./configure --with-pthreads --with-ssl --with-libevent --with-libhiredis --enable-cachedb --enable-subnet --with-username=unbound && make -j8 && make install
 
 
 #压缩文件
