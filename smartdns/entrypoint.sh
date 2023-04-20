@@ -12,13 +12,13 @@ cat <<EOF> /etc/init.d/smartdns
 name="smartdns"
 command="/usr/bin/smartdns"
 command_args="-c /smartdns/smartdns.conf"
-command_background=false
+command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
 EOF
 chmod +x /etc/init.d/smartdns
-rc-update add smartdns
+#rc-update add smartdns
 openrc default
-#rc-service smartdns start
+rc-service smartdns start
 #smartdns -c /smartdns/smartdns.conf
 echo "smartdns启动成功"
 tail -f /dev/null

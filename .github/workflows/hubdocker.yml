@@ -22,10 +22,10 @@ jobs:
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
         docker buildx ls
-    - name: docker cfdns
-      run: |
-        cd ./cfdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker cfdns
+      #run: |
+        #cd ./cfdns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
     - name: docker mosdns
       run: |
         cd ./mosdns

@@ -1,11 +1,8 @@
 FROM alpine:edge as builder
-
-RUN apk update -f && apk upgrade
-RUN apk add cargo git musl-dev gcc g++
-
-WORKDIR /usr/src
-
-RUN git clone https://github.com/mokeyish/smartdns-rs.git /usr/src/smartdns-rs && cd /usr/src/smartdns-rs && cargo build --release
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk add cargo git musl-dev gcc g++ \
+        && git clone https://github.com/mokeyish/smartdns-rs.git /usr/src/smartdns-rs && cd /usr/src/smartdns-rs && cargo build --release
 ##### Runtime
 FROM alpine AS runtime
 ADD entrypoint.sh /entrypoint.sh
