@@ -25,7 +25,7 @@ jobs:
     - name: docker cfdns
       run: |
         cd ./cfdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64,linux/s390x . --push
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
     - name: docker mosdns
       run: |
         cd ./mosdns
