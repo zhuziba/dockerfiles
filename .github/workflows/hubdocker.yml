@@ -25,15 +25,15 @@ jobs:
     - name: docker cfdns
       run: |
         cd ./cfdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64,linux/s390x . --push
     - name: docker mosdns
       run: |
         cd ./mosdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64,linux/s390x . --push
     - name: docker blocky
       run: |
         cd ./blocky
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64,linux/s390x . --push
     - name: docker v2raya
       run: |
         cd ./v2raya
