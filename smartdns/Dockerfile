@@ -9,7 +9,7 @@ ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /usr/src/smartdns-rs/target/release/smartdns /usr/bin/smartdns
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata wget bash openrc \
+        && apk --no-cache add -f tzdata wget libgcc bash openrc \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /smartdns \
