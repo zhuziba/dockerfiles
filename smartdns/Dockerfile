@@ -14,6 +14,9 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /smartdns \
         && chmod +x /entrypoint.sh \
+        && mkdir -p /rules \
+        && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/accelerated-domains.china.conf \
+        && wget -O /rules/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/gfw.txt \
         && rm -rf /var/cache/apk/*
 VOLUME /smartdns
 EXPOSE 53
