@@ -11,7 +11,7 @@ cat <<EOF> /etc/init.d/smartdns
 #!/sbin/openrc-run
 name="smartdns"
 command="/usr/bin/smartdns"
-command_args="-c /smartdns/smartdns.conf"
+command_args="run -c /smartdns/smartdns.conf"
 command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
 EOF
