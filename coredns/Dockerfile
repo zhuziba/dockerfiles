@@ -1,7 +1,7 @@
 FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add go git musl-dev gcc g++ \
+        && apk add go git musl-dev gcc g++ make \
         && git clone https://github.com/coredns/coredns.git /usr/src/coredns \
         && cd /usr/src/coredns && echo proxy:github.com/coredns/proxy  ./plugin.cfg &&  echo blocklist:github.com/relekang/coredns-blocklist  ./plugin.cfg && make \
         && rm -rf /var/cache/apk/*
