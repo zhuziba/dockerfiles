@@ -8,6 +8,8 @@ if [ ! -e '/blocky/redis.conf' ]; then
 fi
 
 cat <<EOF> /etc/supervisord.conf
+[unix_http_server]
+file=/tmp/supervisor.sock
 [supervisord]
 loglevel=info 
 nodaemon=true
@@ -15,6 +17,10 @@ user=root
 [program:blocky]
 user=root
 command=/usr/bin/blocky --config /blocky/config.yaml
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock
 EOF
 if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"

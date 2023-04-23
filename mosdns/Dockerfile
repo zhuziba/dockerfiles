@@ -1,11 +1,11 @@
 FROM alpine as builder
 
 RUN apk update -f && apk upgrade
-RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev
+RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
 RUN git clone https://github.com/NLnetLabs/unbound.git /usr/src/unbound
-RUN cd /usr/src/unbound && ./configure --with-pthreads --with-ssl --with-libevent --with-libhiredis --enable-cachedb --enable-subnet --enable-dnscrypt --with-username=unbound && make -j8 && make install
+RUN cd /usr/src/unbound && ./configure --with-pthreads --with-ssl --with-libevent --with-libhiredis --enable-ipset --enable-ipsecmod --enable-cachedb --enable-subnet --enable-dnscrypt --with-username=unbound && make -j8 && make install
 
 
 #压缩文件
@@ -19,7 +19,7 @@ COPY --from=builder /usr/local/sbin/unbound /usr/bin/unbound
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates libevent-dev hiredis-dev libsodium-dev tzdata wget bash frp redis supervisor \
+        && apk --no-cache add -f ca-certificates libevent-dev hiredis-dev libsodium-dev libmnl-dev tzdata wget bash frp redis supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 
