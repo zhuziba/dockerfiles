@@ -1,7 +1,7 @@
 FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add cargo go git musl-dev gcc g++ \
+        && apk add go git musl-dev gcc g++ \
         && git clone https://github.com/v2fly/v2ray-core.git /usr/src/v2ray && cd /usr/src/v2ray && go build -v -o /usr/src/v2ray/v2ray -trimpath -ldflags "-s -w" ./main
 
 ##### Runtime

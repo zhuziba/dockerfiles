@@ -7,11 +7,6 @@ RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && c
 RUN git clone https://github.com/NLnetLabs/unbound.git /usr/src/unbound
 RUN cd /usr/src/unbound && ./configure --with-pthreads --with-ssl --with-libevent --with-libhiredis --enable-ipset --enable-ipsecmod --enable-cachedb --enable-subnet --enable-dnscrypt --with-username=unbound && make -j8 && make install
 
-
-#压缩文件
-RUN upx /usr/src/dnsproxy/dnsproxy
-RUN upx /usr/src/mosdns/mosdns
-
 FROM alpine as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /usr/src/dnsproxy/dnsproxy /usr/bin/dnsproxy
