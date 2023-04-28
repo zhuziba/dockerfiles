@@ -38,11 +38,15 @@ jobs:
       run: |
         cd ./v2raya
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
-    - name: docker smartdns
-      run: |
-        cd ./smartdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker smartdns
+      #run: |
+        #cd ./smartdns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
     - name: docker coredns
       run: |
         cd ./coredns
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
+    - name: docker clash
+      run: |
+        cd ./clash
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/clash --platform linux/arm64,linux/amd64 . --push
