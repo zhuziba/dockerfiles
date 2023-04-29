@@ -5,7 +5,6 @@ sysctl -p
 
 echo -e "======================== 0.1 判断是否安装clash文件 ========================\n"
 
-
 if [ ! -e '/usr/bin/clash' ]; then
     clash=2023.04.16
     echo "当前获取clash版本为$clash"
