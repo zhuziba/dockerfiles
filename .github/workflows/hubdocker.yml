@@ -22,30 +22,30 @@ jobs:
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
         docker buildx ls
-    - name: docker cfdns
-      run: |
-        cd ./cfdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
-    - name: docker mosdns
-      run: |
-        cd ./mosdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
-    - name: docker blocky
-      run: |
-        cd ./blocky
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
-    - name: docker v2raya
-      run: |
-        cd ./v2raya
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
+    #- name: docker cfdns
+      #run: |
+        #cd ./cfdns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker mosdns
+      #run: |
+        #cd ./mosdns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker blocky
+      #run: |
+        #cd ./blocky
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
+    #- name: docker v2raya
+      #run: |
+        #cd ./v2raya
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
     #- name: docker smartdns
       #run: |
         #cd ./smartdns
         #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
-    - name: docker coredns
-      run: |
-        cd ./coredns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker coredns
+      #run: |
+        #cd ./coredns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
     - name: docker clash
       run: |
         cd ./clash

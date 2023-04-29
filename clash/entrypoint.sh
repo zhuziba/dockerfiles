@@ -6,7 +6,6 @@ sysctl -p
 echo -e "======================== 0.1 判断是否安装clash文件 ========================\n"
 
 if [ ! -e '/usr/bin/clash' ]; then
-    clash=2023.04.16
     echo "当前获取clash版本为$clash"
     if [ $(arch) == aarch64 ]; then     wget -t 0 -c -P /usr/bin https://hub.gitmirror.com/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi
     if [ $(arch) == x86_64 ]; then     wget -t 0 -c -P /usr/bin https://hub.gitmirror.com/https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash;     chmod +x /usr/bin/clash; fi

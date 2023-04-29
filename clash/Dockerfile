@@ -1,5 +1,6 @@
 FROM alpine
 ENV iptables=true \
+    clash=2023.04.16 \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
 ADD /entrypoint.sh /entrypoint.sh
