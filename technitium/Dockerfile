@@ -3,7 +3,7 @@ FROM alpine
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget iptables bash unzip dotnet7-sdk \
+        && apk --no-cache add -f ca-certificates tzdata wget bash dotnet7-sdk \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /DnsServer \
