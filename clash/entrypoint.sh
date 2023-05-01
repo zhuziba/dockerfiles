@@ -7,28 +7,26 @@ echo -e "======================== 0.1 判断目录是否存在文件 ===========
 if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "下载dashboard文件"
     mkdir -p /root/.config/clash/dashboard
-    wget -t 0 -c https://hub.gitmirror.com/https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
-    tar -xvf yacd.tar.xz
+    tar -xvf /tmp/yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
-    rm -rf /yacd.tar.xz
+    rm -rf /tmp/yacd.tar.xz
     else
     echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    wget -t 0 -c https://hub.gitmirror.com/https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz
-    tar -xvf yacd.tar.xz
+    tar -xvf /tmp/yacd.tar.xz
     mv /public/* /root/.config/clash/dashboard
-    rm -rf /yacd.tar.xz
+    rm -rf /tmp/yacd.tar.xz
 fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
-    wget -t 0 -c -P /root/.config/clash https://hub.gitmirror.com/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    cp /tmp/Country.mmdb /root/.config/clash/Country.mmdb
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
     echo "下载Country.mmdb文件"
-    wget -t 0 -c -P /root/.config/clash https://hub.gitmirror.com/https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb
+    cp /tmp/Country.mmdb /root/.config/clash/Country.mmdb
 fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
