@@ -9,6 +9,7 @@ RUN set -ex \
         && mkdir -p /DnsServer \
         && wget -P /tmp https://download.technitium.com/dns/DnsServerPortable.tar.gz \
         && tar -xvf /tmp/DnsServerPortable.tar.gz -C /DnsServer \
+        && rm -rf /tmp/DnsServerPortable.tar.gz \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /etc/dns
