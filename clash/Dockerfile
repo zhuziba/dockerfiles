@@ -1,8 +1,18 @@
+FROM alpine:edge as builder
+ENV clash=2023.04.16
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk add wget \
+        &&  if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash; fi \
+        && chmod +x /usr/bin/clash \
+        && rm -rf /var/cache/apk/*
+
 FROM alpine
 ENV iptables=true \
-    clash=2023.04.16 \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
+COPY --from=builder /usr/bin/clash /usr/bin/clash
 ADD /entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
