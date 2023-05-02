@@ -20,7 +20,7 @@ COPY --from=builder /tmp/yacd.tar.xz  /tmp/yacd.tar.xz
 ADD /entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash iptables \
+        && apk --no-cache add -f ca-certificates tzdata wget bash iptables \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /tmp/iptables.sh \
