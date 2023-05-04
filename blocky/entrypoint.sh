@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ ! -d '/blocky/logs' ]; then
+    echo "logs目录不存在创建logs目录"
+    mkdir -p /blocky/logs
+fi
+
 if [ ! -e '/blocky/redis.conf' ]; then
     echo "redis.conf文件不存在不启动redis"
     else
