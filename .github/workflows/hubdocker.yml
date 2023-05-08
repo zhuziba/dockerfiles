@@ -26,10 +26,10 @@ jobs:
       #run: |
         #cd ./cfdns
         #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cfdns --platform linux/arm64,linux/amd64 . --push
-    #- name: docker mosdns
-      #run: |
-        #cd ./mosdns
-        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
+    - name: docker mosdns
+      run: |
+        cd ./mosdns
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdns --platform linux/arm64,linux/amd64 . --push
     - name: docker blocky
       run: |
         cd ./blocky
