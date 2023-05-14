@@ -18,6 +18,6 @@ RUN set -ex \
         && rm -rf /tmp/DnsServerPortable.tar.gz \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
-VOLUME /etc/dns
+VOLUME /DnsServer/config
 ENTRYPOINT /entrypoint.sh
 EXPOSE 53 80 5380
