@@ -11,7 +11,7 @@ COPY --from=builder /usr/src/dnsproxy/dnsproxy /usr/bin/dnsproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash frp redis supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget bash frp supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 

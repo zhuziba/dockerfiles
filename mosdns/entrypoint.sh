@@ -4,14 +4,6 @@ if [ ! -e '/mosdns/cache.dump' ]; then
     touch /mosdns/cache.dump
 fi
 
-if [ ! -e '/mosdns/redis.conf' ]; then
-    echo "redis.conf文件不存在不启动redis"
-    else
-    echo "redis.conf文件存在启动redis"
-    sysctl vm.overcommit_memory=1
-    redis-server /mosdns/redis.conf
-fi
-
 echo -e "======================== 1.0 是否启动diy脚本========================\n"
 if [ ! -e '/mosdns/diy.sh' ]; then
     echo "目录不存在diy.sh文件不执行diy脚本"
