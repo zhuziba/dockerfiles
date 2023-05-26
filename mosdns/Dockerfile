@@ -11,7 +11,7 @@ COPY --from=builder /usr/src/dnsproxy/dnsproxy /usr/bin/dnsproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash frp supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget bash supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 
@@ -21,7 +21,6 @@ RUN set -ex \
         && mkdir -p /mosdns \
         && mkdir -p /usr/local/etc/unbound \
         && chmod +x /entrypoint.sh \
-        && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 EXPOSE 8080
