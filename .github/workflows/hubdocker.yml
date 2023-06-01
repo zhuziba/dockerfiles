@@ -24,7 +24,7 @@ jobs:
         docker buildx ls
     - name: docker adguardhome
       run: |
-        cd ./adguardhome
+        cd ./AdGuardHome
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/adguardhome --platform linux/arm64,linux/amd64 . --push
     - name: docker mosdns
       run: |
