@@ -12,7 +12,7 @@ COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash curl tzdata dhcp \
+        && apk --no-cache add -f ca-certificates bash tzdata dhcp \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \  
         && chmod +x /entrypoint.sh \
