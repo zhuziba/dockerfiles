@@ -58,3 +58,8 @@ jobs:
       run: |
         cd ./test
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/test --platform linux/arm64,linux/amd64 . --push
+    - name: docker ssws
+      run: |
+        cd ./ssws
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/ssws --platform linux/arm64,linux/amd64 . --push
+        
