@@ -62,7 +62,7 @@ import (
 	_ "github.com/IrineSistiana/mosdns/v5/plugin/executable/sequence/fallback"
 	_ "github.com/IrineSistiana/mosdns/v5/plugin/executable/sleep"
 	_ "github.com/IrineSistiana/mosdns/v5/plugin/executable/ttl"
-	_ "/auto_ecs"
+	_ "auto_ecs"
 )
 
 // other
