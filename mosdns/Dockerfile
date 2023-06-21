@@ -3,9 +3,8 @@ ADD auto_ecs.go /auto_ecs/auto_ecs.go
 ADD enabled_plugins.go /tmp/enabled_plugins.go
 RUN apk update -f && apk upgrade
 RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
-RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && mv /tmp/enabled_plugins.go /usr/src/mosdns/plugin/enabled_plugins.go && go build -o /usr/src/mosdns/mosdns
-
-RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -mod=vendor -o /usr/src/dnsproxy/dnsproxy
+RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && mv /tmp/enabled_plugins.go /usr/src/mosdns/plugin/enabled_plugins.go && go build -p n -o /usr/src/mosdns/mosdns
+RUN git clone https://github.com/AdguardTeam/dnsproxy.git /usr/src/dnsproxy && cd /usr/src/dnsproxy && go build -p n -mod=vendor -o /usr/src/dnsproxy/dnsproxy
 
 FROM alpine as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
