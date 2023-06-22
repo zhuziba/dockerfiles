@@ -1,5 +1,4 @@
 FROM alpine:edge as builder
-ADD /auto_ecs/auto_ecs.go /usr/lib/go/src/auto_ecs/auto_ecs.go
 ADD enabled_plugins.go /tmp/enabled_plugins.go
 RUN apk update -f && apk upgrade
 RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
