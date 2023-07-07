@@ -10,7 +10,7 @@ ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/DnsServerPortable.tar.gz /tmp/DnsServerPortable.tar.gz
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata bash dnsutils dotnet7-sdk \
+        && apk --no-cache add -f ca-certificates tzdata bash dnsdist dotnet7-sdk \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /DnsServer \
