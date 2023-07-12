@@ -10,7 +10,7 @@ COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget bash dnsdist supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 
