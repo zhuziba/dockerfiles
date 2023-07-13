@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine as builder
 #ADD enabled_plugins.go /tmp/enabled_plugins.go
 #&& mv /tmp/enabled_plugins.go /usr/src/mosdns/plugin/enabled_plugins.go
 RUN apk update -f && apk upgrade
