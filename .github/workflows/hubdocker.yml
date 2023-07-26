@@ -44,10 +44,6 @@ jobs:
       run: |
         cd ./xray
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/xray --platform linux/arm64,linux/amd64 . --push
-    - name: docker coredns
-      run: |
-        cd ./coredns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
     - name: docker technitium
       run: |
         cd ./technitium
