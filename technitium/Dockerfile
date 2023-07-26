@@ -17,6 +17,7 @@ RUN set -ex \
         && tar -xvf /tmp/DnsServerPortable.tar.gz -C /DnsServer \
         && rm -rf /tmp/DnsServerPortable.tar.gz \
         && chmod +x /entrypoint.sh \
+        && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /DnsServer/config
 ENTRYPOINT /entrypoint.sh
