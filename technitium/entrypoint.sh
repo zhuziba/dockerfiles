@@ -24,4 +24,3 @@ if [ ! -e '/DnsServer/config/supervisord.conf' ]; then
     cp /DnsServer/config/supervisord.conf /etc/supervisord.conf
 fi
 supervisord -c /etc/supervisord.conf
-tail -f /dev/null
