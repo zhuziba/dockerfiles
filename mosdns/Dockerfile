@@ -19,6 +19,7 @@ RUN set -ex \
         && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
         && mkdir -p /mosdns \
         && chmod +x /entrypoint.sh \
+        && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 EXPOSE 8080
