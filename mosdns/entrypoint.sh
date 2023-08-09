@@ -39,4 +39,3 @@ if [ ! -e '/mosdns/supervisord.conf' ]; then
     cp /mosdns/supervisord.conf /etc/supervisord.conf
 fi
 supervisord -c /etc/supervisord.conf
-#tail -f /dev/null
