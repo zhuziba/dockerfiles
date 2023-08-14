@@ -14,4 +14,3 @@ if [ ! -e '/test/supervisord.conf' ]; then
     cp /test/supervisord.conf /etc/supervisord.conf
 fi
 supervisord -c /etc/supervisord.conf
-tail -f /dev/null
