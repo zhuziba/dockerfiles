@@ -1,5 +1,5 @@
 FROM alpine:edge as builder
-ENV clash=2023.07.22
+ENV clash=2023.08.17
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget \
