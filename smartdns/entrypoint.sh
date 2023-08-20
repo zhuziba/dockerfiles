@@ -10,8 +10,8 @@ echo "开始生成openrc启动配置文件"
 cat <<EOF> /etc/init.d/smartdns
 #!/sbin/openrc-run
 name="smartdns"
-command="/tmp/smartdns"
-command_args="-c /smartdns/smartdns.conf -f"
+command="/usr/bin/smartdns"
+command_args="run -c /smartdns/smartdns.conf"
 command_background=true
 pidfile="/run/${RC_SVCNAME}.pid"
 EOF
