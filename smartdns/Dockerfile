@@ -14,7 +14,7 @@ COPY --from=builder /usr/src/smartdns-rs/target/release/smartdns /usr/bin/smartd
 COPY --from=builder /tmp/smartdns /tmp/smartdns
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata wget libgcc bash openrc \
+        && apk --no-cache add -f tzdata wget libgcc bash openrc frp supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /smartdns \
