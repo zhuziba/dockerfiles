@@ -1,16 +1,16 @@
-FROM alpine as builder
+FROM alpine:edge as builder
 #ADD enabled_plugins.go /tmp/enabled_plugins.go
 #&& mv /tmp/enabled_plugins.go /usr/src/mosdns/plugin/enabled_plugins.go
 RUN apk update -f && apk upgrade
 RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
 
-FROM alpine as runtime
+FROM alpine:edge as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash frp supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget bash vector frp supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 
