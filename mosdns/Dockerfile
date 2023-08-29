@@ -11,7 +11,7 @@ ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget bash prometheus grafana frp supervisor \
-        && apk --no-cache add -f loki --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+        && apk --no-cache add -f loki --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \ 
