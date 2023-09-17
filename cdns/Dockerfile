@@ -2,7 +2,7 @@ FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl libc-dev git go upx make \
-        && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns \
+        && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 FROM alpine
 COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
