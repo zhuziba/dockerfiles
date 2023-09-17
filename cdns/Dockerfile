@@ -1,7 +1,6 @@
 FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add wget curl \
         && apk add wget curl libc-dev git go upx make \
         && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && make build \
         && rm -rf /var/cache/apk/*
