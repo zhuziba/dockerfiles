@@ -9,7 +9,7 @@ COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata libc6-compat \
+        && apk --no-cache add -f ca-certificates bash tzdata redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \  
         && chmod +x /entrypoint.sh \
