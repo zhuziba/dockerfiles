@@ -2,10 +2,10 @@ FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl libc-dev git go upx make \
-        && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && make build \
+        && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns \
         && rm -rf /var/cache/apk/*
 FROM alpine
-COPY --from=builder /tmp/cdns /usr/bin/cdns
+COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
