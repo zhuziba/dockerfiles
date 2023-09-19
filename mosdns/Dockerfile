@@ -3,7 +3,7 @@ FROM alpine:edge as builder
 #&& mv /tmp/enabled_plugins.go /usr/src/mosdns/plugin/enabled_plugins.go
 RUN apk update -f && apk upgrade
 RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
-RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns
+RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"'
 
 FROM alpine:edge as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
