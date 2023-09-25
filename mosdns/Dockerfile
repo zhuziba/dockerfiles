@@ -1,6 +1,6 @@
 FROM alpine:edge as builder
 RUN apk update -f && apk upgrade
-RUN apk add libc-dev git go upx make byacc musl gcc libevent-dev openssl-dev expat-dev hiredis-dev libsodium-dev libmnl-dev
+RUN apk add git go
 RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"'
 
 FROM alpine:edge as runtime
