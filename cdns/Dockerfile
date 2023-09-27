@@ -1,7 +1,7 @@
 FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add wget curl libc-dev git go make \
+        && apk add wget curl git go make \
         && if [ $(arch) == aarch64 ]; then     wget -O /tmp/rcdns https://github.com/rnetx/rcdns/releases/download/v0.0.1/rcdns-0.0.1-aarch64-unknown-linux-gnu; fi \
         && if [ $(arch) == x86_64 ]; then     wget -O /tmp/rcdns https://github.com/rnetx/rcdns/releases/download/v0.0.1/rcdns-0.0.1-x86_64-unknown-linux-gnu; fi \
         && chmod +x /tmp/rcdns \
