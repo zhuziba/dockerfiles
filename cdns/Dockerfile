@@ -8,7 +8,8 @@ RUN set -ex \
         && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 FROM alpine
-COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
+COPY --from=builder /tmp/rcdns /usr/bin/rcdns
+COPY --from=builder /tmp/rcdns /usr/bin/rcdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
