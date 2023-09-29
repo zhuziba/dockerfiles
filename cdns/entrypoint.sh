@@ -6,5 +6,5 @@ if [ ! -e '/cdns/redis.conf' ]; then
     sysctl vm.overcommit_memory=1
     redis-server /cdns/redis.conf
 fi
-/usr/bin/rcdns run -c /cdns/config.yaml
+/usr/bin/cdns run -c /cdns/config.yaml
 tail -f /dev/null
