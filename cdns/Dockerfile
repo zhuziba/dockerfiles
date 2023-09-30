@@ -9,7 +9,7 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 FROM alpine
 COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
-COPY --from=builder /tmp/rcdns /usr/bin/rcdns
+#COPY --from=builder /tmp/rcdns /usr/bin/rcdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
