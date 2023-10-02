@@ -1,9 +1,4 @@
 #!/bin/bash
-if [ ! -e '/mosdns/cache.dump' ]; then
-    echo "cache.dump文件不存在创建cache.dump"
-    touch /mosdns/cache.dump
-fi
-
 echo -e "======================== 1.0 是否启动diy脚本========================\n"
 if [ ! -e '/mosdns/diy.sh' ]; then
     echo "目录不存在diy.sh文件不执行diy脚本"
