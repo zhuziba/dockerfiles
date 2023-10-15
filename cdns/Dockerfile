@@ -15,7 +15,10 @@ RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates bash tzdata redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-        && echo "Asia/Shanghai" > /etc/timezone \  
+        && echo "Asia/Shanghai" > /etc/timezone \
+        && mkdir -p /rules \
+        && wget -O /rules/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/gfw.conf \
+        && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/accelerated-domains.china.conf \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /cdns

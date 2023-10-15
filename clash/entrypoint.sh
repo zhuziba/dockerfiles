@@ -7,16 +7,14 @@ echo -e "======================== 0.1 判断目录是否存在文件 ===========
 if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
     echo "下载dashboard文件"
     mkdir -p /root/.config/clash/dashboard
-    tar -xvf /tmp/yacd.tar.xz
-    mv /public/* /root/.config/clash/dashboard
-    rm -rf /tmp/yacd.tar.xz
+    tar -xvf /tmp/yacd.tar.xz -C /tmp
+    mv /tmp/public/* /root/.config/clash/dashboard
     else
     echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    tar -xvf /tmp/yacd.tar.xz
-    mv /public/* /root/.config/clash/dashboard
-    rm -rf /tmp/yacd.tar.xz
+    tar -xvf /tmp/yacd.tar.xz -C /tmp
+    mv /tmp/public/* /root/.config/clash/dashboard
 fi
 
 if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
