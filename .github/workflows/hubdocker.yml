@@ -21,7 +21,7 @@ jobs:
         #docker run --privileged --rm docker/binfmt:a7996909642ee92942dcd6cff44b9b95f08dad64
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
-        docker buildx ls
+        #docker buildx ls
     - name: docker adguardhome
       run: |
         cd ./AdGuardHome
