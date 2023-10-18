@@ -10,7 +10,7 @@ RUN set -ex \
 ##### Runtime
 FROM alpine AS runtime
 ADD entrypoint.sh /entrypoint.sh
-COPY --from=builder /usr/src/smartdns-rs/target/release/smartdns /usr/bin/smartdns
+#COPY --from=builder /usr/src/smartdns-rs/target/release/smartdns /usr/bin/smartdns
 COPY --from=builder /tmp/smartdns /tmp/smartdns
 RUN set -ex \
         && apk update -f && apk upgrade \
