@@ -8,7 +8,7 @@ RUN set -ex \
         && chmod +x /AdGuardHome/AdGuardHome \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"'
 
-FROM alpine:edge as runtime
+FROM alpine as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
