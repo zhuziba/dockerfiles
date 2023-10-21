@@ -1,7 +1,12 @@
 FROM alpine:edge as builder
-RUN apk update -f && apk upgrade
-RUN apk add git go
-RUN git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"'
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk add git curl go \
+        && if [ $(arch) == aarch64 ]; then      curl -L -H "Cache-Control: no-cache" -o /AdGuardHome.tar.gz https://static.adguard.com/adguardhome/edge/AdGuardHome_linux_arm64.tar.gz; fi \
+        && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /AdGuardHome.tar.gz https://static.adguard.com/adguardhome/edge/AdGuardHome_linux_amd64.tar.gz; fi \
+        && tar -zxvf AdGuardHome.tar.gz \
+        && chmod +x /AdGuardHome/AdGuardHome \
+        && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"'
 
 FROM alpine:edge as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
