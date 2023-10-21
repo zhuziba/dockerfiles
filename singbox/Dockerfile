@@ -2,7 +2,7 @@ FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git curl go \
-        && go install -v -tags with_clash_api,with_ech,with_utls,with_acme github.com/sagernet/sing-box/cmd/sing-box@main \
+        && go install -v -tags with_clash_api,with_ech,with_utls,with_quic,with_acme github.com/sagernet/sing-box/cmd/sing-box@main \
         && cp $(go env GOPATH)/bin/sing-box /usr/bin/ \
         && chmod +x /usr/bin/sing-box
 
