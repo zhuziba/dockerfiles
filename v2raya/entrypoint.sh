@@ -20,5 +20,5 @@ if [ ! -e '/usr/local/share/v2ray/Loyalsoldierip.dat' ]; then
 fi
 
 echo "启动v2raya"
-v2raya
-#v2raya --log-level error --log-file /var/log/v2raya.log
+#v2raya
+v2raya --log-level error --log-file /var/log/v2raya.log
