@@ -15,7 +15,7 @@ RUN set -ex \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
 	&& chmod +x /entrypoint.sh \
-        && mkdir /singboxc
+        && mkdir /singbox \
 	&& wget -O /geosite.db https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db \
         && wget -O /geoip.db https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db \
         && rm -rf /var/cache/apk/*
