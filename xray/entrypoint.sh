@@ -124,4 +124,5 @@ user=root
 command=/usr/bin/xray run -c /root/config.json
 EOF
 /usr/sbin/nginx
-supervisord -c /etc/supervisord.conf
+/usr/bin/xray run -c /root/config.json
+#supervisord -c /etc/supervisord.conf
