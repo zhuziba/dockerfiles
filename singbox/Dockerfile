@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git curl go \
