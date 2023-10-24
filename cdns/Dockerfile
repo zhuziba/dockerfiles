@@ -2,7 +2,6 @@ FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl git go make \
-        && chmod +x /tmp/rcdns \
         && git clone https://github.com/yaotthaha/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 FROM alpine
