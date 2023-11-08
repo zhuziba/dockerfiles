@@ -17,7 +17,6 @@ docker run --restart=always \
   --net macnet \
   --ip 192.168.50.5 \
   -v /docker/mosdns:/mosdns \
-  -v /docker/mosdns/grafana:/usr/share/grafana/data \
   byxiaopeng/mosdns:latest
 ```
 
