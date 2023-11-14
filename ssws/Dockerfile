@@ -1,4 +1,14 @@
+FROM alpine as builder
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk add go git musl-dev gcc g++ make automake \
+        && git clone https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
+        && cd /usr/src/cdns && ./autogen.sh && ./configure --prefix=/usr/local --disable-documentation \
+        && make -j$(getconf _NPROCESSORS_ONLN) \
+        && make install
+        
 FROM alpine
+COPY --from=builder /usr/local/ss-server /usr/bin/ss-server
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates git tzdata wget bash nginx \
