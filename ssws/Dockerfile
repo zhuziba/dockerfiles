@@ -1,7 +1,7 @@
 FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add go git musl-dev gcc g++ make automake autoconf c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
+        && apk add go git musl-dev gcc g++ make automake autoconf build-base c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
         && git clone https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
         && cd /usr/src/shadowsocks && ./autogen.sh && ./configure --prefix=/usr/local --disable-documentation \
         && make -j$(getconf _NPROCESSORS_ONLN) \
