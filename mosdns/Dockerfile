@@ -8,6 +8,7 @@ RUN set -ex \
         && chmod +x /AdGuardHome/AdGuardHome \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
+        && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 
 FROM alpine as runtime
