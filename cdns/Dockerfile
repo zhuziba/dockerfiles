@@ -4,7 +4,8 @@ RUN set -ex \
         && apk add wget curl git go make \
         && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
-FROM alpine
+##### Runtime
+FROM alpine AS runtime
 COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
