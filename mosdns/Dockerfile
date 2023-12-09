@@ -30,5 +30,5 @@ RUN set -ex \
         && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
-EXPOSE 8080
+EXPOSE 53 80
 ENTRYPOINT /entrypoint.sh
