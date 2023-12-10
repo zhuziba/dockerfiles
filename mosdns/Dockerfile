@@ -17,7 +17,7 @@ COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash frp supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget dhcp bash frp supervisor \
         #&& apk --no-cache add -f vector loki loki-promtail --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
