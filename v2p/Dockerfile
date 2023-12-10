@@ -3,10 +3,8 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local
     TZ=Asia/Shanghai
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget coreutils moreutils perl python3 py3-pip \
+        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget coreutils moreutils perl \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-        && ln -sf /usr/bin/python3 /usr/bin/python \
-        && pip3 install requests \
         && echo "Asia/Shanghai" > /etc/timezone \
         && git clone https://github.com/elecV2/elecV2P.git /usr/local/app \
         && sed -i "s/60000/0/g" /usr/local/app/func/exec.js \
