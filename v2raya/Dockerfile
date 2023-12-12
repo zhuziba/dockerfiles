@@ -1,4 +1,4 @@
-FROM alpine:3.18 as builder
+FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add go git musl-dev gcc g++ v2ray
