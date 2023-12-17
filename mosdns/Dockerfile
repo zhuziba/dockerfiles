@@ -14,6 +14,7 @@ RUN set -ex \
 FROM alpine as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
+COPY --from=builder /usr/src/blocky/blocky /usr/bin/blocky
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
