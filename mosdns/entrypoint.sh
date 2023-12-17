@@ -20,3 +20,4 @@ if [ ! -e '/mosdns/supervisord.conf' ]; then
     cp /mosdns/supervisord.conf /etc/supervisord.conf
     supervisord -c /etc/supervisord.conf
 fi
+tail -f /dev/null
