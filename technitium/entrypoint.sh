@@ -8,7 +8,7 @@ file=/tmp/supervisor.sock
 loglevel=info 
 nodaemon=true
 user=root
-[program:mosdns]
+[program:dotnet]
 user=root
 command=/usr/bin/dotnet /DnsServer/DnsServerApp.dll
 [rpcinterface:supervisor]
