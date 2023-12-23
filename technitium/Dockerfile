@@ -10,14 +10,13 @@ ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/DnsServerPortable.tar.gz /tmp/DnsServerPortable.tar.gz
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata bash dotnet7-sdk \
+        && apk --no-cache add -f ca-certificates tzdata dotnet7-sdk \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /DnsServer \
         && tar -xvf /tmp/DnsServerPortable.tar.gz -C /DnsServer \
         && rm -rf /tmp/DnsServerPortable.tar.gz \
         && chmod +x /entrypoint.sh \
-        && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /DnsServer/config
 ENTRYPOINT /entrypoint.sh
