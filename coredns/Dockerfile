@@ -3,7 +3,8 @@ RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add go git musl-dev gcc g++ make \
         && git clone https://github.com/coredns/coredns.git /usr/src/coredns \
-        && cd /usr/src/coredns && echo blocklist:github.com/relekang/coredns-blocklist >>/usr/src/coredns/plugin.cfg && make \
+        && echo proxy:github.com/coredns/proxy >>/usr/src/coredns/plugin.cfg && echo blocklist:github.com/relekang/coredns-blocklist >>/usr/src/coredns/plugin.cfg \
+        && cd /usr/src/coredns && make \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine AS runtime
