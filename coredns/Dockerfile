@@ -4,6 +4,7 @@ RUN set -ex \
         && apk add go git musl-dev gcc g++ make \
         && git clone https://github.com/coredns/coredns.git /usr/src/coredns \
         && sed -i.bak 's|forward:forward|blocklist:github.com/relekang/coredns-blocklist\ndnsredir:github.com/leiless/dnsredir\nforward:forward|g' /usr/src/coredns/plugin.cfg \
+        && sed -i.bak 's|cache:cache|cache:cache\nredisc:github.com/miekg/redis|g' /usr/src/coredns/plugin.cfg \
         && cd /usr/src/coredns && make \
         && rm -rf /var/cache/apk/*
 ##### Runtime
