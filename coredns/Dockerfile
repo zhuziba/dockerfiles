@@ -13,7 +13,7 @@ ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /usr/src/coredns/coredns /usr/bin/coredns
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata libgcc unbound-dev bash \
+        && apk --no-cache add -f tzdata libgcc unbound-dev redis bash \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /coredns \
