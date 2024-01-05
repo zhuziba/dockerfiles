@@ -6,5 +6,12 @@ if [ ! -e '/cdns/redis.conf' ]; then
     sysctl vm.overcommit_memory=1
     redis-server /cdns/redis.conf
 fi
-/usr/bin/cdns -c /cdns/config.yaml
+
+if [ ! -e '/cdns/mosproxy.yaml' ]; then
+    echo "目录不存在mosproxy.yaml启动cdns"
+    /usr/bin/cdns -c /cdns/config.yaml
+    else
+    echo "目录存在mosproxy.yaml启动mosproxy"
+    /usr/bin/mosproxy router -c /cdns/mosproxy.yaml
+fi
 tail -f /dev/null
