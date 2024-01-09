@@ -4,6 +4,7 @@ RUN set -ex \
         && apk add wget curl git go make \
         && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy -a -ldflags '-extldflags "-static"' \
+        && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine AS runtime
