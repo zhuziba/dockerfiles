@@ -1,18 +1,21 @@
 FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add go git musl-dev gcc g++ v2ray
+        && apk add go git musl-dev gcc g++ v2ray \
+        && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
+        && rm -rf /var/cache/apk/*
 
 ##### Runtime
 FROM alpine
 ENV VER=2.2.4.6 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
+COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /usr/share/v2ray/geoip.dat /usr/local/share/v2ray/geoip.dat
 COPY --from=builder /usr/share/v2ray/geosite.dat /usr/local/share/v2ray/geosite.dat
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget iptables iptables-legacy bash unzip \
+        && apk --no-cache add -f ca-certificates tzdata wget iptables iptables-legacy bash \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /etc/v2raya \
