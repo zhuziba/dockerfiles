@@ -21,8 +21,4 @@ openrc default
 rc-service smartdns start
 #smartdns -c /smartdns/smartdns.conf
 echo "smartdns启动成功"
-echo "每周一到周五2点自动重启smartdns进程"
-echo '0 2 * * 1-5  rc-service smartdns restart'>>/var/spool/cron/crontabs/root
-echo "启动定时任务"
-crond -b -l 8
 tail -f /dev/null
