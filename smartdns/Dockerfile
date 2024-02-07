@@ -16,7 +16,7 @@ COPY --from=builder /tmp/accelerated-domains.china.conf /rules/accelerated-domai
 COPY --from=builder /tmp/gfw.conf /rules/gfw.conf
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata libgcc bash openrc \
+        && apk --no-cache add -f tzdata bash openrc \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /smartdns \
