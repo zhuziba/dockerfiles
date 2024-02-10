@@ -1,11 +1,11 @@
 FROM alpine:edge as builder
-ENV clash=2023.08.17
+ENV clash=1.18.1
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget \
-        &&  if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-arm64-$clash.gz;     gunzip /usr/bin/clash-linux-arm64-$clash.gz;     mv /usr/bin/clash-linux-arm64-$clash /usr/bin/clash; fi \
-        && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-$clash.gz;     gunzip /usr/bin/clash-linux-amd64-$clash.gz;     mv /usr/bin/clash-linux-amd64-$clash /usr/bin/clash; fi \
-        && chmod +x /usr/bin/clash \
+        && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-arm64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-v$clash.gz;     mv /usr/bin/mihomo-linux-arm64-v$clash /usr/bin/mihomo; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-amd64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-v$clash.gz;     mv /usr/bin/mihomo-linux-amd64-v$clash /usr/bin/mihomo; fi \
+        && chmod +x /usr/bin/mihomo \
         && wget -P /tmp https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
         && wget -P /tmp https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz \
         && rm -rf /var/cache/apk/*
@@ -14,7 +14,7 @@ FROM alpine
 ENV iptables=true \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
-COPY --from=builder /usr/bin/clash /usr/bin/clash
+COPY --from=builder /usr/bin/mihomo /usr/bin/clash
 COPY --from=builder /tmp/Country.mmdb /tmp/Country.mmdb
 COPY --from=builder /tmp/yacd.tar.xz  /tmp/yacd.tar.xz
 ADD /entrypoint.sh /entrypoint.sh
