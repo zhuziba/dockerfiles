@@ -14,7 +14,7 @@ FROM alpine
 ENV iptables=true \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
-COPY --from=builder /usr/bin/mihomo /usr/bin/clash
+COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo
 COPY --from=builder /tmp/Country.mmdb /tmp/Country.mmdb
 COPY --from=builder /tmp/yacd.tar.xz  /tmp/yacd.tar.xz
 ADD /entrypoint.sh /entrypoint.sh
@@ -25,6 +25,6 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /tmp/iptables.sh \
         && chmod +x /entrypoint.sh
-VOLUME /root/.config/clash
+VOLUME /root/.config/mihomo
 EXPOSE 53 7890 7891 7892 7893 9090
 ENTRYPOINT /entrypoint.sh
