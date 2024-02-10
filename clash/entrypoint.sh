@@ -56,8 +56,8 @@ echo -e "======================== 4. 启动clash程序 ========================\
 
 if [[ $down_type == git ]]; then
     echo "变量配置了远程配置运远程配置"
-    wget ${down_url} -O /root/.config/clash/config.yaml
+    wget ${down_url} -O /root/.config/mihomo/config.yaml
     else
     echo "变量未配置远程文件运行本地配置"
 fi
-clash
+mihomo
