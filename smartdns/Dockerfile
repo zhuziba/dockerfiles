@@ -2,8 +2,8 @@ FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add cargo git musl-dev gcc g++ wget \
-        && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release43/smartdns-aarch64; fi \
-        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release43/smartdns-x86_64; fi \
+        && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-aarch64; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-x86_64; fi \
         && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/accelerated-domains.china.conf \
         && wget -O /tmp/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/gfw.txt \
         && chmod +x /tmp/smartdns \
