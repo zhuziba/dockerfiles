@@ -7,7 +7,7 @@ RUN set -ex \
         && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-amd64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-v$clash.gz;     mv /usr/bin/mihomo-linux-amd64-v$clash /usr/bin/mihomo; fi \
         && chmod +x /usr/bin/mihomo \
         && wget -P /tmp https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
-        && wget -P /tmp https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz \
+        && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
         && rm -rf /var/cache/apk/*
 
 FROM alpine
@@ -16,11 +16,11 @@ ENV iptables=true \
 ADD /script/iptables.sh /tmp/iptables.sh
 COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo
 COPY --from=builder /tmp/Country.mmdb /tmp/Country.mmdb
-COPY --from=builder /tmp/yacd.tar.xz  /tmp/yacd.tar.xz
+COPY --from=builder /tmp/gh-pages.zip  /tmp/gh-pages.zip
 ADD /entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash iptables \
+        && apk --no-cache add -f ca-certificates tzdata wget bash unzip iptables \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /tmp/iptables.sh \
