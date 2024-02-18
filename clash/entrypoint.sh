@@ -4,32 +4,32 @@ sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g" /etc/sysctl.conf
 sysctl -p
 
 echo -e "======================== 0.1 判断目录是否存在文件 ========================\n"
-if [ ! -e '/root/.config/clash/dashboard/index.html' ]; then
+if [ ! -e '/root/.config/mihomo/dashboard/index.html' ]; then
     echo "下载dashboard文件"
     mkdir -p /root/.config/clash/dashboard
-    unzip /tmp/gh-pages.zip -d /root/.config/clash/dashboard
+    unzip /tmp/gh-pages.zip -d /root/.config/mihomo/dashboard
     else
     echo "dashboard文件存在删除下载最新版本"
     rm -rf /root/.config/clash/dashboard
     mkdir -p /root/.config/clash/dashboard
-    unzip /tmp/gh-pages.zip -d /root/.config/clash/dashboard
+    unzip /tmp/gh-pages.zip -d /root/.config/mihomo/dashboard
 fi
 
-if [ ! -e '/root/.config/clash/Country.mmdb' ]; then
+if [ ! -e '/root/.config/mihomo/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
-    cp /tmp/Country.mmdb /root/.config/clash/Country.mmdb
+    cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/clash/Country.mmdb
     echo "下载Country.mmdb文件"
-    cp /tmp/Country.mmdb /root/.config/clash/Country.mmdb
+    cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
 fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
 if [[ $iptables == true ]]; then
     echo "移动iptables.sh文件"
-    cp /tmp/iptables.sh /root/.config/clash/iptables.sh
-    bash /root/.config/clash/iptables.sh
+    cp /tmp/iptables.sh /root/.config/mihomo/iptables.sh
+    bash /root/.config/mihomo/iptables.sh
     echo -e "自定义iptables路由表成功..."
 elif [[ $iptables == false ]]; then
     echo -e "你没有设置开启iptables变量"
@@ -43,11 +43,11 @@ elif [[ $tun == false ]]; then
     echo -e "你没有设置开启tun变量"
 fi
 echo -e "======================== 3. 是否开启diy脚本========================\n"
-if [ ! -e '/root/.config/clash/diy.sh' ]; then
+if [ ! -e '/root/.config/mihomo/diy.sh' ]; then
     echo "目录不存在diy.sh文件不执行diy脚本"
     else
     echo "目录存在diy.sh文件执行diy脚本"
-    bash /root/.config/clash/diy.sh
+    bash /root/.config/mihomo/diy.sh
 fi
 
 echo -e "======================== 4. 启动clash程序 ========================\n"
