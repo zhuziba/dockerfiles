@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine as builder
 ENV clash=1.18.1
 RUN set -ex \
         && apk update -f && apk upgrade \
