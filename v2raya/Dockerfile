@@ -7,7 +7,7 @@ RUN set -ex \
 
 ##### Runtime
 FROM alpine
-ENV VER=2.2.4.6 \
+ENV VER=2.2.4.7 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
