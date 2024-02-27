@@ -38,4 +38,7 @@ jobs:
       run: |
         cd ./v2raya
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
-        
+    - name: docker blocky
+      run: |
+        cd ./blocky
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
