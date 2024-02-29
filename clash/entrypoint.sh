@@ -6,12 +6,12 @@ sysctl -p
 echo -e "======================== 0.1 判断目录是否存在文件 ========================\n"
 if [ ! -e '/root/.config/mihomo/dashboard/index.html' ]; then
     echo "下载dashboard文件"
-    mkdir -p /root/.config/clash/dashboard
+    mkdir -p /root/.config/mihomo/dashboard
     unzip /tmp/gh-pages.zip -d /root/.config/mihomo/dashboard
     else
     echo "dashboard文件存在删除下载最新版本"
-    rm -rf /root/.config/clash/dashboard
-    mkdir -p /root/.config/clash/dashboard
+    rm -rf /root/.config/mihomo/dashboard
+    mkdir -p /root/.config/mihomo/dashboard
     unzip /tmp/gh-pages.zip -d /root/.config/mihomo/dashboard
 fi
 
@@ -20,7 +20,7 @@ if [ ! -e '/root/.config/mihomo/Country.mmdb' ]; then
     cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
     else
     echo "Country.mmdb文件存在删除下载最新版本"
-    rm -rf /root/.config/clash/Country.mmdb
+    rm -rf /root/.config/mihomo/Country.mmdb
     echo "下载Country.mmdb文件"
     cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
 fi
