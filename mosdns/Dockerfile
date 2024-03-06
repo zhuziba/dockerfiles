@@ -6,8 +6,8 @@ RUN set -ex \
         && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /AdGuardHome.tar.gz https://static.adguard.com/adguardhome/edge/AdGuardHome_linux_amd64.tar.gz; fi \
         && tar -zxvf AdGuardHome.tar.gz \
         && chmod +x /AdGuardHome/AdGuardHome \
-        && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release43/smartdns-aarch64; fi \
-        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release43/smartdns-x86_64; fi \
+        && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-aarch64; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-x86_64; fi \
         && chmod +x /tmp/smartdns \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
