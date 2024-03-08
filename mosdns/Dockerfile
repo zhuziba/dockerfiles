@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git curl go make \
@@ -10,8 +10,6 @@ RUN set -ex \
         && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-x86_64; fi \
         && chmod +x /tmp/smartdns \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
-        && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
-        && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 
 FROM alpine as runtime
