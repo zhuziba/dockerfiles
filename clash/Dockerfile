@@ -3,7 +3,7 @@ ENV clash=1.18.1
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git wget go \
-        && git clone --branch Meta https://github.com/MetaCubeX/mihomo.git /usr/src/mihomo && cd /usr/src/mihomo && go mod download && go build -o /usr/src/mihomo/mihomo -a -ldflags '-extldflags "-static"'
+        && git clone --branch Meta https://github.com/MetaCubeX/mihomo.git /usr/src/mihomo && cd /usr/src/mihomo && go mod download && go build -o /usr/src/mihomo/mihomo -a -ldflags '-extldflags "-static"' \
         && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-arm64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-v$clash.gz;     mv /usr/bin/mihomo-linux-arm64-v$clash /usr/bin/mihomo; fi \
         && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-amd64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-v$clash.gz;     mv /usr/bin/mihomo-linux-amd64-v$clash /usr/bin/mihomo; fi \
         && chmod +x /usr/bin/mihomo \
