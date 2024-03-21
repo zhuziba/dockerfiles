@@ -3,7 +3,7 @@ ENV clash=1.18.1
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git wget go \
-        && git clone --branch Alpha https://github.com/MetaCubeX/mihomo.git /usr/src/mihomo && cd /usr/src/mihomo && go mod download && go build -o /usr/src/mihomo/mihomo -a -ldflags '-extldflags "-static"' \
+        && git clone --branch Alpha https://github.com/MetaCubeX/mihomo.git /usr/src/mihomo && cd /usr/src/mihomo && go mod download && go build -tags with_gvisor -o /usr/src/mihomo/mihomo -a -ldflags '-extldflags "-static"' \
         && wget -P /tmp https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
         && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
         && rm -rf /var/cache/apk/*
