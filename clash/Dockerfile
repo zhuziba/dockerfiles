@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine:edge as builder
 ENV clash=1.18.1
 RUN set -ex \
         && apk update -f && apk upgrade \
@@ -8,7 +8,7 @@ RUN set -ex \
         && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
         && rm -rf /var/cache/apk/*
 
-FROM alpine
+FROM alpine:edge
 ENV iptables=true \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
