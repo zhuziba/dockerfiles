@@ -50,3 +50,7 @@ jobs:
       run: |
         cd ./cdns
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/cdns --platform linux/arm64,linux/amd64 . --push
+    - name: docker technitium
+      run: |
+        cd ./technitium
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/dns-server --platform linux/arm64,linux/amd64 . --push
