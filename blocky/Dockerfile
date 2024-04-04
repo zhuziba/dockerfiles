@@ -1,10 +1,10 @@
-FROM alpine as builder
+FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git go \
         && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"'
 ##### Runtime
-FROM alpine AS runtime
+FROM alpine:edge AS runtime
 COPY --from=builder /usr/src/blocky/blocky /usr/bin/blocky
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
