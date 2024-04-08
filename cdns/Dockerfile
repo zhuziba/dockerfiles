@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl git go make \
@@ -6,7 +6,7 @@ RUN set -ex \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine:edge AS runtime
+FROM alpine AS runtime
 ENV MOSPROXY_JSONLOGGER=true
 COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
