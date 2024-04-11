@@ -6,12 +6,12 @@ if [ ! -e '/cdns/redis.conf' ]; then
     sysctl vm.overcommit_memory=1
     redis-server /cdns/redis.conf
 fi
-
-if [ ! -e '/cdns/mosproxy.yaml' ]; then
-    echo "目录不存在mosproxy.yaml启动cdns"
+if [ ! -e '/cdns/supervisord.conf' ]; then
+    echo "目录不存在supervisord.conf不替换"
     /usr/bin/cdns -c /cdns/config.yaml
     else
-    echo "目录存在mosproxy.yaml启动mosproxy"
-    /usr/bin/mosproxy router -c /cdns/mosproxy.yaml
+    echo "目录存在supervisord.conf开始替换supervisord"
+    cp /cdns/supervisord.conf /etc/supervisord.conf
+    supervisord -c /etc/supervisord.conf
 fi
 tail -f /dev/null
