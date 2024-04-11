@@ -13,7 +13,7 @@ COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata redis \
+        && apk --no-cache add -f ca-certificates bash tzdata supervisor redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \
