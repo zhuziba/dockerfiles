@@ -4,8 +4,8 @@ RUN set -ex \
         && apk add cargo git musl-dev gcc g++ wget \
         && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi \
         && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi \
-        && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/accelerated-domains.china.conf \
-        && wget -O /tmp/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/smartdns/gfw.txt \
+        && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/china-list.txt \
+        && wget -O /tmp/gfw.conf https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt \
         && chmod +x /tmp/smartdns \
         && rm -rf /var/cache/apk/*
 ##### Runtime
