@@ -4,7 +4,7 @@ RUN set -ex \
         && apk add git go \
         && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"'
 ##### Runtime
-FROM alpine:edge AS runtime
+FROM alpine AS runtime
 COPY --from=builder /usr/src/blocky/blocky /usr/bin/blocky
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
