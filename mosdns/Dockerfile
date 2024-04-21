@@ -6,16 +6,12 @@ RUN set -ex \
         && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /AdGuardHome.tar.gz https://static.adguard.com/adguardhome/edge/AdGuardHome_linux_amd64.tar.gz; fi \
         && tar -zxvf AdGuardHome.tar.gz \
         && chmod +x /AdGuardHome/AdGuardHome \
-        && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-aarch64; fi \
-        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/download/Release45/smartdns-x86_64; fi \
-        && chmod +x /tmp/smartdns \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 
 FROM alpine as runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
-COPY --from=builder /tmp/smartdns /usr/bin/smartdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
