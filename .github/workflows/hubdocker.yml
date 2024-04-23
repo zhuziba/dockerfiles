@@ -62,3 +62,7 @@ jobs:
       run: |
         cd ./v2p
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/elecv2p --platform=linux/arm64,linux/amd64 . --push
+    - name: docker xray
+      run: |
+        cd ./xray
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/xray --platform linux/arm64,linux/amd64 . --push
