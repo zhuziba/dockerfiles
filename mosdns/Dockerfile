@@ -15,7 +15,7 @@ COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget dhcp bash frp redis supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget dhcp bash supervisor \
         #&& apk --no-cache add -f vector loki loki-promtail --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
@@ -25,7 +25,6 @@ RUN set -ex \
         && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
         && mkdir -p /mosdns \
         && chmod +x /entrypoint.sh \
-        && rm -rf /usr/bin/frps \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 EXPOSE 53 80
