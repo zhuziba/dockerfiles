@@ -22,10 +22,10 @@ jobs:
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
         #docker buildx ls
-    - name: docker coredns
-      run: |
-        cd ./coredns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
+    #- name: docker coredns
+      #run: |
+        #cd ./coredns
+        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
     - name: docker adguardhome
       run: |
         cd ./AdGuardHome
