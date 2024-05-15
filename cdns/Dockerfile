@@ -7,6 +7,7 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine AS runtime
+ENV MOSPROXY_JSONLOGGER=true
 COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 ADD entrypoint.sh /entrypoint.sh
