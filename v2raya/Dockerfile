@@ -1,7 +1,7 @@
 FROM alpine as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add go git musl-dev gcc g++ v2ray \
+        && apk add git gcc g++ v2ray \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
