@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git gcc g++ v2ray \
