@@ -31,27 +31,27 @@ jobs:
     - name: docker adguardhome
       run: |
         cd ./AdGuardHome
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/adguardhome --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/adguardhome --platform linux/arm64,linux/amd64 . --push
     - name: docker test
       run: |
         cd ./test
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/test --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/test --platform linux/arm64,linux/amd64 . --push
     - name: docker smartdns
       run: |
         cd ./smartdns
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
     - name: docker clash
       run: |
         cd ./clash
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mihomo --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/mihomo --platform linux/arm64,linux/amd64 . --push
     - name: docker v2raya
       run: |
         cd ./v2raya
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/v2raya --platform linux/arm64,linux/amd64 . --push
     - name: docker blocky
       run: |
         cd ./blocky
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
+        docker buildx build -t registry.cn-hangzhou.aliyuncs.com/${{ secrets.DOCKER_USERNAME }}/blocky --platform linux/arm64,linux/amd64 . --push
     - name: docker cdns
       run: |
         cd ./cdns
