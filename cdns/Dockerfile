@@ -2,18 +2,18 @@ FROM alpine:edge as builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add wget curl git go make \
-        && git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
+        #&& git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine AS runtime
 ENV MOSPROXY_JSONLOGGER=true
-COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
+#COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata supervisor redis \
+        && apk --no-cache add -f ca-certificates bash tzdata redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \
