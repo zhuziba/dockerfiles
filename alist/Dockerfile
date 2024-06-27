@@ -1,14 +1,19 @@
 FROM alpine:edge AS builder
 LABEL stage=go-builder
-RUN apk add --no-cache bash curl gcc git go musl-dev
-RUN git clone https://github.com/alist-org/alist /usr/src/alist && cd /usr/src/alist && go build -o /usr/src/alist/alist -a -ldflags '-extldflags "-static"' -tags=jsoniter
-RUN rm -rf /var/cache/apk/*
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk add wget curl \
+        && if [ $(arch) == aarch64 ]; then      curl -L -H "Cache-Control: no-cache" -o /alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-arm64.tar.gz; fi \
+        && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-arm64.tar.gz; fi \
+        && tar -zxvf alist.tar.gz \
+        && chmod +x /alist/alist \
+        && rm -rf /var/cache/apk/*
 
 FROM alpine:edge
 LABEL MAINTAINER="i@nn.ci"
 VOLUME /opt/alist/data/
 WORKDIR /opt/alist/
-COPY --from=builder /usr/src/alist/alist /usr/bin/alist
+COPY --from=builder /alist/alist /usr/bin/alist
 COPY entrypoint.sh /entrypoint.sh
 RUN apk update && \
     apk upgrade --no-cache && \
