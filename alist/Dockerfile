@@ -1,7 +1,7 @@
 FROM alpine:edge as builder
 LABEL stage=go-builder
 RUN apk add --no-cache bash curl gcc git go musl-dev
-RUN git clone https://github.com/alist-org/alist /usr/src/alist && cd /usr/src/alist && go build -o /usr/src/alist/alist -a -ldflags '-extldflags "-static"' \
+RUN git clone https://github.com/alist-org/alist /usr/src/alist && cd /usr/src/alist && go build -o /usr/src/alist/alist -a -ldflags '-extldflags "-static"'
 RUN rm -rf /var/cache/apk/*
 
 FROM alpine:edge
