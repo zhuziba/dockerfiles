@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine:edge AS builder
 LABEL stage=go-builder
 RUN apk add --no-cache bash curl gcc git go musl-dev
 RUN git clone https://github.com/alist-org/alist /usr/src/alist && cd /usr/src/alist && go build -o /usr/src/alist/alist -a -ldflags '-extldflags "-static"' -tags=jsoniter
