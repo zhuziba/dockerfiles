@@ -1,8 +1,5 @@
 name: 构建hubdocker镜像
 on:
-  push:
-    branches:
-      - main
   watch:
     types: started
   schedule:
@@ -24,6 +21,10 @@ jobs:
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
         #docker buildx ls
+    - name: docker alist
+      run: |
+        cd ./alist
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/alist --platform linux/arm64,linux/amd64 . --push
     - name: docker coredns
       run: |
         cd ./coredns
