@@ -6,9 +6,9 @@ ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl bash su-exec tzdata \
-        && if [ $(arch) == aarch64 ]; then      curl -L -H "Cache-Control: no-cache" -o /alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-arm64.tar.gz; fi \
-        && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-amd64.tar.gz; fi \
-        && tar -zxvf alist.tar.gz \
+        && if [ $(arch) == aarch64 ]; then      curl -L -H "Cache-Control: no-cache" -o /tmp/alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-arm64.tar.gz; fi \
+        && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /tmp/alist.tar.gz https://github.com/alist-org/alist/releases/download/v3.35.0/alist-linux-amd64.tar.gz; fi \
+        && tar -zxvf /tmp/alist.tar.gz \
         && chmod +x alist \
         && chmod +x /entrypoint.sh \
         && mv alist /usr/bin/alist \
