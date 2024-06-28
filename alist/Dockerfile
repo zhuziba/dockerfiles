@@ -13,6 +13,5 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && mv /tmp/alist /usr/bin/alist \
         && rm -rf /var/cache/apk/*
-ENV PUID=0 PGID=0 UMASK=022
 EXPOSE 5244
 CMD [ "/entrypoint.sh" ]
