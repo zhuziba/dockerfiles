@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine:edge AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git curl go make \
@@ -9,7 +9,7 @@ RUN set -ex \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 
-FROM alpine as runtime
+FROM alpine AS runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
