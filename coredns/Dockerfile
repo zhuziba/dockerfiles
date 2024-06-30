@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add go git musl-dev gcc g++ make \
