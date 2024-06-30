@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git curl go \
@@ -6,7 +6,7 @@ RUN set -ex \
         && cp $(go env GOPATH)/bin/sing-box /usr/bin/ \
         && chmod +x /usr/bin/sing-box
 
-FROM alpine as runtime
+FROM alpine AS runtime
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /usr/bin/sing-box /usr/bin/sing-box
 RUN set -ex \
