@@ -19,5 +19,5 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /DnsServer/config
-ENTRYPOINT /entrypoint.sh
 EXPOSE 53 80 5380
+ENTRYPOINT ["/entrypoint.sh"]
