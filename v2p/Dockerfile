@@ -1,6 +1,7 @@
 FROM alpine
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/app/node_modules/.bin \
     TZ=Asia/Shanghai
+ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f tzdata git bash nodejs yarn curl wget coreutils moreutils perl \
@@ -12,9 +13,8 @@ RUN set -ex \
         && cp -r /usr/local/app/script/JSFile /tmp \
         && cp -r /usr/local/app/script/Lists /tmp \
         && cp -r /usr/local/app/script/Shell /tmp \
+        && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 WORKDIR /usr/local/app
 EXPOSE 80 8001 8002
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
