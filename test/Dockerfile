@@ -13,4 +13,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /test
 EXPOSE 1080
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
