@@ -17,4 +17,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /blocky
 EXPOSE 53 4000
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
