@@ -1,5 +1,4 @@
 FROM alpine
-LABEL MAINTAINER="i@nn.ci"
 VOLUME /opt/alist/data/
 WORKDIR /opt/alist/
 ADD entrypoint.sh /entrypoint.sh
