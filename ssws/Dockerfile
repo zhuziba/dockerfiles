@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add go git musl-dev gcc g++ make automake autoconf build-base c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
