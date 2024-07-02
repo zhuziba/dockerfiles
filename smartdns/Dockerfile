@@ -24,4 +24,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /smartdns
 EXPOSE 53
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
