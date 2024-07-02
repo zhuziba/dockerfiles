@@ -23,4 +23,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /cdns
 EXPOSE 53 8090
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
