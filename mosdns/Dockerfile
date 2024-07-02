@@ -28,4 +28,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
 EXPOSE 53 80
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
