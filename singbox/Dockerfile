@@ -21,4 +21,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /singbox
 EXPOSE 443
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
