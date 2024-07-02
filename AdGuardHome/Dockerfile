@@ -19,4 +19,4 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 VOLUME /AdGuardHome
 EXPOSE 53 80 3000
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
