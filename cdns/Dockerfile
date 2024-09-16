@@ -6,14 +6,14 @@ RUN set -ex \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine AS runtime
+FROM alpine:edge AS runtime
 ENV MOSPROXY_JSONLOGGER=true
 #COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata redis \
+        && apk --no-cache add -f ca-certificates bash tzdata wget redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /rules \
