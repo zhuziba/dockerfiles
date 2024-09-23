@@ -1,4 +1,4 @@
-FROM alpine AS builder
+FROM alpine:edge AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add cargo git musl-dev gcc g++ wget \
