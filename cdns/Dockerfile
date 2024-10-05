@@ -13,6 +13,7 @@ RUN set -ex \
 FROM alpine:edge AS runtime
 ENV MOSPROXY_JSONLOGGER=true
 #COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
+COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
