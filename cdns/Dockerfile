@@ -8,6 +8,8 @@ RUN set -ex \
         && chmod +x /AdGuardHome/AdGuardHome \
         #&& git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy \
+        && wget -O /rules/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/gfw.conf \
+        && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/accelerated-domains.china.conf \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine AS runtime
@@ -15,15 +17,14 @@ ENV MOSPROXY_JSONLOGGER=true
 #COPY --from=builder /usr/src/cdns/cdns /usr/bin/cdns
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
+COPY --from=builder /rules/gfw.conf  /rules/gfw.conf 
+COPY --from=builder /rules/accelerated-domains.china.conf /rules/accelerated-domains.china.conf
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata wget supervisor redis \
+        && apk --no-cache add -f ca-certificates bash tzdata supervisor redis \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && mkdir -p /rules \
-        && wget -O /rules/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/gfw.conf \
-        && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/accelerated-domains.china.conf \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /cdns
