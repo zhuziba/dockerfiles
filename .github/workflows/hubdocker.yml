@@ -2,8 +2,6 @@ name: 构建hubdocker镜像
 on:
   watch:
     types: started
-  schedule:
-    - cron: 39 22 * * 2
 jobs:
   build:
     runs-on: ubuntu-20.04  
