@@ -1,5 +1,4 @@
 FROM alpine
-ENV PATH="/app/venv/bin:$PATH"
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
