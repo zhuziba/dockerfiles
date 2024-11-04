@@ -4,8 +4,8 @@ RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget curl bash git frp supervisor \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-	&& wget -O /tmp/china-list.txt https://kkgithub.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/china-list.txt \
-        && wget -O /tmp/gfw.txt https://kkgithub.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/gfw.txt \
+	&& wget -O /tmp/china-list.txt https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/china-list.txt \
+        && wget -O /tmp/gfw.txt https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/refs/heads/release/gfw.txt \
         && echo "Asia/Shanghai" > /etc/timezone \
 	&& chmod +x /entrypoint.sh \
         && mkdir /test \
