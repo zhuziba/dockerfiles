@@ -7,7 +7,7 @@ RUN set -ex \
         && make -j$(getconf _NPROCESSORS_ONLN) \
         && make install
         
-FROM alpine
+FROM alpine AS runtime
 COPY --from=builder /usr/local/bin/ss-server /usr/bin/ss-server
 RUN set -ex \
         && apk update -f && apk upgrade \
