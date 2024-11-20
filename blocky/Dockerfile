@@ -16,5 +16,5 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /blocky
-EXPOSE 53 4000
+EXPOSE 53
 ENTRYPOINT ["/entrypoint.sh"]
