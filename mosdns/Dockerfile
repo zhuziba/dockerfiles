@@ -11,7 +11,6 @@ RUN set -ex \
 
 FROM alpine AS runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
-COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 COPY --from=builder /rules/gfw.txt /rules/gfw.txt
 COPY --from=builder /rules/CN-ip-cidr.txt /rules/CN-ip-cidr.txt
 COPY --from=builder /rules/accelerated-domains.china.conf /rules/accelerated-domains.china.conf
