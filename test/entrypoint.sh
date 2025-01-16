@@ -13,4 +13,4 @@ if [ ! -e '/test/supervisord.conf' ]; then
     echo "目录存在supervisord.conf开始替换supervisord"
     cp /test/supervisord.conf /etc/supervisord.conf
 fi
-supervisord -c /etc/supervisord.conf
+tail -f /dev/null
