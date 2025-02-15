@@ -1,5 +1,5 @@
 FROM alpine:edge AS builder
-ENV clash=1.19.1
+ENV clash=1.19.2
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add git wget go \
