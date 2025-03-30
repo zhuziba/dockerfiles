@@ -4,7 +4,7 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget coreutils moreutils perl \
+        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
