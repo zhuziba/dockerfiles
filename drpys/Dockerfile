@@ -1,0 +1,16 @@
+FROM alpine
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/app/node_modules/.bin \
+    TZ=Asia/Shanghai
+ADD entrypoint.sh /entrypoint.sh
+RUN set -ex \
+        && apk update -f && apk upgrade \
+        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget coreutils moreutils perl \
+        && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+        && echo "Asia/Shanghai" > /etc/timezone \
+        && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
+        && cd /usr/local/app && yarn \
+        && chmod +x /entrypoint.sh \
+        && rm -rf /var/cache/apk/*
+WORKDIR /usr/local/app
+EXPOSE 5757
+ENTRYPOINT ["/entrypoint.sh"]
