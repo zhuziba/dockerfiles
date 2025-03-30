@@ -11,6 +11,6 @@ RUN set -ex \
         && cd /usr/local/app && yarn \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
-WORKDIR /usr/local/app
+WORKDIR /drpys
 EXPOSE 5757
 ENTRYPOINT ["/entrypoint.sh"]
