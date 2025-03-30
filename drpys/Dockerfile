@@ -8,7 +8,7 @@ RUN set -ex \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
-        && cd /usr/local/app && yarn \
+        && cd /usr/local/app && yarn && yarn add pm2 \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 WORKDIR /drpys
