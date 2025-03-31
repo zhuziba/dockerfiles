@@ -1,7 +1,7 @@
 FROM alpine:edge AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add cargo git musl-dev gcc g++ wget \
+        && apk add cargo git wget \
         && if [ $(arch) == aarch64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/latest/download/smartdns-aarch64; fi \
         && if [ $(arch) == x86_64 ]; then     wget -O /tmp/smartdns https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64; fi \
         && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/china-list.txt \
