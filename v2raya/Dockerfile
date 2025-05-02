@@ -1,7 +1,9 @@
 FROM alpine:edge AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add git gcc g++ v2ray \
+        && apk add git gcc g++ v2ray wget \
+        && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
+        && wget -O /tmp/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
@@ -9,8 +11,8 @@ FROM alpine
 ENV VER=2.2.6.7 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
-COPY --from=builder /usr/share/v2ray/geoip.dat /usr/local/share/v2ray/geoip.dat
-COPY --from=builder /usr/share/v2ray/geosite.dat /usr/local/share/v2ray/geosite.dat
+COPY --from=builder /tmp/geoip.dat /usr/local/share/v2ray/geoip.dat
+COPY --from=builder /tmp/geosite.dat /usr/local/share/v2ray/geosite.dat
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
