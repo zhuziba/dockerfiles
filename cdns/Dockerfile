@@ -1,6 +1,5 @@
 FROM alpine:edge AS builder
 RUN set -ex \
-        && apk update -f && apk upgrade \
         && apk --no-cache add wget curl git go make \
         #&& git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
         && git clone https://github.com/IrineSistiana/mosproxy.git /usr/src/mosproxy && cd /usr/src/mosproxy && go build -o /usr/src/mosproxy/mosproxy \
