@@ -1,6 +1,5 @@
 FROM alpine:edge AS builder
 RUN set -ex \
-        && apk update -f && apk upgrade \
         && apk add wget \
         && wget -P /tmp https://download.technitium.com/dns/DnsServerPortable.tar.gz  \
         && rm -rf /var/cache/apk/*
