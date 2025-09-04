@@ -1,6 +1,5 @@
 FROM alpine:edge AS builder
 RUN set -ex \
-        && apk update -f && apk upgrade \
         && apk add git go \
         && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -trimpath -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"'
 ##### Runtime
