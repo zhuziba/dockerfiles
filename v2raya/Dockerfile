@@ -1,6 +1,5 @@
 FROM alpine:edge AS builder
 RUN set -ex \
-        && apk update -f && apk upgrade \
         && apk add git gcc g++ v2ray wget \
         && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
         && wget -O /tmp/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
