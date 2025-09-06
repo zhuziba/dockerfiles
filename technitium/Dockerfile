@@ -4,7 +4,7 @@ RUN set -ex \
         && wget -P /tmp https://download.technitium.com/dns/DnsServerPortable.tar.gz  \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine:edge
+FROM alpine
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/DnsServerPortable.tar.gz /tmp/DnsServerPortable.tar.gz
 RUN set -ex \
