@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:v3.22
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/app/node_modules/.bin \
     TZ=Asia/Shanghai
 ADD entrypoint.sh /entrypoint.sh
