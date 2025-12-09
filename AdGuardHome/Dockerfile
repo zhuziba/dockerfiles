@@ -7,7 +7,7 @@ RUN set -ex \
         && tar -zxvf AdGuardHome.tar.gz \
         && chmod +x /AdGuardHome/AdGuardHome \
         && rm -rf /var/cache/apk/*
-FROM alpine
+FROM alpine:3.22
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
