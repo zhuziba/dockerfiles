@@ -6,7 +6,7 @@ RUN set -ex \
         && wget -O /tmp/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/gfw.conf \
         && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/cdns/accelerated-domains.china.conf
 ##### Runtime
-FROM alpine AS runtime
+FROM alpine:3.22 AS runtime
 ENV MOSPROXY_JSONLOGGER=true
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 COPY --from=builder /tmp/gfw.conf  /rules/gfw.conf 

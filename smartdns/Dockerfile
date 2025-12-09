@@ -1,4 +1,4 @@
-FROM alpine AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget \
@@ -9,7 +9,7 @@ RUN set -ex \
         && chmod +x /tmp/smartdns \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine AS runtime
+FROM alpine:3.22 AS runtime
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/smartdns /tmp/smartdns
 COPY --from=builder /tmp/accelerated-domains.china.conf /rules/accelerated-domains.china.conf

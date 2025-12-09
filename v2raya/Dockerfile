@@ -1,12 +1,12 @@
-FROM alpine:edge AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
-        && apk add git gcc g++ v2ray wget \
+        && apk add  v2ray wget \
         && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
         && wget -O /tmp/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
-FROM alpine
+FROM alpine:3.22
 ENV VER=2.2.7.1 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
