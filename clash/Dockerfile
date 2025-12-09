@@ -1,4 +1,4 @@
-FROM alpine AS builder
+FROM alpine:3.22 AS builder
 ENV clash=1.19.17
 RUN set -ex \
         && apk add git wget go \
@@ -9,7 +9,7 @@ RUN set -ex \
         && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
         && rm -rf /var/cache/apk/*
 
-FROM alpine
+FROM alpine:3.22
 ENV iptables=true \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
