@@ -1,10 +1,10 @@
-FROM alpine:edge AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk add wget \
         && wget -P /tmp https://download.technitium.com/dns/DnsServerPortable.tar.gz  \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine
+FROM alpine:3.22
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/DnsServerPortable.tar.gz /tmp/DnsServerPortable.tar.gz
 RUN set -ex \

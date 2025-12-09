@@ -1,4 +1,4 @@
-FROM alpine:edge AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk add git curl wget go make \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -trimpath -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
@@ -8,7 +8,7 @@ RUN set -ex \
         && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
         && rm -rf /var/cache/apk/*
 
-FROM alpine AS runtime
+FROM alpine:3.22 AS runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /rules/gfw.txt /rules/gfw.txt
 COPY --from=builder /rules/CN-ip-cidr.txt /rules/CN-ip-cidr.txt

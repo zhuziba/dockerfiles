@@ -1,4 +1,4 @@
-FROM alpine:edge AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk --no-cache add wget curl git go make \
         #&& git clone https://github.com/rnetx/cdns.git /usr/src/cdns && cd /usr/src/cdns && go build -o /usr/src/cdns/cdns -a -ldflags '-extldflags "-static"' \
