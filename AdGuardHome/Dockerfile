@@ -1,4 +1,4 @@
-FROM alpine AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add wget curl \
