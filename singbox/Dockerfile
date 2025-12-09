@@ -1,11 +1,11 @@
-FROM alpine:edge AS builder
+FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk add git curl go sing-box \
         #&& go install -v -tags with_clash_api,with_ech,with_utls,with_quic,with_acme github.com/sagernet/sing-box/cmd/sing-box@main \
         #&& cp $(go env GOPATH)/bin/sing-box /usr/bin/ \
         && chmod +x /usr/bin/sing-box
 
-FROM alpine AS runtime
+FROM alpine:3.22 AS runtime
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /usr/bin/sing-box /usr/bin/sing-box
 RUN set -ex \
