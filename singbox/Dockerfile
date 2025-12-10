@@ -1,4 +1,4 @@
-FROM alpine:3.22 AS builder
+FROM alpine:edge AS builder
 RUN set -ex \
         && apk add git curl go sing-box \
         #&& go install -v -tags with_clash_api,with_ech,with_utls,with_quic,with_acme github.com/sagernet/sing-box/cmd/sing-box@main \
