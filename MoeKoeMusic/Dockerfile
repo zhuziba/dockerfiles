@@ -1,7 +1,7 @@
 FROM alpine:3.22 AS builder
 RUN set -ex \
         && apk add git wget go nodejs npm \
-        && git clone https://github.com/iAJue/MoeKoeMusic.git  /usr/local/app \
+        && git clone https://github.com/MoeKoeMusic/MoeKoeMusic.git  /usr/local/app \
         && cd /usr/local/app && npm install && npm run build:docker \
         && rm -rf /var/cache/apk/*
 
