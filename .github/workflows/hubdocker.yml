@@ -27,10 +27,10 @@ jobs:
       run: |
         cd ./alist
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/alist --platform linux/arm64,linux/amd64 . --push
-    #- name: docker coredns
-      #run: |
-        #cd ./coredns
-        #docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/coredns --platform linux/arm64,linux/amd64 . --push
+    - name: docker coredns
+      run: |
+        cd ./moekoe-music
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/moekoe-music --platform linux/arm64,linux/amd64 . --push
     - name: docker adguardhome
       run: |
         cd ./AdGuardHome
