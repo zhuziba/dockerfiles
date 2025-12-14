@@ -2,6 +2,9 @@ name: 构建hubdocker镜像
 on:
   watch:
     types: started
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-22.04  
