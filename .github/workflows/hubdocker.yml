@@ -27,7 +27,7 @@ jobs:
       run: |
         cd ./alist
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/alist --platform linux/arm64,linux/amd64 . --push
-    - name: docker coredns
+    - name: docker moekoe-music
       run: |
         cd ./MoeKoeMusic
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/moekoe-music --platform linux/arm64,linux/amd64 . --push
