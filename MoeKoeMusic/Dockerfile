@@ -6,15 +6,13 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 
 FROM alpine:3.22
-EXPOSE 8080
-EXPOSE 6521
 COPY --from=builder /usr/local/app/api/ /app/api/
 COPY --from=builder /usr/local/app/dist/ /app/dist/
 ADD /nginx.conf /etc/nginx/nginx.conf
 ADD /entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget bash nodejs npm nginx \
+        && apk --no-cache add -f ca-certificates tzdata bash nodejs npm nginx \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && cd /app/api/ && npm install --production \
