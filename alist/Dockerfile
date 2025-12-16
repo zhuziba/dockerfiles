@@ -11,7 +11,7 @@ RUN set -ex \
         && tar -zxvf /tmp/openlist.tar.gz -C /tmp \
         && chmod +x /tmp/openlist \
         && chmod +x /entrypoint.sh \
-        && mv /tmp/openlist /usr/bin/alist \
+        && mv /tmp/openlist /usr/bin/openlist \
         && rm -rf /var/cache/apk/*
 EXPOSE 5244
 CMD [ "/entrypoint.sh" ]
