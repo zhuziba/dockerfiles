@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$1" = "version" ]; then
-  /usr/bin/alist version
+  /usr/bin/openlist version
 else
-  /usr/bin/alist server --no-prefix
+  /usr/bin/openlist server --no-prefix
 fi
