@@ -26,10 +26,10 @@ jobs:
       run: |
         cd ./drpys
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/drpys --platform linux/arm64,linux/amd64 . --push
-    - name: docker alist
+    - name: docker openlist
       run: |
-        cd ./alist
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/alist --platform linux/arm64,linux/amd64 . --push
+        cd ./openlist
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/openlist --platform linux/arm64,linux/amd64 . --push
     - name: docker moekoe-music
       run: |
         cd ./MoeKoeMusic
