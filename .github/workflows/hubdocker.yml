@@ -46,9 +46,9 @@ jobs:
       run: |
         cd ./smartdns
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/smartdns --platform linux/arm64,linux/amd64 . --push
-    - name: docker clash
+    - name: docker mihomo
       run: |
-        cd ./clash
+        cd ./mihomo
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mihomo --platform linux/arm64,linux/amd64 . --push
     - name: docker v2raya
       run: |
