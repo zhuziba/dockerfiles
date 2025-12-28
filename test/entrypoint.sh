@@ -6,4 +6,3 @@ if [ ! -e '/test/diy.sh' ]; then
     echo "目录存在diy.sh文件执行diy脚本"
     bash /test/diy.sh
 fi
-tail -f /dev/null
