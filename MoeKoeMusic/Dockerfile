@@ -15,7 +15,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo "Asia/Shanghai" > /etc/timezone \
- && cd /app/api && npm install --production \
+ && cd /app/api && npm install --omit=dev \
  && chmod +x /entrypoint.sh \
  && rm -rf /var/cache/apk/* /tmp/*
 VOLUME /app
