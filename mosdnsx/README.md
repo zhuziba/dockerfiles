@@ -15,7 +15,7 @@ docker run --restart=always \
   -d --name mosdnsx \
   --privileged=true \
   --net macnet \
-  --ip 192.168.50.5 \
+  --ip 192.168.50.4 \
   -v /docker/mosdnsx:/mosdnsx \
   byxiaopeng/mosdnsx:latest
 ```
