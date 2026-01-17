@@ -10,6 +10,8 @@ RUN set -ex \
         && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
         && cd /usr/local/app && yarn && yarn add pm2 \
         && chmod +x /entrypoint.sh \
+        && rm -rf /usr/local/app/soft/7z2409-x64.exe \
+        && rm -rf /usr/local/app/soft/runnerGo_win_x64.exe \
         && rm -rf /var/cache/apk/*
 WORKDIR /drpys
 EXPOSE 5757
