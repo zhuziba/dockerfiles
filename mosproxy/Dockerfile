@@ -19,6 +19,6 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
-VOLUME /cdns
+VOLUME /mosproxy
 EXPOSE 53 8090
 ENTRYPOINT ["/entrypoint.sh"]
