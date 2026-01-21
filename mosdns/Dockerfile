@@ -23,5 +23,5 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /mosdns
-EXPOSE 53 80
+EXPOSE 53
 ENTRYPOINT ["/entrypoint.sh"]
