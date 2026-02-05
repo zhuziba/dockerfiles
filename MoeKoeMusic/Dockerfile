@@ -9,6 +9,7 @@ RUN apk add --no-cache git nodejs npm
 WORKDIR /usr/src
 # 克隆项目到容器内的 app 目录
 RUN git clone https://github.com/MoeKoeMusic/MoeKoeMusic.git app
+RUN git clone https://github.com/MakcRe/KuGouMusicApi api
 WORKDIR /usr/src/app
 # 安装依赖并执行为 Docker 优化的构建任务（如有）
 RUN npm install && npm run build:docker
@@ -18,7 +19,7 @@ FROM alpine:3.22 AS runtime
 RUN apk add --no-cache tzdata nginx ca-certificates tzdata nodejs npm
 WORKDIR /app
 # 将构建产物从 builder 阶段复制到运行阶段
-COPY --from=builder /usr/src/app/api/ /app/api/
+COPY --from=builder /usr/src/api /app/api/
 COPY --from=builder /usr/src/app/dist/ /app/dist/
 # 使用仓库内的 nginx 配置与入口脚本
 COPY nginx.conf /etc/nginx/nginx.conf
