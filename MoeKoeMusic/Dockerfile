@@ -27,7 +27,7 @@ COPY entrypoint.sh /entrypoint.sh
 # 设置时区为上海并安装 API 的生产依赖（忽略 dev 依赖），设置入口脚本权限，清理缓存
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo "Asia/Shanghai" > /etc/timezone \
- && cd /app/api && npm install --omit=dev \
+ && cd /app/api && npm install \
  && chmod +x /entrypoint.sh \
  && rm -rf /var/cache/apk/* /tmp/*
 
