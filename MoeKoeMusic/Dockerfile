@@ -15,6 +15,7 @@ WORKDIR /usr/src/app
 RUN npm install && npm run build:docker
 
 FROM alpine:3.22 AS runtime
+ENV PORT=6521
 # 安装运行时需要的包：时区数据、nginx（用于提供静态文件）、证书、nodejs
 RUN apk add --no-cache tzdata nginx ca-certificates tzdata nodejs npm
 WORKDIR /app
