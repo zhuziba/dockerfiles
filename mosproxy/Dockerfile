@@ -13,7 +13,7 @@ COPY --from=builder /tmp/accelerated-domains.china.conf /rules/accelerated-domai
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates bash tzdata supervisor \
+        && apk --no-cache add -f ca-certificates bash tzdata \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && chmod +x /entrypoint.sh \
