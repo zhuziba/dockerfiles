@@ -1,7 +1,7 @@
-FROM alpine:3.22 AS builder
-ENV clash=1.19.20
+FROM alpine:3.23 AS builder
+ENV clash=1.19.21
 RUN set -ex \
-        && apk add git wget go \
+        && apk add git wget \
         && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-arm64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-v$clash.gz;     mv /usr/bin/mihomo-linux-arm64-v$clash /usr/bin/mihomo; fi \
         && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-amd64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-v$clash.gz;     mv /usr/bin/mihomo-linux-amd64-v$clash /usr/bin/mihomo; fi \
         && chmod +x /usr/bin/mihomo \
@@ -9,7 +9,7 @@ RUN set -ex \
         && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
         && rm -rf /var/cache/apk/*
 
-FROM alpine:3.22
+FROM alpine:3.23
 ENV iptables=true \
     tun=false
 ADD /script/iptables.sh /tmp/iptables.sh
