@@ -3,7 +3,7 @@
 # - builder 阶段用于拉取源代码并构建前端与 API
 # - runtime 阶段用于构建运行时镜像，仅包含运行所需的最小依赖
 
-FROM alpine:3.22 AS builder
+FROM alpine:3.23 AS builder
 # 安装构建过程中需要的工具：git 用于拉取源码；nodejs 与 npm 用于安装依赖并构建
 RUN apk add --no-cache git nodejs npm
 WORKDIR /usr/src
@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 # 安装依赖并执行为 Docker 优化的构建任务（如有）
 RUN npm install && npm run build:docker
 
-FROM alpine:3.22 AS runtime
+FROM alpine:3.23 AS runtime
 ENV PORT=6521
 # 安装运行时需要的包：时区数据、nginx（用于提供静态文件）、证书、nodejs
 RUN apk add --no-cache tzdata nginx ca-certificates tzdata nodejs npm
