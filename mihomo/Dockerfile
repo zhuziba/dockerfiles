@@ -2,8 +2,8 @@ FROM alpine:3.23 AS builder
 ENV clash=alpha-dd4eb63
 RUN set -ex \
         && apk add git wget \
-        && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-arm64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-v$clash.gz;     mv /usr/bin/mihomo-linux-arm64-v$clash /usr/bin/mihomo; fi \
-        && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/v$clash/mihomo-linux-amd64-v$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-v$clash.gz;     mv /usr/bin/mihomo-linux-amd64-v$clash /usr/bin/mihomo; fi \
+        && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/$clash/mihomo-linux-arm64-$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-$clash.gz;     mv /usr/bin/mihomo-linux-arm64-$clash /usr/bin/mihomo; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/$clash/mihomo-linux-amd64-$clash.gz;     gunzip /usr/bin/mihomo-linux-amd64-$clash.gz;     mv /usr/bin/mihomo-linux-amd64-$clash /usr/bin/mihomo; fi \
         && chmod +x /usr/bin/mihomo \
         && wget -P /tmp https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
         && wget -P /tmp https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
