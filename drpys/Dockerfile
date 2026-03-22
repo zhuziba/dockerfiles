@@ -10,6 +10,7 @@ RUN set -ex \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
+        && yarn global add node-gyp \
         && cd /usr/local/app && yarn && yarn add pm2 \
         && chmod +x /entrypoint.sh \
         && rm -rf /usr/local/app/soft/7z2409-x64.exe \
