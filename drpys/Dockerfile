@@ -4,9 +4,7 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget make g++ \
-        && apk add --no-cache php83 php83-cli php83-curl php83-mbstring php83-xml php83-pdo php83-pdo_mysql php83-openssl php83-sqlite3 php83-json \
-        && ln -sf /usr/bin/php83 /usr/bin/php \
+        && apk --no-cache add -f tzdata git bash nodejs yarn curl wget make g++ gcc libsecret-dev python3 \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && git clone https://github.com/hjdhnx/drpy-node /usr/local/app \
