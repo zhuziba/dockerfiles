@@ -1,5 +1,5 @@
 FROM alpine:3.23 AS builder
-ENV clash=alpha-dd4eb63
+ENV clash=alpha-4f93c93
 RUN set -ex \
         && apk add git wget \
         && if [ $(arch) == aarch64 ]; then     wget -P /usr/bin https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-arm64-$clash.gz;     gunzip /usr/bin/mihomo-linux-arm64-$clash.gz;     mv /usr/bin/mihomo-linux-arm64-$clash /usr/bin/mihomo; fi \
