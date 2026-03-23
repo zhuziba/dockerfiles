@@ -10,6 +10,7 @@ RUN set -ex \
         && chmod +x /entrypoint.sh \
         && rm -rf /usr/local/app/soft/7z2409-x64.exe \
         && rm -rf /usr/local/app/soft/runnerGo_win_x64.exe \
+        && rm -rf /usr/local/app/drpy-node-admin /usr/local/app/drpy-node-bundle /usr/local/app/drpy-node-mcp /usr/local/app/drpy2-quickjs
         && rm -rf /var/cache/apk/*
 WORKDIR /drpys
 EXPOSE 5757
