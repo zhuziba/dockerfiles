@@ -26,10 +26,6 @@ jobs:
       run: |
         cd ./mosdnsx
         docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/mosdnsx --platform linux/arm64,linux/amd64 . --push
-    - name: docker drpys
-      run: |
-        cd ./drpys
-        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/drpys --platform linux/arm64,linux/amd64 . --push
     - name: docker openlist
       run: |
         cd ./openlist
