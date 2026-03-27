@@ -6,5 +6,5 @@ if [ ! -e '/drpys/diy.sh' ]; then
     echo "目录存在diy.sh文件执行diy脚本"
     bash /drpys/diy.sh
 fi
-cd /usr/local/app && bun run pm2:start
+cd /usr/local/app && bun start
 tail -f /dev/null
