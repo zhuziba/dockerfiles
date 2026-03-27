@@ -5,7 +5,7 @@ RUN set -ex \
         && apk --no-cache add -f tzdata git bash nodejs npm  \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && npm install -g bun && bun add -g pm2 \
+        && npm install -g bun && npm install -g pm2 \
         && git clone https://github.com/hjdhnx/drpy-node-house /usr/local/app \
         && cd /usr/local/app  && bun install\
         && chmod +x /entrypoint.sh \
