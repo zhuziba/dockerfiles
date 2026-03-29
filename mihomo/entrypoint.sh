@@ -28,9 +28,7 @@ fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
 if [[ $iptables == true ]]; then
-    echo "移动iptables.sh文件"
-    cp /tmp/iptables.sh /root/.config/mihomo/iptables.sh
-    bash /root/.config/mihomo/iptables.sh
+    bash /tmp/iptables.sh
     echo -e "自定义iptables路由表成功..."
 elif [[ $iptables == false ]]; then
     echo -e "你没有设置开启iptables变量"
