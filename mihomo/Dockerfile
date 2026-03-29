@@ -16,7 +16,8 @@ RUN set -ex \
     && rm -rf /var/cache/apk/*
 
 FROM alpine:3.23
-ENV IPTABLES=true TUN=false
+ENV iptables=true \
+    tun=false
 COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo
 COPY --from=builder /tmp/Country.mmdb /tmp/Country.mmdb
 COPY --from=builder /tmp/gh-pages.zip /tmp/gh-pages.zip
