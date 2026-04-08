@@ -8,7 +8,7 @@ RUN set -ex \
         && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
         && rm -rf /var/cache/apk/*
 
-FROM alpine:3.22 AS runtime
+FROM alpine:3.23 AS runtime
 COPY --from=builder /usr/src/mosdns/mosdns /usr/bin/mosdns
 COPY --from=builder /rules/gfw.txt /rules/gfw.txt
 COPY --from=builder /rules/CN-ip-cidr.txt /rules/CN-ip-cidr.txt
