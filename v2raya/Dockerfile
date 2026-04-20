@@ -23,10 +23,10 @@ RUN set -ex \
         && mkdir -p /tmp/v2ray \
         && mkdir -p /usr/share/v2ray \
         && chmod +x /entrypoint.sh \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/feat_v5/gui/public/favicon.ico \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/feat_v5/gui/public/index.html \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/feat_v5/gui/public/CNAME \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/feat_v5/gui/public/robots.txt \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/favicon.ico \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/index.html \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/CNAME \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/robots.txt \
         && if [ $(arch) == aarch64 ]; then      wget https://github.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm64_$VER;     chmod +x /v2raya_linux_arm64_$VER;     mv /v2raya_linux_arm64_$VER /usr/bin/v2raya; fi \
         && if [ $(arch) == x86_64 ]; then     wget https://github.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_x64_$VER;     chmod +x /v2raya_linux_x64_$VER;     mv /v2raya_linux_x64_$VER /usr/bin/v2raya; fi \
         && rm -rf /var/cache/apk/*
