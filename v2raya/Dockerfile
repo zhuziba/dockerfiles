@@ -1,4 +1,4 @@
-FROM alpine:3.22 AS builder
+FROM alpine:3.23 AS builder
 RUN set -ex \
         && apk add  v2ray wget \
         && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
@@ -6,8 +6,8 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
-FROM alpine:3.22
-ENV VER=2.3.3 \
+FROM alpine:3.23
+ENV VER=2.3.4 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
 COPY --from=builder /tmp/geoip.dat /usr/local/share/v2ray/geoip.dat
