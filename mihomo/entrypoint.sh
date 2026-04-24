@@ -19,11 +19,14 @@ fi
 if [ ! -e '/root/.config/mihomo/Country.mmdb' ]; then
     echo "下载Country.mmdb文件"
     cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
+    cp /tmp/geosite.dat /root/.config/mihomo/geosite.dat
     else
     echo "Country.mmdb文件存在删除下载最新版本"
     rm -rf /root/.config/mihomo/Country.mmdb
+    rm -rf /root/.config/mihomo/geosite.dat
     echo "下载Country.mmdb文件"
     cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
+    cp /tmp/geosite.dat /root/.config/mihomo/geosite.dat
 fi
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
