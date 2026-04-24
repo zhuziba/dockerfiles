@@ -12,6 +12,7 @@ RUN set -ex \
     && gunzip /usr/bin/mihomo.gz \
     && chmod +x /usr/bin/mihomo \
     && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
+    && wget -O /tmp/geosite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/yacd/archive/gh-pages.zip \
     && rm -rf /var/cache/apk/*
 
@@ -20,6 +21,7 @@ ENV iptables=true \
     tun=false
 COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo
 COPY --from=builder /tmp/Country.mmdb /tmp/Country.mmdb
+COPY --from=builder /tmp/geosite.dat /tmp/geosite.dat
 COPY --from=builder /tmp/gh-pages.zip /tmp/gh-pages.zip
 COPY script/iptables.sh /tmp/iptables.sh
 COPY entrypoint.sh /entrypoint.sh
