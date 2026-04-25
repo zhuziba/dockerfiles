@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 VOLUME /opt/openlist/data/
 WORKDIR /opt/openlist/
 ADD entrypoint.sh /entrypoint.sh

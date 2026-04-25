@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates git tzdata curl wget bash unzip nginx supervisor \

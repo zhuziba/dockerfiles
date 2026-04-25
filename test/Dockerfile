@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.23
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
