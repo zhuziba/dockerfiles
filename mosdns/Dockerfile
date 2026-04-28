@@ -1,4 +1,4 @@
-FROM alpine:edge AS builder
+FROM alpine:3.23 AS builder
 RUN set -ex \
         && apk add git curl wget go make \
         && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -trimpath -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
