@@ -17,5 +17,5 @@ RUN set -ex \
     && chmod +x /entrypoint.sh
 ENV TZ=Asia/Shanghai
 VOLUME /forgedns
-EXPOSE 53 80 3000
+EXPOSE 53 9088
 ENTRYPOINT ["/entrypoint.sh"]
