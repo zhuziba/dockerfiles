@@ -3,7 +3,7 @@ RUN set -ex \
     && apk add --no-cache curl \
     && ARCH=$(uname -m) \
     && if [ "$ARCH" = "aarch64" ]; then URL="https://github.com/SvenShi/forgedns/releases/latest/download/forgedns-aarch64-unknown-linux-musl.tar.gz"; \
-    elif [ "$ARCH" = "x86_64" ]; then URL="https://github.com/SvenShi/forgedns/rreleases/latest/download/forgedns-x86_64-unknown-linux-musl.tar.gz"; \
+    elif [ "$ARCH" = "x86_64" ]; then URL="https://github.com/SvenShi/forgedns/releases/latest/download/forgedns-x86_64-unknown-linux-musl.tar.gz"; \
     else echo "Unsupported architecture: $ARCH" && exit 1; fi \
     && curl -L -H "Cache-Control: no-cache" -o /forgedns.tar.gz "$URL" \
     && tar -zxvf /forgedns.tar.gz \
