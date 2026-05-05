@@ -7,7 +7,7 @@ RUN set -ex \
 
 ##### Runtime
 FROM alpine:3.23
-ENV VER=2.3.4 \
+ENV VER=2.4.0 \
     PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
 COPY --from=builder /tmp/geoip.dat /usr/local/share/v2ray/geoip.dat
