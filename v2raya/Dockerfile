@@ -29,10 +29,6 @@ RUN set -ex \
         && apk --no-cache add -f ca-certificates tzdata iptables iptables-legacy bash supervisor \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && mkdir -p /etc/v2raya \
-        && mkdir -p /etc/v2raya-web \
-        && mkdir -p /tmp/v2ray \
-        && mkdir -p /usr/share/v2ray \
         && chmod +x /entrypoint.sh \
         && rm -rf /var/cache/apk/*
 VOLUME /etc/v2raya
