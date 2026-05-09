@@ -14,11 +14,10 @@ RUN set -ex \
 
 FROM alpine:3.23 AS runtime
 COPY --from=builder /forgedns /usr/bin/forgedns
-COPY entrypoint.sh /entrypoint.sh
 RUN set -ex \
-    && apk add --no-cache ca-certificates tzdata \
-    && chmod +x /entrypoint.sh
+    && apk add --no-cache ca-certificates tzdata
 ENV TZ=Asia/Shanghai
 VOLUME /forgedns
 EXPOSE 53 9088
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/forgedns"]
+CMD ["start", "-c", "/forgedns/config.yaml"]
