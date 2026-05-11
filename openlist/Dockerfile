@@ -12,7 +12,7 @@ RUN set -ex \
         && chmod +x /tmp/openlist \
         && chmod +x /entrypoint.sh \
         && mv /tmp/openlist /usr/bin/openlist \
-        && rm -rf /var/cache/apk/*
+        && rm -rf /var/cache/apk/* \
         && rm -rf /tmp/*
 EXPOSE 5244
 CMD [ "/entrypoint.sh" ]
