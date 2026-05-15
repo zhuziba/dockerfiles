@@ -2,7 +2,7 @@ FROM alpine:3.23
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates tzdata wget curl bash git supervisor \
+        && apk --no-cache add -f ca-certificates tzdata wget curl bash nodejs npm \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
 	    && chmod +x /entrypoint.sh \
