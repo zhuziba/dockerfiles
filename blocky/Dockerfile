@@ -1,4 +1,4 @@
-FROM alpine:3.23 AS builder
+FROM alpine:edge AS builder
 RUN set -ex \
         && apk add git go \
         && git clone https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -trimpath -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"'
