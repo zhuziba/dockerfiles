@@ -4,7 +4,7 @@ WORKDIR /usr/src
 RUN git clone https://github.com/MoeKoeMusic/MoeKoeMusic.git app
 RUN git clone https://github.com/MakcRe/KuGouMusicApi api
 WORKDIR /usr/src/app
-RUN cd /usr/src/app &&npm install && npm run build:docker
+RUN cd /usr/src/app && npm install && npm run build:docker
 RUN cd /usr/src/api && npm install
 
 FROM alpine:3.23 AS runtime
