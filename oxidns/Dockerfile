@@ -14,6 +14,7 @@ RUN set -ex \
 
 FROM alpine:3.23 AS runtime
 COPY --from=builder /oxidns /usr/bin/oxidns
+COPY --from=builder /webui /tmp/webui
 RUN set -ex \
     && apk add --no-cache ca-certificates tzdata
 ENV TZ=Asia/Shanghai
