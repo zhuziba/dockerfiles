@@ -19,6 +19,6 @@ RUN set -ex \
     && apk add --no-cache ca-certificates tzdata
 ENV TZ=Asia/Shanghai
 VOLUME /oxidns
-EXPOSE 53 9088
+EXPOSE 53 9199
 ENTRYPOINT ["/usr/bin/oxidns"]
 CMD ["start", "-c", "/oxidns/config.yaml"]
