@@ -1,0 +1,18 @@
+services:
+  elecv2p:
+    image: byxiaopeng/elecv2p
+    container_name: elecv2p
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "8100:80"
+      - "8001:8001"
+      - "8002:8002"
+    volumes:
+      - "./elecv2p/JSFile:/usr/local/app/script/JSFile"
+      - "./elecv2p/Lists:/usr/local/app/script/Lists"
+      - "./elecv2p/Shell:/usr/local/app/script/Shell"
+      - "./elecv2p/rootCA:/usr/local/app/rootCA"
+      - "./elecv2p/efss:/usr/local/app/efss"
+    network_mode: bridge  
