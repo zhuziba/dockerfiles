@@ -1,5 +1,5 @@
 FROM alpine:3.23 AS builder
-ENV VER=2.4.0 
+ENV VER=2.4.7 
 RUN set -ex \
         && apk add  v2ray wget \
         && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
