@@ -13,7 +13,7 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
-FROM alpine:3.23
+FROM alpine:3.23 AS runtime
 ENV PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
 COPY --from=builder /tmp/geoip.dat /usr/local/share/v2ray/geoip.dat
