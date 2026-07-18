@@ -1,5 +1,5 @@
 FROM alpine:3.23 AS builder
-ARG CLASH_VERSION=1.19.28
+ARG CLASH_VERSION=1.19.29
 RUN set -ex \
     && apk --no-cache add wget \
     && ARCH=$(uname -m) \
