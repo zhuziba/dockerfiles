@@ -13,7 +13,7 @@ RUN set -ex \
         && apk --no-cache add -f ca-certificates tzdata wget curl bash \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-	    && chmod +x /entrypoint.sh \
+	&& chmod +x /entrypoint.sh \
         && mkdir /singbox \
         && rm -rf /var/cache/apk/*
 VOLUME /singbox
