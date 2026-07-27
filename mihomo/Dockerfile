@@ -16,7 +16,7 @@ RUN set -ex \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip \
     && rm -rf /var/cache/apk/*
 
-FROM alpine:3.23
+FROM alpine:3.23 AS runtime
 ENV iptables=true \
     tun=false
 COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo
