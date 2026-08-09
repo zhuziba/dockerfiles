@@ -1,7 +1,7 @@
 FROM alpine:3.23
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk --no-cache add -f ca-certificates git tzdata curl wget bash unzip nginx supervisor \
+        && apk --no-cache add -f ca-certificates git tzdata curl bash unzip nginx supervisor \
         && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
         && mkdir -p /tmp/xray \
