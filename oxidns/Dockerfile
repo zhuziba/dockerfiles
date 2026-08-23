@@ -16,7 +16,7 @@ FROM alpine:3.23 AS runtime
 COPY --from=builder /oxidns /usr/bin/oxidns
 COPY --from=builder /webui /tmp/webui
 RUN set -ex \
-    && apk add --no-cache ca-certificates tzdata
+    && apk add --no-cache ca-certificates tzdata bash 
 ENV TZ=Asia/Shanghai
 VOLUME /oxidns
 EXPOSE 53 9199
