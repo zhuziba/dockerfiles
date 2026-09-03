@@ -1,6 +1,7 @@
 FROM alpine:3.23
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
+        && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
         && apk update -f && apk upgrade \
         && apk --no-cache add -f ca-certificates tzdata wget curl bash nodejs npm \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
