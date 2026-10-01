@@ -1,13 +1,14 @@
-FROM alpine AS builder
+FROM alpine:3.23 AS builder
+ARG SHADOWSOCKS_VERSION=v3.3.6
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add go git musl-dev gcc g++ make automake autoconf build-base c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
-        && git clone https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
+        && apk add git musl-dev gcc g++ make automake autoconf build-base c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
+        && git clone --depth 1 --branch "$SHADOWSOCKS_VERSION" https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
         && cd /usr/src/shadowsocks && git submodule update --init && ./autogen.sh && ./configure --prefix=/usr/local --disable-documentation \
         && make -j$(getconf _NPROCESSORS_ONLN) \
         && make install
         
-FROM alpine AS runtime
+FROM alpine:3.23 AS runtime
 COPY --from=builder /usr/local/bin/ss-server /usr/bin/ss-server
 RUN set -ex \
         && apk update -f && apk upgrade \
@@ -17,9 +18,10 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && if [ $(arch) == x86_64 ]; then     wget -P /tmp  https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz;     tar -xvf /tmp/v2ray-plugin-linux-amd64-v1.3.2.tar.gz;     mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin;     chmod +x /usr/bin/v2ray-plugin;     rm -rf /tmp/v2ray-plugin-linux-amd64-v1.3.2.tar.gz; fi \
         && if [ $(arch) == aarch64 ]; then     wget -P /tmp  https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-arm64-v1.3.2.tar.gz;     tar -xvf /tmp/v2ray-plugin-linux-arm64-v1.3.2.tar.gz;     mv v2ray-plugin_linux_arm64 /usr/bin/v2ray-plugin;     chmod +x /usr/bin/v2ray-plugin;     rm -rf /tmp/v2ray-plugin-linux-arm64-v1.3.2.tar.gz; fi \
-        && git clone https://github.com/xiongbao/we.dog \
-        && mv we.dog/* /var/lib/nginx/html/ \
-        && rm -rf /we.dog
+        && git clone https://github.com/xiongbao/we.dog /tmp/we.dog \
+        && git -C /tmp/we.dog checkout --detach fa4153f53a05e35ba863746298a21d2b20af3879 \
+        && mv /tmp/we.dog/* /var/lib/nginx/html/ \
+        && rm -rf /tmp/we.dog
 ADD entrypoint.sh /entrypoint.sh
 ADD default.conf /etc/nginx/http.d/default.conf
 RUN chmod +x /entrypoint.sh

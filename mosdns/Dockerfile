@@ -1,11 +1,12 @@
-FROM alpine:3.23 AS builder
+FROM golang:1.26-alpine3.23 AS builder
+ARG MOSDNS_VERSION=v5.3.4
 RUN set -ex \
-        && apk add git curl wget go make \
-        && git clone https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -trimpath -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
+        && apk add --no-cache git curl wget make \
+        && git clone --depth 1 --branch "$MOSDNS_VERSION" https://github.com/IrineSistiana/mosdns.git /usr/src/mosdns && cd /usr/src/mosdns && go build -trimpath -o /usr/src/mosdns/mosdns -a -ldflags '-extldflags "-static"' \
         && mkdir -p /rules \
-        && wget -O /rules/gfw.txt https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt \
-        && wget -O /rules/accelerated-domains.china.conf https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/china-list.txt \
-        && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/main/CN-ip-cidr.txt \
+        && wget -O /rules/gfw.txt https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202610010125/gfw.txt \
+        && wget -O /rules/accelerated-domains.china.conf https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202610010125/china-list.txt \
+        && wget -O /rules/CN-ip-cidr.txt https://raw.githubusercontent.com/zhuziba/mosdnsrules/03fe27da9913846aa42a5eb526e188295ea88bca/CN-ip-cidr.txt \
         && rm -rf /var/cache/apk/*
 
 FROM alpine:3.23 AS runtime

@@ -1,10 +1,11 @@
 FROM alpine:3.23 AS builder
+ARG OXIDNS_VERSION=1.6.0
 RUN set -ex \
     && apk add --no-cache curl \
     && ARCH="$(uname -m)" \
     && case "$ARCH" in \
-        aarch64) URL="https://github.com/SvenShi/oxidns/releases/latest/download/oxidns-aarch64-unknown-linux-musl.tar.gz" ;; \
-        x86_64) URL="https://github.com/SvenShi/oxidns/releases/latest/download/oxidns-x86_64-unknown-linux-musl.tar.gz" ;; \
+        aarch64) URL="https://github.com/SvenShi/oxidns/releases/download/v${OXIDNS_VERSION}/oxidns-aarch64-unknown-linux-musl.tar.gz" ;; \
+        x86_64) URL="https://github.com/SvenShi/oxidns/releases/download/v${OXIDNS_VERSION}/oxidns-x86_64-unknown-linux-musl.tar.gz" ;; \
         *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
     esac \
     && curl -L -H "Cache-Control: no-cache" -o /oxidns.tar.gz "$URL" \

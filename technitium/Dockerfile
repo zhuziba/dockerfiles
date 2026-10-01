@@ -1,7 +1,9 @@
 FROM alpine:3.23 AS builder
+ARG TECHNITIUM_VERSION=15.5.1
 RUN set -ex \
         && apk add wget \
-        && wget -P /tmp https://download.technitium.com/dns/DnsServerPortable.tar.gz  \
+        && wget -O /tmp/DnsServerPortable.tar.gz "https://download.technitium.com/dns/archive/${TECHNITIUM_VERSION}/DnsServerPortable.tar.gz" \
+        && echo "a8013547b47719bb5868f30c6748539f56b0e343579b3df3da26af8f9bad067f  /tmp/DnsServerPortable.tar.gz" | sha256sum -c - \
         && rm -rf /var/cache/apk/*
 ##### Runtime
 FROM alpine:3.23

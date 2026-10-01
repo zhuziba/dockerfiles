@@ -1,5 +1,8 @@
 FROM alpine:3.23 AS builder
 ARG CLASH_VERSION=1.19.32
+ARG GEOIP_RELEASE=202610011501
+ARG V2RAY_RULES_RELEASE=202610010125
+ARG YACD_COMMIT=c70d55a0ba14efe6fc382966d47a035d5fd14faf
 RUN set -ex \
     && apk --no-cache add wget \
     && ARCH=$(uname -m) \
@@ -11,9 +14,10 @@ RUN set -ex \
     && wget -O /usr/bin/mihomo.gz $URL \
     && gunzip /usr/bin/mihomo.gz \
     && chmod +x /usr/bin/mihomo \
-    && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
+    && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/download/${GEOIP_RELEASE}/Country.mmdb \
     && wget -O /tmp/geosite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat \
-    && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip \
+    && echo "012e87fb009b46a89a649ab5127f866e4525c40084da5841b01935770a636d69  /tmp/geosite.dat" | sha256sum -c - \
+    && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/${YACD_COMMIT}.zip \
     && rm -rf /var/cache/apk/*
 
 FROM alpine:3.23 AS runtime

@@ -14,5 +14,5 @@ if [ ! -e '/usr/local/app/script/Lists/task.list' ]; then
     echo "拷贝Lists代码"
 fi
 
-cd /usr/local/app && pm2 start index.js --name elecV2P
-tail -f /dev/null
+cd /usr/local/app
+exec pm2-runtime start index.js --name elecV2P
