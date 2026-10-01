@@ -9,8 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
+      max-parallel: 4
       matrix:
         include:
           - image: oxidns
@@ -58,10 +61,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push ${{ matrix.image }}
-        run: |
-          docker buildx build \
-            --platform linux/arm64,linux/amd64 \
-            --tag ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image }} \
-            --push \
-            ${{ matrix.context }}
-
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image }}:latest
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}

@@ -3,31 +3,13 @@
 sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g" /etc/sysctl.conf
 sysctl -p
 
-echo -e "======================== 0.1 判断目录是否存在文件 ========================\n"
-if [ ! -e '/root/.config/mihomo/dashboard/index.html' ]; then
-    echo "下载dashboard文件"
-    rm -rf /root/.config/mihomo/dashboard
-    unzip /tmp/gh-pages.zip -d /root/.config/mihomo
-    mv /root/.config/mihomo/Yacd-meta-gh-pages /root/.config/mihomo/dashboard
-    else
-    echo "dashboard文件存在删除下载最新版本"
-    rm -rf /root/.config/mihomo/dashboard
-    unzip /tmp/gh-pages.zip -d /root/.config/mihomo
-    mv /root/.config/mihomo/Yacd-meta-gh-pages /root/.config/mihomo/dashboard
-fi
+echo -e "======================== 0.1 更新Dashboard及规则文件 ========================\n"
+rm -rf /root/.config/mihomo/dashboard /root/.config/mihomo/Yacd-meta-*
+unzip -q /tmp/gh-pages.zip -d /root/.config/mihomo
+mv /root/.config/mihomo/Yacd-meta-* /root/.config/mihomo/dashboard
 
-if [ ! -e '/root/.config/mihomo/Country.mmdb' ]; then
-    echo "下载Country.mmdb文件"
-    cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
-    cp /tmp/geosite.dat /root/.config/mihomo/geosite.dat
-    else
-    echo "Country.mmdb文件存在删除下载最新版本"
-    rm -rf /root/.config/mihomo/Country.mmdb
-    rm -rf /root/.config/mihomo/geosite.dat
-    echo "下载Country.mmdb文件"
-    cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
-    cp /tmp/geosite.dat /root/.config/mihomo/geosite.dat
-fi
+cp /tmp/Country.mmdb /root/.config/mihomo/Country.mmdb
+cp /tmp/geosite.dat /root/.config/mihomo/geosite.dat
 
 echo -e "======================== 1. 开始自定义路由表 ========================\n"
 if [[ $iptables == true ]]; then
@@ -54,10 +36,11 @@ fi
 
 echo -e "======================== 4. 启动clash程序 ========================\n"
 
-if [[ $down_type == git ]]; then
+if [[ ${down_type:-} == git ]]; then
     echo "变量配置了远程配置运远程配置"
-    wget ${down_url} -O /root/.config/mihomo/config.yaml
+    : "${down_url:?down_url must be set when down_type=git}"
+    wget "$down_url" -O /root/.config/mihomo/config.yaml
     else
     echo "变量未配置远程文件运行本地配置"
 fi
-mihomo
+exec mihomo

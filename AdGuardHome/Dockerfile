@@ -1,9 +1,10 @@
 FROM alpine:3.23 AS builder
+ARG ADGUARDHOME_VERSION=0.107.79
 RUN set -ex \
     && apk add --no-cache curl \
     && ARCH=$(uname -m) \
-    && if [ "$ARCH" = "aarch64" ]; then URL="https://static.adguard.com/adguardhome/release/AdGuardHome_linux_arm64.tar.gz"; \
-    elif [ "$ARCH" = "x86_64" ]; then URL="https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz"; \
+    && if [ "$ARCH" = "aarch64" ]; then URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/v${ADGUARDHOME_VERSION}/AdGuardHome_linux_arm64.tar.gz"; \
+    elif [ "$ARCH" = "x86_64" ]; then URL="https://github.com/AdguardTeam/AdGuardHome/releases/download/v${ADGUARDHOME_VERSION}/AdGuardHome_linux_amd64.tar.gz"; \
     else echo "Unsupported architecture: $ARCH" && exit 1; fi \
     && curl -L -H "Cache-Control: no-cache" -o /AdGuardHome.tar.gz "$URL" \
     && tar -zxvf /AdGuardHome.tar.gz \

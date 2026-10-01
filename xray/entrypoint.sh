@@ -1,21 +1,4 @@
 #!/bin/sh
-if [ ! -e '/usr/bin/xray' ]; then
-    if [ $(arch) == x86_64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
-    fi
-    if [ $(arch) == s390x ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-s390x.zip
-    fi
-    if [ $(arch) == aarch64 ]; then
-    curl -L -H "Cache-Control: no-cache" -o /tmp/xray/Xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-arm64-v8a.zip
-    fi
-    unzip /tmp/xray/Xray.zip -d /tmp/xray
-    chmod +x /tmp/xray/xray
-    mv /tmp/xray/xray /usr/bin/xray
-    rm -rf /tmp/xray
-    echo "下载xray完成"
-fi
-
 cat << EOF > /root/config.json
 {
 	"log": {
@@ -114,15 +97,25 @@ arch=$(arch)
 sed -i "s/VERSION/$VERSION/g" /wwwroot/index.html
 sed -i "s/REBOOTDATE/$REBOOTDATE/g" /wwwroot/index.html
 sed -i "s/arch/$arch/g" /wwwroot/index.html
-cat <<EOF> /etc/supervisord.conf
+cat <<EOF > /etc/supervisord.conf
 [supervisord]
-loglevel=info 
 nodaemon=true
 user=root
+
+[program:nginx]
+command=/usr/sbin/nginx -g "daemon off;"
+autorestart=true
+stdout_logfile=/dev/fd/1
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/fd/2
+stderr_logfile_maxbytes=0
+
 [program:xray]
-user=root
 command=/usr/bin/xray run -c /root/config.json
+autorestart=true
+stdout_logfile=/dev/fd/1
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/fd/2
+stderr_logfile_maxbytes=0
 EOF
-/usr/sbin/nginx
-/usr/bin/xray run -c /root/config.json
-#supervisord -c /etc/supervisord.conf
+exec supervisord -n -c /etc/supervisord.conf

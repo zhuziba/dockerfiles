@@ -94,7 +94,7 @@ docker run -d \
 
 ## 构建与发布
 
-`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 为矩阵中的镜像构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流需要配置仓库 Secrets：
+`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 的矩阵构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流按镜像独立缓存构建层，最多并行构建 4 个镜像。工作流需要配置仓库 Secrets：
 
 - `DOCKER_USERNAME`：Docker Hub 用户名。
 - `DOCKER_PASSWORD`：Docker Hub 密码或访问令牌。
@@ -110,3 +110,11 @@ docker buildx build \
 ```
 
 本地仅构建、不推送时，移除 `--push` 并按需添加 `--load`（`--load` 通常只适用于单个平台构建）。
+
+### 依赖版本与容器进程
+
+Dockerfile 使用版本参数固定上游应用发布版或 Git 提交，Go 构建使用 `golang:1.26-alpine3.23`，Alpine 基础镜像统一到 `3.23` 系列。更新依赖时，修改相应 Dockerfile 中的 `ARG ..._VERSION` 或 `ARG ..._COMMIT`；提交前确认上游对应版本仍提供所需架构的文件。动态更新的 Mihomo geosite 规则通过固定 SHA-256 校验，Technitium 安装包也在构建时校验 SHA-256。Alpine 软件包仓库会继续提供 `3.23` 系列更新，因此这不等同于逐字节完全可复现构建。
+
+Node.js 项目有锁文件时使用冻结安装（`npm ci` 或 `pnpm install --frozen-lockfile`）。没有提交锁文件的上游项目仍可能在固定源码提交下解析到不同的传递依赖版本。
+
+大多数单服务容器由 entrypoint 直接 `exec` 前台服务，以便正确传递停止信号并在服务退出时结束容器。需要多个进程的服务保留 Supervisor 或显式信号/退出状态处理，不再用 `tail -f /dev/null` 保持容器表面运行。

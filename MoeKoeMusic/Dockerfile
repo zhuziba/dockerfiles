@@ -1,10 +1,15 @@
 FROM alpine:3.23 AS builder
+ARG MOEKOE_COMMIT=b974ff5c5183be902ff92519f4fd905ec6cae93e
+ARG KUGOU_API_COMMIT=9b6a779abfc9b4590ed671836c82db398fde5929
 RUN apk add --no-cache git nodejs npm
 WORKDIR /usr/src
 RUN git clone https://github.com/MoeKoeMusic/MoeKoeMusic.git app
+RUN git -C /usr/src/app checkout --detach "$MOEKOE_COMMIT"
 RUN git clone https://github.com/MakcRe/KuGouMusicApi api
-RUN cd /usr/src/app && npm install && npm run build:docker
-RUN cd /usr/src/api && npm install
+RUN git -C /usr/src/api checkout --detach "$KUGOU_API_COMMIT"
+RUN cd /usr/src/app && npm ci && npm run build:docker
+RUN npm install --global pnpm@9.15.9 \
+ && cd /usr/src/api && pnpm install --frozen-lockfile
 
 FROM alpine:3.23 AS runtime
 ENV PORT=6521

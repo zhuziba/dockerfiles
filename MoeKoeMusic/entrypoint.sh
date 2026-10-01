@@ -18,15 +18,22 @@ _cleanup() {
 	wait "$NGINX_PID" 2>/dev/null || true
 }
 
-trap '_cleanup; exit 0' INT TERM
+trap '_cleanup; exit 130' INT
+trap '_cleanup; exit 143' TERM
 
 # wait until either process exits
+EXIT_STATUS=0
 while true; do
-	if ! kill -0 "$NODE_PID" 2>/dev/null || ! kill -0 "$NGINX_PID" 2>/dev/null; then
+	if ! kill -0 "$NODE_PID" 2>/dev/null; then
+		wait "$NODE_PID" || EXIT_STATUS=$?
+		break
+	fi
+	if ! kill -0 "$NGINX_PID" 2>/dev/null; then
+		wait "$NGINX_PID" || EXIT_STATUS=$?
 		break
 	fi
 	sleep 1
 done
 
 _cleanup
-exit 0
+exit "$EXIT_STATUS"

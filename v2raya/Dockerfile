@@ -1,15 +1,20 @@
 FROM alpine:3.23 AS builder
-ENV VER=2.4.7 
+ARG V2RAYA_VERSION=2.4.7
+ARG V2RAY_RULES_RELEASE=202610010125
+ARG V2RAYA_GUI_COMMIT=94693ebbe11200b0a712a010d5c353a1a5b367a2
 RUN set -ex \
         && apk add  v2ray wget \
-        && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat \
-        && wget -O /tmp/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat \
-        && if [ $(arch) == aarch64 ]; then      wget https://github.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_arm64_$VER;     chmod +x /v2raya_linux_arm64_$VER;     mv /v2raya_linux_arm64_$VER /usr/bin/v2raya; fi \
-        && if [ $(arch) == x86_64 ]; then     wget https://github.com/v2rayA/v2rayA/releases/download/v$VER/v2raya_linux_x64_$VER;     chmod +x /v2raya_linux_x64_$VER;     mv /v2raya_linux_x64_$VER /usr/bin/v2raya; fi \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/favicon.ico \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/index.html \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/CNAME \
-        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/main/gui/public/robots.txt \
+        && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${V2RAY_RULES_RELEASE}/geoip.dat \
+        && wget -O /tmp/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${V2RAY_RULES_RELEASE}/geosite.dat \
+        && if [ $(arch) == aarch64 ]; then      wget -O /tmp/v2raya https://github.com/v2rayA/v2rayA/releases/download/v${V2RAYA_VERSION}/v2raya_linux_arm64_${V2RAYA_VERSION}; fi \
+        && if [ $(arch) == x86_64 ]; then     wget -O /tmp/v2raya https://github.com/v2rayA/v2rayA/releases/download/v${V2RAYA_VERSION}/v2raya_linux_x64_${V2RAYA_VERSION}; fi \
+        && chmod +x /tmp/v2raya \
+        && mv /tmp/v2raya /usr/bin/v2raya \
+        && mkdir -p /etc/v2raya-web \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/${V2RAYA_GUI_COMMIT}/gui/public/favicon.ico \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/${V2RAYA_GUI_COMMIT}/gui/index.html \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/${V2RAYA_GUI_COMMIT}/gui/public/CNAME \
+        && wget -P /etc/v2raya-web https://raw.githubusercontent.com/v2rayA/v2rayA/${V2RAYA_GUI_COMMIT}/gui/public/robots.txt \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
