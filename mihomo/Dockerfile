@@ -1,10 +1,9 @@
 FROM alpine:3.23 AS builder
 ARG CLASH_VERSION=1.19.32
 ARG GEOIP_RELEASE=202610011501
-ARG V2RAY_RULES_RELEASE=202610010125
 ARG YACD_COMMIT=c70d55a0ba14efe6fc382966d47a035d5fd14faf
 RUN set -ex \
-    && apk --no-cache add wget \
+    && apk --no-cache add curl wget \
     && ARCH=$(uname -m) \
     && case $ARCH in \
         aarch64) URL=https://github.com/MetaCubeX/mihomo/releases/download/v${CLASH_VERSION}/mihomo-linux-arm64-v${CLASH_VERSION}.gz ;; \
@@ -15,8 +14,12 @@ RUN set -ex \
     && gunzip /usr/bin/mihomo.gz \
     && chmod +x /usr/bin/mihomo \
     && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/download/${GEOIP_RELEASE}/Country.mmdb \
-    && wget -O /tmp/geosite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat \
-    && echo "012e87fb009b46a89a649ab5127f866e4525c40084da5841b01935770a636d69  /tmp/geosite.dat" | sha256sum -c - \
+    && curl --fail --location --retry 3 \
+        -H "Accept: application/octet-stream" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        -o /tmp/geosite.dat \
+        "https://api.github.com/repos/MetaCubeX/meta-rules-dat/releases/assets/604553113" \
+    && echo "d8b751e6af6063bbacf0cbc23385fd37caac1c0e04e05292b5e97213a98ef5fc  /tmp/geosite.dat" | sha256sum -c - \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/${YACD_COMMIT}.zip \
     && rm -rf /var/cache/apk/*
 
