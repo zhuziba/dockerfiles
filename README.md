@@ -113,7 +113,7 @@ docker buildx build \
 
 ### 依赖版本与容器进程
 
-Dockerfile 使用版本参数固定上游应用发布版或 Git 提交，Go 构建使用 `golang:1.26-alpine3.23`，Alpine 基础镜像统一到 `3.23` 系列。更新依赖时，修改相应 Dockerfile 中的 `ARG ..._VERSION` 或 `ARG ..._COMMIT`；提交前确认上游对应版本仍提供所需架构的文件。动态更新的 Mihomo geosite 规则通过固定 SHA-256 校验，Technitium 安装包也在构建时校验 SHA-256。Alpine 软件包仓库会继续提供 `3.23` 系列更新，因此这不等同于逐字节完全可复现构建。
+Dockerfile 使用版本参数固定上游应用发布版或 Git 提交，Go 构建使用 `golang:1.26-alpine3.23`，Alpine 基础镜像统一到 `3.23` 系列。更新依赖时，修改相应 Dockerfile 中的 `ARG ..._VERSION` 或 `ARG ..._COMMIT`；提交前确认上游对应版本仍提供所需架构的文件。Mihomo geosite 规则使用固定的 GitHub Release Asset ID 和 SHA-256，Technitium 安装包也在构建时校验 SHA-256。Alpine 软件包仓库会继续提供 `3.23` 系列更新，因此这不等同于逐字节完全可复现构建。
 
 Node.js 项目有锁文件时使用冻结安装（`npm ci` 或 `pnpm install --frozen-lockfile`）。没有提交锁文件的上游项目仍可能在固定源码提交下解析到不同的传递依赖版本。
 
