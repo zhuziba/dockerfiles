@@ -1,4 +1,4 @@
-FROM alpine:3.23 AS builder
+FROM alpine:3.24 AS builder
 ARG SHADOWSOCKS_VERSION=v3.3.6
 RUN set -ex \
         && apk update -f && apk upgrade \
@@ -8,7 +8,7 @@ RUN set -ex \
         && make -j$(getconf _NPROCESSORS_ONLN) \
         && make install
         
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 COPY --from=builder /usr/local/bin/ss-server /usr/bin/ss-server
 RUN set -ex \
         && apk update -f && apk upgrade \

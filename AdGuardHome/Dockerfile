@@ -1,4 +1,4 @@
-FROM alpine:3.23 AS builder
+FROM alpine:3.24 AS builder
 ARG ADGUARDHOME_VERSION=0.107.79
 RUN set -ex \
     && apk add --no-cache curl \
@@ -10,7 +10,7 @@ RUN set -ex \
     && tar -zxvf /AdGuardHome.tar.gz \
     && chmod +x /AdGuardHome/AdGuardHome
 
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 COPY --from=builder /AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \

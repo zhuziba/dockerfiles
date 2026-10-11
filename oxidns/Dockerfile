@@ -1,5 +1,5 @@
-FROM alpine:3.23 AS builder
-ARG OXIDNS_VERSION=1.6.0
+FROM alpine:3.24 AS builder
+ARG OXIDNS_VERSION=1.6.1
 RUN set -ex \
     && apk add --no-cache curl \
     && ARCH="$(uname -m)" \
@@ -13,7 +13,7 @@ RUN set -ex \
     && chmod +x /oxidns \
     && rm /oxidns.tar.gz
 
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 COPY --from=builder /oxidns /usr/bin/oxidns
 COPY --from=builder /webui /tmp/webui
 RUN set -ex \

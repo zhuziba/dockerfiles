@@ -1,10 +1,10 @@
-FROM golang:1.26-alpine3.23 AS builder
+FROM golang:1.27-alpine3.24 AS builder
 ARG BLOCKY_VERSION=v0.35.0
 RUN set -ex \
         && apk add --no-cache git \
         && git clone --depth 1 --branch "$BLOCKY_VERSION" https://github.com/0xERR0R/blocky.git /usr/src/blocky && cd /usr/src/blocky && go build -trimpath -o /usr/src/blocky/blocky -a -ldflags '-extldflags "-static"'
 ##### Runtime
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 COPY --from=builder /usr/src/blocky/blocky /usr/bin/blocky
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \

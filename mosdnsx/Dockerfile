@@ -1,11 +1,11 @@
-FROM golang:1.26-alpine3.23 AS builder
+FROM golang:1.27-alpine3.24 AS builder
 ARG MOSDNSX_VERSION=v26.05.25
 RUN set -ex \
         && apk add --no-cache git make \
         && git clone --depth 1 --branch "$MOSDNSX_VERSION" https://github.com/pmkol/mosdns-x.git /usr/src/mosdns-x && cd /usr/src/mosdns-x && go build -trimpath -o /usr/src/mosdns-x/mosdns -a -ldflags '-extldflags "-static"' \
         && rm -rf /var/cache/apk/*
 
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 COPY --from=builder /usr/src/mosdns-x/mosdns /usr/bin/mosdns
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \

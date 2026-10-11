@@ -1,4 +1,4 @@
-FROM golang:1.26-alpine3.23 AS builder
+FROM golang:1.27-alpine3.24 AS builder
 ARG COREDNS_VERSION=v1.14.7
 RUN set -ex \
         && apk add --no-cache git musl-dev gcc g++ make \
@@ -7,7 +7,7 @@ RUN set -ex \
         && cd /usr/src/coredns && make \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /usr/src/coredns/coredns /usr/bin/coredns
 RUN set -ex \

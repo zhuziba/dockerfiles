@@ -1,4 +1,4 @@
-FROM golang:1.26-alpine3.23 AS builder
+FROM golang:1.27-alpine3.24 AS builder
 ARG MOSPROXY_COMMIT=80afb0117d50963642e49404525589820743620a
 RUN set -ex \
         && apk --no-cache add wget curl git make \
@@ -8,7 +8,7 @@ RUN set -ex \
         && wget -O /tmp/gfw.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/03fe27da9913846aa42a5eb526e188295ea88bca/cdns/gfw.conf \
         && wget -O /tmp/accelerated-domains.china.conf https://raw.githubusercontent.com/zhuziba/mosdnsrules/03fe27da9913846aa42a5eb526e188295ea88bca/cdns/accelerated-domains.china.conf
 ##### Runtime
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 ENV MOSPROXY_JSONLOGGER=true
 COPY --from=builder /usr/src/mosproxy/mosproxy /usr/bin/mosproxy
 COPY --from=builder /tmp/gfw.conf  /rules/gfw.conf 
