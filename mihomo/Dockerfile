@@ -1,7 +1,7 @@
-FROM alpine:3.23 AS builder
+FROM alpine:3.24 AS builder
 ARG CLASH_VERSION=1.19.32
-ARG GEOIP_RELEASE=202610011501
-ARG YACD_COMMIT=c70d55a0ba14efe6fc382966d47a035d5fd14faf
+ARG GEOIP_RELEASE=202610080033
+ARG YACD_COMMIT=93d92ad2431296391cc7c968ad834664e0e806fd
 RUN set -ex \
     && apk --no-cache add curl wget \
     && ARCH=$(uname -m) \
@@ -18,12 +18,12 @@ RUN set -ex \
         -H "Accept: application/octet-stream" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         -o /tmp/geosite.dat \
-        "https://api.github.com/repos/MetaCubeX/meta-rules-dat/releases/assets/604553113" \
-    && echo "d8b751e6af6063bbacf0cbc23385fd37caac1c0e04e05292b5e97213a98ef5fc  /tmp/geosite.dat" | sha256sum -c - \
+        "https://api.github.com/repos/MetaCubeX/meta-rules-dat/releases/assets/629427391" \
+    && echo "5800301b7bb0a04607c660b5d456aeca2c2262849fb77e6c7962174829a6b0f4  /tmp/geosite.dat" | sha256sum -c - \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/${YACD_COMMIT}.zip \
     && rm -rf /var/cache/apk/*
 
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 ENV iptables=true \
     tun=false
 COPY --from=builder /usr/bin/mihomo /usr/bin/mihomo

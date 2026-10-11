@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 ARG DRPYS_COMMIT=295f2b7047e14122d542a7736cb931e81abcf85c
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \

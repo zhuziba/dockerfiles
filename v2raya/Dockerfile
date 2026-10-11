@@ -1,7 +1,7 @@
-FROM alpine:3.23 AS builder
-ARG V2RAYA_VERSION=2.4.7
-ARG V2RAY_RULES_RELEASE=202610010125
-ARG V2RAYA_GUI_COMMIT=94693ebbe11200b0a712a010d5c353a1a5b367a2
+FROM alpine:3.24 AS builder
+ARG V2RAYA_VERSION=2.5.10
+ARG V2RAY_RULES_RELEASE=202610102207
+ARG V2RAYA_GUI_COMMIT=cbc5359c08726f78c723b141c9a0b16eada1f300
 RUN set -ex \
         && apk add  v2ray wget \
         && wget -O /tmp/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${V2RAY_RULES_RELEASE}/geoip.dat \
@@ -18,7 +18,7 @@ RUN set -ex \
         && rm -rf /var/cache/apk/*
 
 ##### Runtime
-FROM alpine:3.23 AS runtime
+FROM alpine:3.24 AS runtime
 ENV PATH=$PATH:/usr/share/v2ray
 COPY --from=builder /usr/bin/v2ray /usr/share/v2ray/v2ray
 COPY --from=builder /tmp/geoip.dat /usr/local/share/v2ray/geoip.dat

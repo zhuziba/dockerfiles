@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 ARG DRPYHOUSE_COMMIT=f72f6632002647cb18f060dda4a92791ce4f4122
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
@@ -6,7 +6,7 @@ RUN set -ex \
         && apk --no-cache add -f tzdata git bash nodejs npm  \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone \
-        && npm install -g bun@1.4.2 \
+        && npm install -g bun@1.4.3 \
         && git clone https://github.com/hjdhnx/drpy-node-house /usr/local/app \
         && git -C /usr/local/app checkout --detach "$DRPYHOUSE_COMMIT" \
         && cd /usr/local/app  && bun install\
