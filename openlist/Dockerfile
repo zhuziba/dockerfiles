@@ -5,7 +5,7 @@ ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
         && apk update -f && apk upgrade \
-        && apk add wget curl bash musl-dev tzdata \
+        && apk --no-cache add curl bash musl-dev tzdata \
         && echo "Asia/Shanghai" > /etc/timezone \
         && if [ $(arch) == aarch64 ]; then      curl -L -H "Cache-Control: no-cache" -o /tmp/openlist.tar.gz https://github.com/OpenListTeam/OpenList/releases/download/v4.2.6/openlist-linux-musl-arm64.tar.gz; fi \
         && if [ $(arch) == x86_64 ]; then      curl -L -H "Cache-Control: no-cache" -o /tmp/openlist.tar.gz https://github.com/OpenListTeam/OpenList/releases/download/v4.2.6/openlist-linux-musl-amd64.tar.gz; fi \
