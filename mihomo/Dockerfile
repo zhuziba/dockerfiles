@@ -11,7 +11,7 @@ RUN set -ex \
     && wget -O /usr/bin/mihomo.gz $URL \
     && gunzip /usr/bin/mihomo.gz \
     && chmod +x /usr/bin/mihomo \
-    && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/download/${GEOIP_RELEASE}/Country.mmdb \
+    && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb \
     && wget -O /tmp/geosite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip \
     && rm -rf /var/cache/apk/*
