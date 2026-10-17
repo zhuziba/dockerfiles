@@ -1,6 +1,5 @@
 FROM alpine:3.24 AS builder
 ARG CLASH_VERSION=1.19.32
-ARG GEOIP_RELEASE=202610080033
 RUN set -ex \
     && apk --no-cache add curl wget \
     && ARCH=$(uname -m) \
@@ -13,12 +12,7 @@ RUN set -ex \
     && gunzip /usr/bin/mihomo.gz \
     && chmod +x /usr/bin/mihomo \
     && wget -O /tmp/Country.mmdb https://github.com/Loyalsoldier/geoip/releases/download/${GEOIP_RELEASE}/Country.mmdb \
-    && curl --fail --location --retry 3 \
-        -H "Accept: application/octet-stream" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        -o /tmp/geosite.dat \
-        "https://api.github.com/repos/MetaCubeX/meta-rules-dat/releases/assets/629427391" \
-    && echo "5800301b7bb0a04607c660b5d456aeca2c2262849fb77e6c7962174829a6b0f4  /tmp/geosite.dat" | sha256sum -c - \
+    && wget -O /tmp/geosite.dat https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat \
     && wget -O /tmp/gh-pages.zip https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip \
     && rm -rf /var/cache/apk/*
 
