@@ -1,7 +1,7 @@
 FROM alpine:3.24 AS builder
 RUN set -ex \
         && apk update -f && apk upgrade \
-        && apk add shadowsocks-libev
+        && apk add shadowsocks-libev-dev --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         
 FROM alpine:3.24 AS runtime
 COPY --from=builder /usr/bin/ss-server /usr/bin/ss-server
