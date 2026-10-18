@@ -3,7 +3,6 @@ ARG COREDNS_VERSION=v1.14.7
 RUN set -ex \
         && apk add --no-cache git musl-dev gcc g++ make \
         && git clone --depth 1 --branch "$COREDNS_VERSION" https://github.com/coredns/coredns.git /usr/src/coredns \
-        && sed -i.bak 's|forward:forward|blocklist:github.com/relekang/coredns-blocklist\ndnsredir:github.com/leiless/dnsredir\nforward:forward|g' /usr/src/coredns/plugin.cfg \
         && cd /usr/src/coredns && make \
         && rm -rf /var/cache/apk/*
 ##### Runtime
