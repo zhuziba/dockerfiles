@@ -1,8 +1,9 @@
 FROM alpine:3.24 AS builder
+ARG SHADOWSOCKS_VERSION=v3.3.5
 RUN set -ex \
         && apk update -f && apk upgrade \
         && apk add go git musl-dev gcc g++ make automake autoconf build-base c-ares-dev libcap libev-dev libtool libsodium-dev linux-headers mbedtls-dev pcre-dev \
-        && git clone https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
+        && git clone --depth 1 --branch "$SHADOWSOCKS_VERSION" https://github.com/shadowsocks/shadowsocks-libev /usr/src/shadowsocks \
         && cd /usr/src/shadowsocks && git submodule update --init && ./autogen.sh && ./configure --prefix=/usr/local --disable-documentation \
         && make -j$(getconf _NPROCESSORS_ONLN) \
         && make install
