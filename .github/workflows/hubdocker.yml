@@ -44,6 +44,18 @@ jobs:
             context: ./singbox
           - image: mosdnsx
             context: ./mosdnsx
+          - image: coredns
+            context: ./coredns
+          - image: drpyhouse
+            context: ./drpyhouse
+          - image: drpys
+            context: ./drpys
+          - image: moekoe-music
+            context: ./MoeKoeMusic
+          - image: mosdns
+            context: ./mosdns
+          - image: ssws
+            context: ./ssws
 
     steps:
       - uses: actions/checkout@v7
