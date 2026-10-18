@@ -22,17 +22,12 @@
 | `xray` | `xray` | `80` | 镜像内生成配置 |
 | `singbox` | `singbox` | `443` | 请按 sing-box 配置要求挂载 |
 | `mosdnsx` | `mosdnsx` | `53`、`80` | `/mosdnsx` |
-
-以下项目有 Dockerfile，但当前未列入 `.github/workflows/hubdocker.yml` 的 Docker Hub 自动构建矩阵：
-
-| 目录 | 服务 | 容器端口 |
-| --- | --- | --- |
-| `coredns` | CoreDNS | `53` |
-| `drpyhouse` | DrpyHouse | `5678` |
-| `drpys` | DrpyS | `5757` |
-| `MoeKoeMusic` | MoeKoeMusic | `8080`、`6521` |
-| `mosdns` | MosDNS | `53` |
-| `ssws` | Shadowsocks + WebSocket | `8080` |
+| `coredns` | `coredns` | `53` | `/coredns` |
+| `drpyhouse` | `drpyhouse` | `5678` | 镜像内应用目录 |
+| `drpys` | `drpys` | `5757` | 镜像内应用目录 |
+| `MoeKoeMusic` | `moekoe-music` | `8080`、`6521` | `/app` |
+| `mosdns` | `mosdns` | `53` | `/mosdns` |
+| `ssws` | `ssws` | `8080` | 镜像内配置 |
 
 ## 快速运行
 
@@ -94,7 +89,7 @@ docker run -d \
 
 ## 构建与发布
 
-`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 的矩阵构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流按镜像独立缓存构建层，最多并行构建 4 个镜像。工作流需要配置仓库 Secrets：
+`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 的矩阵构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流会构建表格中的 20 个镜像，按镜像独立缓存构建层，最多并行构建 4 个镜像。工作流需要配置仓库 Secrets：
 
 - `DOCKER_USERNAME`：Docker Hub 用户名。
 - `DOCKER_PASSWORD`：Docker Hub 密码或访问令牌。
