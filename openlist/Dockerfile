@@ -1,5 +1,5 @@
-FROM alpine:3.24
-ARG OPENLIST_VERSION=4.2.9
+FROM alpine:3.24.4
+ARG OPENLIST_VERSION=4.2.10
 VOLUME /opt/openlist/data/
 WORKDIR /opt/openlist/
 ADD entrypoint.sh /entrypoint.sh
@@ -10,8 +10,8 @@ RUN set -ex \
         && echo "Asia/Shanghai" > /etc/timezone \
         && ARCH=$(arch) \
         && case "$ARCH" in \
-            aarch64) OPENLIST_ARCH=arm64; OPENLIST_MD5=065928168516f94398ee74110f2a7ade ;; \
-            x86_64) OPENLIST_ARCH=amd64; OPENLIST_MD5=7c247e93bb5db4a8c503529abd5a5e91 ;; \
+            aarch64) OPENLIST_ARCH=arm64; OPENLIST_MD5=39ba6c1285e6fddb0412da74ad29ddc7 ;; \
+            x86_64) OPENLIST_ARCH=amd64; OPENLIST_MD5=b467188233a2e30832f9e1e0941f727f ;; \
             *) echo "Unsupported architecture: $ARCH" >&2; exit 1 ;; \
         esac \
         && OPENLIST_FILE="openlist-linux-musl-${OPENLIST_ARCH}.tar.gz" \

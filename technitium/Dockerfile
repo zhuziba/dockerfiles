@@ -1,12 +1,12 @@
-FROM alpine:3.24 AS builder
-ARG TECHNITIUM_VERSION=15.6.0
+FROM alpine:3.24.4 AS builder
+ARG TECHNITIUM_VERSION=15.6.2
 RUN set -ex \
         && apk add wget \
         && wget -O /tmp/DnsServerPortable.tar.gz "https://download.technitium.com/dns/archive/${TECHNITIUM_VERSION}/DnsServerPortable.tar.gz" \
-        && echo "928f1fe28241395a6f527aa2f1921293b78fcb5b69e7e7c74f889aadd85055f3  /tmp/DnsServerPortable.tar.gz" | sha256sum -c - \
+        && echo "51f2d4ebaf156a85035e820afde5e1d428f1920a37d7f0c65203fb1766917e08  /tmp/DnsServerPortable.tar.gz" | sha256sum -c - \
         && rm -rf /var/cache/apk/*
 ##### Runtime
-FROM alpine:3.24
+FROM alpine:3.24.4
 ADD entrypoint.sh /entrypoint.sh
 COPY --from=builder /tmp/DnsServerPortable.tar.gz /tmp/DnsServerPortable.tar.gz
 RUN set -ex \

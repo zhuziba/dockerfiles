@@ -1,5 +1,5 @@
-FROM alpine:3.24 AS builder
-ARG XRAY_VERSION=26.3.27
+FROM alpine:3.24.4 AS builder
+ARG XRAY_VERSION=26.11.9
 ARG TARGETARCH
 RUN set -ex \
         && apk add --no-cache ca-certificates curl unzip \
@@ -13,7 +13,7 @@ RUN set -ex \
         && unzip -q /tmp/Xray.zip -d /tmp/xray \
         && chmod +x /tmp/xray/xray
 
-FROM alpine:3.24
+FROM alpine:3.24.4
 COPY --from=builder /tmp/xray/xray /usr/bin/xray
 RUN set -ex \
         && apk update -f && apk upgrade \
