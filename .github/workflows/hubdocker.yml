@@ -79,5 +79,3 @@ jobs:
           platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image }}:latest
-          cache-from: type=gha,scope=${{ matrix.image }}
-          cache-to: type=gha,mode=min,scope=${{ matrix.image }},ignore-error=true

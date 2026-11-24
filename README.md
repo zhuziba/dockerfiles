@@ -89,7 +89,7 @@ docker run -d \
 
 ## 构建与发布
 
-`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 的矩阵构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流会构建表格中的 20 个镜像，按镜像独立缓存构建层，最多并行构建 4 个镜像。工作流需要配置仓库 Secrets：
+`.github/workflows/hubdocker.yml` 在向 `main` 推送或仓库收到 watch 事件时，通过 GitHub Actions 的矩阵构建 `linux/arm64` 和 `linux/amd64` 多架构镜像并推送 Docker Hub。工作流会构建表格中的 20 个镜像，最多并行构建 4 个镜像。工作流需要配置仓库 Secrets：
 
 - `DOCKER_USERNAME`：Docker Hub 用户名。
 - `DOCKER_PASSWORD`：Docker Hub 密码或访问令牌。
