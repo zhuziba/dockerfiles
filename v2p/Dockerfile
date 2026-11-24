@@ -1,5 +1,5 @@
-FROM alpine:3.24 AS runtime
-ARG ELECV2P_COMMIT=caeb05dda15319db8221637bfd0e1308593fdbe1
+FROM alpine:3.24.4 AS runtime
+ARG ELECV2P_COMMIT=3da4b80a58ff77a6acc5593ff484acfc94adcb27
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/app/node_modules/.bin \
     TZ=Asia/Shanghai
 ADD entrypoint.sh /entrypoint.sh

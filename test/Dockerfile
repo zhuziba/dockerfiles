@@ -1,4 +1,4 @@
-FROM alpine:3.24
+FROM alpine:3.24.4
 ADD entrypoint.sh /entrypoint.sh
 RUN set -ex \
         && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
